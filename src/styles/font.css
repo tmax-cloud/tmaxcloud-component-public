@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "SpoqaHanSansNeo-Bold";
+  src: url("./fonts/SpoqaHanSansNeo-Bold.eot") format("embedded-opentype"), url("./fonts/SpoqaHanSansNeo-Bold.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Medium";
+  src: url("./fonts/SpoqaHanSansNeo-Medium.eot") format("embedded-opentype"), url("./fonts/SpoqaHanSansNeo-Medium.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("./fonts/SpoqaHanSansNeo-Regular.eot") format("embedded-opentype"), url("./fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2");
+  font-display: swap;
+}
+@font-face {
+  font-family: "SpoqaHanSansNeo-Light";
+  src: url("./fonts/SpoqaHanSansNeo-Light.eot") format("embedded-opentype"), url("./fonts/SpoqaHanSansNeo-Light.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SpoqaHanSansNeo-Thin";
+  src: url("./fonts/SpoqaHanSansNeo-Thin.eot") format("embedded-opentype"), url("./fonts/SpoqaHanSansNeo-Thin.woff2") format("woff2");
+  font-display: swap;
+}
