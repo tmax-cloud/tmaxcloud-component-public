@@ -192,7 +192,7 @@ const InputBox = ({
 };
 
 InputBox.propTypes = {
-  /** InputBox Type */
+  /** 타입 */
   state: PropTypes.oneOf(["Box", "Line"]),
   /** 입력 필드의 폭   */
   size: PropTypes.number,

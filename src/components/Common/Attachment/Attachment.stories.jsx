@@ -15,7 +15,7 @@ export default {
   },
 };
 
-const Template = (...args) => <Attacthment {...args} />;
+const Template = (args) => <Attacthment {...args} />;
 
 export const AttachmentTemplate = Template.bind({});
 

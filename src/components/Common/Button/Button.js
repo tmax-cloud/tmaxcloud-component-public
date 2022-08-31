@@ -1,6 +1,5 @@
-import React from "react";
-import styled from "styled-components";
-import { css } from "styled-components";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const Button_Custom = styled.button`
   padding: 0 2rem;
@@ -35,8 +34,8 @@ const Button_Custom = styled.button`
         padding: 0 1.2rem;
       `;
   }}
-  ${({ theme, propType }) => {
-    if (propType === "PrimaryA")
+  ${({ theme, state }) => {
+    if (state === "PrimaryA")
       return css`
         color: ${theme.color.white._100};
         background-color: ${theme.color.marine._500};
@@ -47,7 +46,7 @@ const Button_Custom = styled.button`
           background-color: ${theme.color.marine._700};
         }
       `;
-    else if (propType === "PrimaryB")
+    else if (state === "PrimaryB")
       return css`
         color: ${theme.color.white._100};
         background-color: ${theme.color.blueGray._900};
@@ -58,7 +57,7 @@ const Button_Custom = styled.button`
           background-color: ${theme.color.black._100};
         }
       `;
-    else if (propType === "SecondaryA")
+    else if (state === "SecondaryA")
       return css`
         color: ${theme.color.marine._500};
         background-color: ${theme.color.white._100};
@@ -71,7 +70,7 @@ const Button_Custom = styled.button`
           border: 1px solid ${theme.color.gray._900};
         }
       `;
-    else if (propType === "SecondaryB")
+    else if (state === "SecondaryB")
       return css`
         color: ${theme.color.gray._900};
         background-color: ${theme.color.white._100};
@@ -84,7 +83,7 @@ const Button_Custom = styled.button`
           border: 1px solid ${theme.color.gray._900};
         }
       `;
-    else if (propType === "SecondaryC")
+    else if (state === "SecondaryC")
       return css`
         color: ${theme.color.gray._900};
         background-color: ${theme.color.white._100};
@@ -96,7 +95,7 @@ const Button_Custom = styled.button`
           background-color: ${theme.color.gray._100};
         }
       `;
-    else if (propType === "TertiaryA")
+    else if (state === "TertiaryA")
       return css`
         color: ${theme.color.blueGray._600};
         background-color: ${theme.color.blueGray._100};
@@ -107,7 +106,7 @@ const Button_Custom = styled.button`
           background-color: ${theme.color.blueGray._200};
         }
       `;
-    else if (propType === "TertiaryB")
+    else if (state === "TertiaryB")
       return css`
         color: ${theme.color.marine._500};
         background-color: ${theme.color.marine._100};
@@ -127,10 +126,37 @@ const Button_Custom = styled.button`
   `}
 `;
 
-export const Button = ({ propType, propSize, text, onClick }) => {
+const Button = ({ state, propSize, text, onClick }) => {
   return (
-    <Button_Custom propType={propType} propSize={propSize} onClick={onClick}>
+    <Button_Custom state={state} propSize={propSize} onClick={onClick}>
       {text}
     </Button_Custom>
   );
 };
+
+Button.propTypes = {
+  /** 타입 */
+  state: PropTypes.oneOf([
+    "PrimaryA",
+    "PrimaryB",
+    "SecondaryA",
+    "SecondaryB",
+    "SecondaryC",
+    "TertiaryA",
+    "TertiaryB",
+  ]),
+  /** 크기 */
+  propSize: PropTypes.oneOf(["XL", "L", "M", "S"]),
+  /** 텍스트 */
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+};
+
+Button.defaultProps = {
+  state: "PrimaryA",
+  propSize: "XL",
+  text: "test",
+  onClick: () => console.log("button Click"),
+};
+
+export default Button;

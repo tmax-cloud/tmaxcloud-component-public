@@ -1,12 +1,11 @@
-import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Wrapper = styled.div`
   width: fit-content;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: ${({ state }) => (state === "Medium" ? "center" : "flex-start")};
   justify-content: center;
   gap: 0.8rem;
   background: ${({ theme }) => theme.color.white._100};
@@ -24,27 +23,39 @@ const Icon = styled.img`
 
 const DataWrapper = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+
+  ${({ state }) => {
+    if (state === "Medium")
+      return css`
+        flex-direction: row;
+        gap: 0.8rem;
+        align-items: center;
+      `;
+    else
+      return css`
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: flex-start;
+      `;
+  }}
 `;
-const Name = styled.span`
+const Name = styled.div`
   ${({ theme }) => theme.font.body2_400};
   color: ${({ theme }) => theme.color.gray._900};
 `;
 
-const Size = styled.span`
+const Size = styled.div`
   ${({ theme }) => theme.font.body3_400};
   color: ${({ theme }) => theme.color.gray._500};
 `;
 
 const Attacthment = ({ state, name, size }) => {
   return (
-    <Wrapper>
+    <Wrapper state={state}>
       <IconWrapper>
-        <Icon src="/" />
+        <Icon src="/" alt="file" />
       </IconWrapper>
-      <DataWrapper>
+      <DataWrapper state={state}>
         <Name>{name}</Name>
         <Size>{size}</Size>
       </DataWrapper>
@@ -53,9 +64,11 @@ const Attacthment = ({ state, name, size }) => {
 };
 
 Attacthment.propTypes = {
-  /** Attachment 규격 */
+  /** 타입 */
   state: PropTypes.oneOf(["Medium", "Large"]),
+  /** 파일 이름 */
   name: PropTypes.string,
+  /** 파일 크기 */
   size: PropTypes.string,
 };
 

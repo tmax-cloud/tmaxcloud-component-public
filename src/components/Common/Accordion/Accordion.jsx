@@ -7,13 +7,13 @@ const Accordion = (props) => {
   else return <Accordion_Row {...props} />;
 };
 Accordion.propTypes = {
-  /** 아코디언 타입 */
+  /** 타입 */
   state: PropTypes.oneOf(["Box", "List", "Row"]),
-  /** 아코디언 카테고리(state가 List인 경우 활성 사용 가능) */
+  /** 카테고리(state가 List인 경우 활성 사용 가능) */
   category: PropTypes.string,
-  /** 아코디언의 제목  */
+  /** 제목  */
   title: PropTypes.string,
-  /** 아코디언의 내용 */
+  /** 내용 */
   content: PropTypes.string,
   /** 이용불가능 여부 */
   disabled: PropTypes.bool,
