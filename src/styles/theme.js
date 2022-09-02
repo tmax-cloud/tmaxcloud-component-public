@@ -99,7 +99,7 @@ const font = {
     font-size:1.1rem;
     font-weight:500;
     `,
-  datail1_400: `
+  detail1_400: `
     font-family:'SpoqaHanSansNeo-Regular';
     font-size:1.1rem;
     font-weight:400;

@@ -3,6 +3,7 @@ import "./styles/global.css";
 import App from "./App";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "styles/theme";
+import "antd/dist/antd.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

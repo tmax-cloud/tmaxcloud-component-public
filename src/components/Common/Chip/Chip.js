@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { css } from "styled-components";
 
@@ -6,8 +6,8 @@ const ChipWrapper = styled.button`
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  ${({ theme, propType, icon, image, isCloseAble }) => {
-    if (propType === "Filter") {
+  ${({ theme, state, icon, image, isCloseAble }) => {
+    if (state === "Filter") {
       return css`
         height: 2.8rem;
         background-color: ${theme.color.blueGray._100};
@@ -25,7 +25,7 @@ const ChipWrapper = styled.button`
           background-color: ${theme.color.blueGray._200};
         }
       `;
-    } else if (propType === "Input") {
+    } else if (state === "Input") {
       return css`
         height: 2.8rem;
         background-color: ${theme.color.white._100};
@@ -67,27 +67,27 @@ const ChipWrapper = styled.button`
   }}
 `;
 
-export const Chip = ({
-  propType,
-  text,
-  icon,
-  image,
-  isCloseAble,
-  handleCloseButton,
-}) => {
+const CloseIcon = styled.img`
+  opacity: 0.3;
+`;
+/**
+ * @param {string} state 타입
+ * @returns 테스트
+ */
+const Chip = ({ state, icon, image, text, isCloseAble, handleCloseButton }) => {
   return (
     <ChipWrapper
-      propType={propType}
+      state={state}
       icon={icon}
       image={image}
       isCloseAble={isCloseAble}
     >
-      {icon && <img src={icon} alt="아이콘" />}
+      {icon && <img src={icon} alt="제거" />}
       {image && <img src={image} alt="이미지" />}
       {text}
       {isCloseAble && (
-        <img
-          src="/"
+        <CloseIcon
+          src="/asset/images/Icon/content/Status=cancel, Type=fill.svg"
           alt="닫기버튼"
           onClick={handleCloseButton}
           onKeyUp={handleCloseButton}
@@ -96,3 +96,29 @@ export const Chip = ({
     </ChipWrapper>
   );
 };
+
+Chip.propTypes = {
+  /** 타입 */
+  state: PropTypes.oneOf(["Default", "Input", "Filter"]),
+  /** 아이콘 링크. image와 중복으로 줄 수 없음 */
+  icon: PropTypes.string,
+  /** 이미지 링크. icon과 중복으로 줄 수 없음 */
+  image: PropTypes.string,
+  /** 텍스트 */
+  text: PropTypes.string,
+  /** 제거 버튼 활성화 여부. Input 타입은 상시, Filter 타입은 선택형*/
+  isCloseAble: PropTypes.bool,
+  /** 제거 버튼 클릭 시 이벤트 */
+  handleCloseButton: PropTypes.func,
+};
+
+Chip.defaultProps = {
+  state: "Default",
+  text: "Chip",
+  icon: "/asset/images/Icon/content/Status=cancel, Type=fill.svg",
+  image: "/asset/images/Icon/content/Status=cancel, Type=fill.svg",
+  isCloseAble: false,
+  handleCloseButton: () => console.log("handleCloseButton"),
+};
+
+export default Chip;

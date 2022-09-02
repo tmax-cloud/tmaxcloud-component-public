@@ -96,7 +96,7 @@ const Title = styled.div`
   position: relative;
   padding: 0 0.8rem 0 2rem;
 `;
-//메뉴 전체 틀이자 1뎁스
+/**메뉴 전체 틀 and 1뎁스 */
 export const ContextMenu = () => {
   return (
     <Wrapper>
@@ -142,7 +142,7 @@ const ContextMenuItem = () => {
     </ContextMenuItemWrapper>
   );
 };
-// 리스트 아이템의 하위 아이템이자 2뎁스 이후 //리스트아이템의 하위 아이템의 하위 아이템의... 하이
+/** 리스트 아이템의 하위 아이템이자 2뎁스 이후 리스트아이템의 하위 아이템의 하위 아이템의...*/
 const ContextMenuChild = ({ isLeft }) => {
   const ref = useRef();
   const [overHeight, setOverHeight] = useState(0);

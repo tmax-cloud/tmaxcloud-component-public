@@ -2,6 +2,8 @@ import "@storybook/addon-actions";
 import { ThemeProvider } from "styled-components";
 import { defaultTheme } from "../src/styles/theme";
 import "../src/styles/global.css";
+import "antd/dist/antd.css";
+
 export const decorators = [
   (Story) => (
     <div>
