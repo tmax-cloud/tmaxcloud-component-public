@@ -6,10 +6,10 @@ export default {
   argTypes: {},
   decorators: [],
   parameters: {
-    componentSubtitle: "첨부파일의 확장자 및 정보를 나타내는 컴포넌트",
+    componentSubtitle: "첨부파일의 확장자 및 정보를 나타내는 컴포넌트.",
     docs: {
       description: {
-        component: "Attachment",
+        component: "아이콘은 현재 미정",
       },
     },
   },

@@ -1,7 +1,8 @@
 import { Modal } from "antd";
 import React from "react";
 import styled from "styled-components";
-import { Button } from "../Button/Button";
+import PropTypes from "prop-types";
+import Button from "../Button/Button";
 
 const Dialog_NormalStyle = styled(Modal)`
   .ant-modal-content {
@@ -12,16 +13,18 @@ const Dialog_NormalStyle = styled(Modal)`
     border-radius: 12px;
     align-items: center;
     justify-content: center;
-    height: 7.8rem;
     .ant-modal-title {
       ${({ theme }) => theme.font.body1_700};
       color: ${({ theme }) => theme.color.gray._900};
     }
+    padding: 3rem 3rem 3.2rem 3rem;
+    margin: 0 auto;
     border-bottom: none;
   }
   .ant-modal-body {
     ${({ theme }) => theme.font.body2_400};
     color: ${({ theme }) => theme.color.gray._600};
+    padding: 0 3rem;
   }
   .ant-modal-footer {
     border-top: none;
@@ -42,12 +45,14 @@ const Dialog_AlertStyle = styled(Modal)`
       ${({ theme }) => theme.font.body1_700};
       color: ${({ theme }) => theme.color.gray._900};
     }
+    padding: 6rem 3rem 2rem 3rem;
+    margin: 0 auto;
     border-bottom: none;
   }
   .ant-modal-body {
     ${({ theme }) => theme.font.body2_400};
     color: ${({ theme }) => theme.color.gray._600};
-    padding: 0;
+    padding: 0 3rem;
   }
   .ant-modal-footer {
     border-top: none;
@@ -184,6 +189,9 @@ const Dialog_RadioButtonStyle = styled(Modal)`
         flex-direction: column;
         gap: 1.2rem;
       }
+      .ant-space-item {
+        padding: 0;
+      }
     }
   }
   .ant-modal-footer {
@@ -212,6 +220,7 @@ const OneWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
+  padding: 4rem 2rem 2rem 2rem;
   button {
     width: 100%;
   }
@@ -219,12 +228,11 @@ const OneWrapper = styled.div`
 // footer 는 전부 상속 및 버튼 수에 따라 layout을 달리하도록 컴포넌트 별도 생성
 const Dialog_Normal = ({
   title,
-  message,
-  subAction,
+  content,
   isModalVisible,
   handleCancel,
-  onClick,
-  buttonText,
+  buttonCount,
+  footerButton,
 }) => {
   return (
     <Dialog_NormalStyle
@@ -234,17 +242,11 @@ const Dialog_Normal = ({
       onCancel={handleCancel}
       centered={true}
       footer={
-        <Button
-          onClick={onClick}
-          propType="PrimaryB"
-          propSize="L"
-          text={buttonText}
-        />
+        <Button_Layout buttonCount={buttonCount}>{footerButton}</Button_Layout>
       }
       closable={false}
     >
-      {message && <div>{message}</div>}
-      {/* {subAction && <div>{subAction}</div>} */}
+      {content && <div>{content}</div>}
     </Dialog_NormalStyle>
   );
 };
@@ -253,8 +255,8 @@ const Dialog_Alert = ({
   title,
   isModalVisible,
   handleCancel,
-  onClick,
-  buttonText,
+  buttonCount,
+  footerButton,
 }) => {
   return (
     <Dialog_AlertStyle
@@ -264,12 +266,7 @@ const Dialog_Alert = ({
       onCancel={handleCancel}
       centered={true}
       footer={
-        <Button
-          onClick={onClick}
-          propType="PrimaryB"
-          propSize="L"
-          text={buttonText}
-        />
+        <Button_Layout buttonCount={buttonCount}>{footerButton}</Button_Layout>
       }
       closable={false}
     />
@@ -280,9 +277,8 @@ const Dialog_Alert_Icon = ({
   title,
   isModalVisible,
   handleCancel,
-  onClick,
-  buttonText_left,
-  buttonText_right,
+  buttonCount,
+  footerButton,
 }) => {
   return (
     <Dialog_Alert_IconStyle
@@ -292,20 +288,7 @@ const Dialog_Alert_Icon = ({
       onCancel={handleCancel}
       centered={true}
       footer={
-        <>
-          <Button
-            onClick={handleCancel}
-            propType="SecondaryC"
-            propSize="L"
-            text={buttonText_left}
-          />
-          <Button
-            onClick={onClick}
-            propType="PrimaryB"
-            propSize="L"
-            text={buttonText_right}
-          />
-        </>
+        <Button_Layout buttonCount={buttonCount}>{footerButton}</Button_Layout>
       }
       closable={false}
     />
@@ -314,13 +297,12 @@ const Dialog_Alert_Icon = ({
 
 const Dialog_Error_Msg = ({
   title,
-  message,
+  content,
   subAction,
   isModalVisible,
   handleCancel,
-  onClick,
-  buttonText_left,
-  buttonText_right,
+  buttonCount,
+  footerButton,
 }) => {
   return (
     <Dialog_Error_MsgStyle
@@ -330,37 +312,21 @@ const Dialog_Error_Msg = ({
       onCancel={handleCancel}
       centered={true}
       footer={
-        <>
-          <Button
-            onClick={handleCancel}
-            propType="SecondaryC"
-            propSize="L"
-            text={buttonText_left}
-          />
-          <Button
-            onClick={onClick}
-            propType="PrimaryB"
-            propSize="L"
-            text={buttonText_right}
-          />
-        </>
+        <Button_Layout buttonCount={buttonCount}>{footerButton}</Button_Layout>
       }
       closable={false}
     >
-      {message && <div>{message}</div>}
-      {subAction && <div>{subAction}</div>}
+      {content && <div>{content}</div>}
     </Dialog_Error_MsgStyle>
   );
 };
 const Dialog_InputBox = ({
   title,
-  message,
-  subAction,
+  content,
   isModalVisible,
   handleCancel,
-  onClick,
-  buttonText_left,
-  buttonText_right,
+  buttonCount,
+  footerButton,
 }) => {
   return (
     <Dialog_InputBoxStyle
@@ -370,32 +336,17 @@ const Dialog_InputBox = ({
       onCancel={handleCancel}
       centered={true}
       footer={
-        <>
-          <Button
-            onClick={handleCancel}
-            propType="SecondaryC"
-            propSize="L"
-            text={buttonText_left}
-          />
-          <Button
-            onClick={onClick}
-            propType="PrimaryB"
-            propSize="L"
-            text={buttonText_right}
-          />
-        </>
+        <Button_Layout buttonCount={buttonCount}>{footerButton}</Button_Layout>
       }
       closable={false}
     >
-      {message && <div>{message}</div>}
-      {subAction && <div>{subAction}</div>}
+      {content && <div>{content}</div>}
     </Dialog_InputBoxStyle>
   );
 };
 const Dialog_RadioButton = ({
   title,
-  message,
-  subAction,
+  content,
   isModalVisible,
   handleCancel,
   buttonCount,
@@ -413,14 +364,12 @@ const Dialog_RadioButton = ({
       }
       closable={false}
     >
-      {message && <div>{message}</div>}
-      {subAction && <div>{subAction}</div>}
+      {content && <div>{content}</div>}
     </Dialog_RadioButtonStyle>
   );
 };
 
 const Button_Layout = ({ buttonCount, children }) => {
-  console.log(buttonCount, children);
   switch (buttonCount) {
     case 3:
       return <ThreeWrapper>{children}</ThreeWrapper>;
@@ -430,11 +379,56 @@ const Button_Layout = ({ buttonCount, children }) => {
       return <OneWrapper>{children}</OneWrapper>;
   }
 };
-export {
-  Dialog_Normal,
-  Dialog_Alert,
-  Dialog_Alert_Icon,
-  Dialog_Error_Msg,
-  Dialog_InputBox,
-  Dialog_RadioButton,
+
+const Dialog_Variable = (props) => {
+  switch (props.state) {
+    case "Normal":
+      return <Dialog_Normal {...props} />;
+    case "Alert":
+      return <Dialog_Alert {...props} />;
+    case "AlertIcon":
+      return <Dialog_Alert_Icon {...props} />;
+    case "ErrorMsg":
+      return <Dialog_Error_Msg {...props} />;
+    case "InputBox":
+      return <Dialog_InputBox {...props} />;
+    case "RadioButton":
+      return <Dialog_RadioButton {...props} />;
+  }
 };
+
+Dialog_Variable.propTypes = {
+  /** 타입 */
+  state: PropTypes.oneOf([
+    "Normal",
+    "Alert",
+    "AlertIcon",
+    "ErrorMsg",
+    "InputBox",
+    "RadioButton",
+  ]),
+  /** 헤더 */
+  title: PropTypes.element,
+  /** 메시지 영역 */
+  content: PropTypes.node,
+  /** 노출 여부 */
+  isModalVisible: PropTypes.bool,
+  /** 닫기 버튼 클릭 시 이벤트. 개발자 도구에서 확인 가능*/
+  handleCancel: PropTypes.func,
+  /** 버튼 갯수. 아래의 footerButton과 연결되어 작동하므로 같이 수정해 주어야함*/
+  buttonCount: PropTypes.number,
+  /** 버튼 컴포넌트. 스토리북 내에서는 설정시 에러 발생 */
+  footerButton: PropTypes.node,
+};
+
+Dialog_Variable.defaultProps = {
+  state: "Normal",
+  title: "Hello",
+  content: "메시지입니다",
+  isModalVisible: false,
+  handleCancel: () => console.log("button click"),
+  buttonCount: 1,
+  footerButton: <Button state="SecondaryC" propSize="L" />,
+};
+
+export default Dialog_Variable;

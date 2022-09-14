@@ -82,8 +82,8 @@ const Chip = ({ state, icon, image, text, isCloseAble, handleCloseButton }) => {
       image={image}
       isCloseAble={isCloseAble}
     >
-      {icon && <img src={icon} alt="제거" />}
-      {image && <img src={image} alt="이미지" />}
+      {!image && icon && <img src={icon} alt="제거" />}
+      {!icon && image && <img src={image} alt="이미지" />}
       {text}
       {isCloseAble && (
         <CloseIcon

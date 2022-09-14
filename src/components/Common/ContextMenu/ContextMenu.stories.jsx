@@ -1,7 +1,7 @@
 import { ContextMenu } from "./ContextMenu";
 
 export default {
-  title: "Common/ContextMenu",
+  title: "개발중/ContextMenu",
   component: ContextMenu,
   argTypes: {},
   decorators: [],

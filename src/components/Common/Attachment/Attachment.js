@@ -53,7 +53,7 @@ const Attacthment = ({ state, name, size }) => {
   return (
     <Wrapper state={state}>
       <IconWrapper>
-        <Icon src="/" alt="file" />
+        <Icon src="/asset/images/Icon/dummy_icon.svg" alt="file" />
       </IconWrapper>
       <DataWrapper state={state}>
         <Name>{name}</Name>
