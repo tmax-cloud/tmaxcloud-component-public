@@ -9,6 +9,7 @@ const Wrapper = styled.div`
 const ContextMenuWrapper = styled.div`
   top: 0.8rem;
   width: inherit;
+  min-width: 20rem;
   position: absolute;
   z-index: 333;
   background-color: ${({ theme }) => theme.color.white._100};
@@ -132,12 +133,12 @@ const ContextMenuItem = () => {
       ref={WrapperRef}
     >
       <AdviseIconWrapper>
-        <img src="" alt="아이콘" />
+        <img src="/asset/images/Icon/dummy_icon.svg" alt="아이콘" />
       </AdviseIconWrapper>
       <button>
         <ContextMenuItemTitle>아이템</ContextMenuItemTitle>
       </button>
-      <ArrowIcon src="" alt="화살표" />
+      <ArrowIcon src="/asset/images/Icon/dummy_icon.svg" alt="화살표" />
       {view && <ContextMenuChild isLeft={isLeft} />}
     </ContextMenuItemWrapper>
   );

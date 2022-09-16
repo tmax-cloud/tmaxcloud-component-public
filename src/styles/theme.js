@@ -501,7 +501,7 @@ const color = {
   notice: {
     _100: `#FAD749`,
     _font: `#F6C500`,
-    _fill: `#F6C500`,
+    _fill: `#FEF7DB`,
   },
 
   template: {

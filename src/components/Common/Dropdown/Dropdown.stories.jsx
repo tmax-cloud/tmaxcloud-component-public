@@ -13,7 +13,7 @@ export default {
     componentSubtitle: "",
     docs: {
       description: {
-        component: "추후 개선 예정",
+        component: "추후 개발 예정",
       },
     },
   },

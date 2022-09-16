@@ -417,7 +417,7 @@ Dialog_Variable.propTypes = {
   handleCancel: PropTypes.func,
   /** 버튼 갯수. 아래의 footerButton과 연결되어 작동하므로 같이 수정해 주어야함*/
   buttonCount: PropTypes.number,
-  /** 버튼 컴포넌트. 스토리북 내에서는 설정시 에러 발생 */
+  /** 버튼 컴포넌트. 스토리북 내 설정 불가 */
   footerButton: PropTypes.node,
 };
 
