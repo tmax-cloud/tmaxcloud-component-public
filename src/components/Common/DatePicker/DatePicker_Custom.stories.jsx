@@ -1,7 +1,7 @@
 import DatePicker_Custom from "./DatePicker_Custom";
 
 export default {
-  title: "Update/DatePicker_Custom",
+  title: "9월3주차/DatePicker_Custom",
   component: DatePicker_Custom,
   argTypes: {},
   decorators: [],

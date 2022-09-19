@@ -86,7 +86,7 @@ const SBNotification = (props) => {
 
   return (
     <div>
-      <button onClick={onClick}>스토리북 전용 트리거</button>
+      <button onClick={onClick}>버튼입니다. 눌러주세요.</button>
       {visible !== null && <Notification {...props} visible={visible} />}
     </div>
   );

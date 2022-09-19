@@ -1,7 +1,7 @@
 import Pagination from "./Pagination";
 
 export default {
-  title: "개발중/Pagination",
+  title: "9월3주차/Pagination",
   component: Pagination,
   argTypes: {},
   decorators: [],

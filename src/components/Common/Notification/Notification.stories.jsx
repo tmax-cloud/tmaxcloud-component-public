@@ -2,7 +2,7 @@ import { Notification, SBNotification } from "./Notification";
 import styled from "styled-components";
 
 export default {
-  title: "update/Notification",
+  title: "9월3주차/Notification",
   component: SBNotification,
   argTypes: {},
   decorators: [],

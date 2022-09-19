@@ -119,9 +119,9 @@ const Pagination = (props) => {
 Pagination.propTypes = {
   /** 타입 */
   state: PropTypes.oneOf(["Default", "Table", "Combination"]),
-  /** 현재 페이지 */
+  /** 현재 페이지. 스토리북에서는 nowPage를 조절하는것으로 숫자 변경 가능 */
   nowPage: PropTypes.number,
-  /** Table에서 사용할 단위 */
+  /** Table에서 사용할 단위. 한번에 보여줄 테이블의 갯 수 */
   unit: PropTypes.number,
   /** 총 페이지 수 */
   allPage: PropTypes.number,

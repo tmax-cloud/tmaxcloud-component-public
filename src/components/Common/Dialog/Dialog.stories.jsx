@@ -1,7 +1,7 @@
 import Dialog from "./Dialog";
 
 export default {
-  title: "Update/Dialog",
+  title: "9월3주차/Dialog",
   component: Dialog,
   argTypes: {},
   decorators: [],

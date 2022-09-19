@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import Dialog_Variable from "./Dialog_Variable";
 
 export default {
-  title: "Update/Dialog_Variable",
+  title: "9월3주차/Dialog_Variable",
   component: Dialog_Variable,
   argTypes: {},
   decorators: [],
