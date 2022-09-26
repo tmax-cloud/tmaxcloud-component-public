@@ -45,7 +45,7 @@ const Badge = ({ state, size, backgroundColor, text }) => {
   return (
     <Wrapper state={state} backgroundColor={backgroundColor} size={size}>
       {state === "Icon" && (
-        <img src="/asset/images/Icon/basic/Type=fill-3.svg" alt="notice" />
+        <img src="/asset/images/Icon/dummy_icon.svg" alt="notice" />
       )}
       <span>{text}</span>
     </Wrapper>

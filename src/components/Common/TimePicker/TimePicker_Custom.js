@@ -1,7 +1,7 @@
 import { ConfigProvider, TimePicker, Space } from "antd";
 import React, { forwardRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-
+import PropTypes from "prop-types";
 import "moment/locale/ko";
 import locale from "antd/lib/locale/ko_KR";
 
@@ -33,9 +33,9 @@ const CustomPickerGlobalStyle = createGlobalStyle`
 
 
 `;
-const TimePicker_Custom = () => {
+const TimePicker_Custom = ({ handleTime }) => {
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
+    handleTime(date, dateString);
   };
 
   return (
@@ -52,6 +52,14 @@ const TimePicker_Custom = () => {
       </ConfigProvider>
     </TimePicker_CustomWrapper>
   );
+};
+
+TimePicker_Custom.propTypes = {
+  handleTime: PropTypes.func,
+};
+
+TimePicker_Custom.defaultProps = {
+  handleTime: (e) => console.log(e),
 };
 
 export default TimePicker_Custom;
