@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import Button from "../Button/Button";
 
 const Wrapper = styled.div`
+  position: relative;
+`;
+const ClockWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 14.9rem;
@@ -12,7 +16,6 @@ const Wrapper = styled.div`
   border-radius: 8px;
   position: relative;
 `;
-
 const ClockIcon = styled.img`
   width: 2rem;
   height: 2rem;
@@ -31,18 +34,20 @@ const TimeDropdownWrapper = styled.div`
   border-radius: 1.6rem;
 `;
 const TimeDropdownContentWrapper = styled.div`
+  height: 13.6rem;
   display: flex;
+  position: relative;
   flex-direction: row;
   padding: 0.8rem 1rem;
-
-  gap: 1.6rem;
+  gap: 1.65rem;
 `;
-const TimeDropdownUl = styled.ul`
+const TimeDropdownUlWrapper = styled.ul`
+  scroll-behavior: smooth;
   width: 4.8rem;
-  height: 13.4rem;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  margin-bottom: 0;
   ::-webkit-scrollbar {
     width: 0;
   }
@@ -50,25 +55,51 @@ const TimeDropdownUl = styled.ul`
     background-color: transparent;
   }
 `;
+const EachColumnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const TimeDropdownLi = styled.li`
+  height: 1.6rem;
   padding: 1.2rem 0rem;
   text-align: center;
-  ${({ theme }) => theme.font.body2_400}
+  ${({ theme }) => theme.font.body2_700};
   margin: 0;
-  :hover,
-  :focus,
-  :focus-visible,
-  :target {
-    cursor: pointer;
-    ${({ theme }) => theme.font.body2_700}
-  }
-  ${({ active }) =>
+  opacity: ${({ scrollY }) => scrollY};
+`;
+const SupportBlock = styled.div`
+  height: 4rem;
+`;
+const SaveTimeButtonWrapper = styled.div``;
+const CenterBorderWrapper = styled.div`
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  position: absolute;
+  top: 4.8rem;
+  left: 0;
+  padding: 0 1rem;
+  flex: 1 1 0%;
+  z-index: -1;
+`;
+const CenterBorder = styled.div`
+  flex-basis: auto;
+  flex-grow: 1;
+  border-top: 0.1rem solid ${({ theme }) => theme.color.gray._200};
+  border-bottom: 0.1rem solid ${({ theme }) => theme.color.gray._200};
+  ${({ active, theme }) =>
     active &&
     css`
-      ${({ theme }) => theme.font.body2_700}
+      border-top: 0.1rem solid ${theme.color.gray._900};
+      border-bottom: 0.1rem solid ${theme.color.gray._900};
     `}
 `;
+const CenterBorderGap = styled.div`
+  flex-basis: 1.6rem;
+`;
+const HourSystemKR: string[] = ["오전", "오후"];
+const HourSystemEN: string[] = ["AM", "PM"];
 const Hour: string[] = [
   "01",
   "02",
@@ -145,59 +176,249 @@ const Minute: string[] = [
   "58",
   "59",
 ];
+const BUTTON_HEIGHT = 40;
 
 const TimePicker = () => {
-  const [time, setTime] = useState("08:23 PM");
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [time, setTime] = useState("00:00 AM");
+  const [openTimepicker, setOpenTimepicker] = useState(false);
+  const [hourSystemIndexState, setHourSystemIndexState] = useState(0);
   const [hourIndexState, setHourIndexState] = useState(0);
   const [minuteIndexState, setMinuteIndexState] = useState(0);
+  const [hoverUl, setHoverUl] = useState<string>();
 
-  const handleHourIndexState = (HourIndex: number) => {
-    setHourIndexState(HourIndex);
+  const toggleTimepicker = () => {
+    setOpenTimepicker(!openTimepicker);
   };
-  const handleMinuteIndexState = (MinuteIndex: number) => {
-    setMinuteIndexState(MinuteIndex);
+
+  const closeTimepickerEvent = (e) => {
+    if (openTimepicker && !ref.current.contains(e.target)) {
+      setOpenTimepicker(false);
+    }
   };
+  const keydownTimepickerEvent = (e) => {
+    if (openTimepicker && e.key === "Escape") {
+      setOpenTimepicker(false);
+    }
+  };
+
+  const saveTime = (): void => {
+    setTime(
+      `${Hour[hourIndexState]}:${Minute[minuteIndexState]} ${HourSystemEN[hourSystemIndexState]}`,
+    );
+    toggleTimepicker();
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", closeTimepickerEvent);
+    document.addEventListener("keydown", keydownTimepickerEvent);
+
+    return () => {
+      document.removeEventListener("mousedown", closeTimepickerEvent);
+      document.removeEventListener("keydown", keydownTimepickerEvent);
+    };
+  });
 
   return (
     <Wrapper>
-      {time}
-      <ClockIcon src="/asset/images/Icon/dummy_icon.svg" alt="dummy" />
-      <TimeDropdownWrapper>
-        <TimeDropdownContentWrapper>
-          <TimeDropdownUl>
-            <TimeDropdownLi>오전</TimeDropdownLi>
-            <TimeDropdownLi>오후</TimeDropdownLi>
-          </TimeDropdownUl>
-          <TimeDropdownUl>
-            {Hour.map((hour, hourIndex) => (
-              <TimeDropdownLi
-                key={`${hour} 시`}
-                onClick={() => {
-                  handleHourIndexState(hourIndex);
-                }}
-                active={hourIndex === hourIndexState}
-              >
-                {hour} 시
-              </TimeDropdownLi>
-            ))}
-          </TimeDropdownUl>
-          <TimeDropdownUl>
-            {Minute.map((minute, minuteIndex) => (
-              <TimeDropdownLi
-                key={`${minute} 분`}
-                onClick={() => {
-                  handleMinuteIndexState(minuteIndex);
-                }}
-                active={minuteIndex === minuteIndexState}
-              >
-                {minute} 분
-              </TimeDropdownLi>
-            ))}
-          </TimeDropdownUl>
-        </TimeDropdownContentWrapper>
-      </TimeDropdownWrapper>
+      <ClockWrapper>
+        {time}
+        <ClockIcon
+          src="/asset/images/Icon/dummy_icon.svg"
+          alt="dummy"
+          onClick={toggleTimepicker}
+        />
+      </ClockWrapper>
+      {openTimepicker && (
+        <TimeDropdownWrapper ref={ref}>
+          <TimeDropdownContentWrapper>
+            <TimeDropdownUl
+              mouseOver={() => {
+                setHoverUl("HourS");
+              }}
+              mouseOut={() => {
+                setHoverUl("");
+              }}
+              propTime={HourSystemKR}
+              propState={hourSystemIndexState}
+              setState={setHourSystemIndexState}
+              unit=""
+            />
+            <TimeDropdownUl
+              mouseOver={() => {
+                setHoverUl("Hour");
+              }}
+              mouseOut={() => {
+                setHoverUl("");
+              }}
+              propTime={Hour}
+              propState={hourIndexState}
+              setState={setHourIndexState}
+              unit="시"
+            />
+            <TimeDropdownUl
+              mouseOver={() => {
+                setHoverUl("Minute");
+              }}
+              mouseOut={() => {
+                setHoverUl("");
+              }}
+              propTime={Minute}
+              propState={minuteIndexState}
+              setState={setMinuteIndexState}
+              unit="분"
+            />
+            <CenterBorderWrapper>
+              <CenterBorder active={hoverUl === "HourS"} />
+              <CenterBorderGap />
+              <CenterBorder active={hoverUl === "Hour"} />
+              <CenterBorderGap />
+              <CenterBorder active={hoverUl === "Minute"} />
+            </CenterBorderWrapper>
+          </TimeDropdownContentWrapper>
+          <SaveTimeButtonWrapper>
+            <Button
+              key="확인"
+              onClick={saveTime}
+              propSize="XL"
+              state="PrimaryB"
+              text="확인"
+            />
+          </SaveTimeButtonWrapper>
+        </TimeDropdownWrapper>
+      )}
     </Wrapper>
   );
 };
 
+// type TimeDropdownUlPropType = {
+//   propTime: string[];
+//   propState: number;
+//   setState: (value: React.SetStateAction<number>) => void;
+//   unit?: string;
+// };
+
+// eslint-disable-next-line react/display-name
+/** forwardRef 로 작성한 경우 */
+// const TimeDropdownUl = React.forwardRef(
+//   (
+//     props: TimeDropdownUlPropType,
+//     ref: React.MutableRefObject<HTMLUListElement>,
+//   ) => {
+//     const { propTime, propState, setState, unit } = props;
+
+//     const onClick = (HourIndex: number) => {
+//       moveToScroll(ref, HourIndex);
+//       setState(HourIndex);
+//     };
+//     const getCenterPositionFromIndex = (index: number): number => {
+//       return BUTTON_HEIGHT * index + 2 * index;
+//     };
+
+//     const moveToScroll = (
+//       currentRef: React.MutableRefObject<HTMLUListElement>,
+//       index: number,
+//     ): void => {
+//       currentRef.current.scrollTo(0, getCenterPositionFromIndex(index));
+//     };
+
+//     useEffect(() => {
+//       moveToScroll(ref, propState);
+//     }, [propState]);
+
+//     return (
+//       <TimeDropdownUlWrapper ref={ref}>
+//         <EachColumnWrapper>
+//           <SupportBlock />
+//           {propTime.map((data, dataIndex) => (
+//             <TimeDropdownLi
+//               key={`${data}`}
+//               onClick={() => {
+//                 onClick(dataIndex);
+//               }}
+//               active={dataIndex === propState}
+//             >
+//               {data} {unit}
+//             </TimeDropdownLi>
+//           ))}
+//           <SupportBlock />
+//         </EachColumnWrapper>
+//       </TimeDropdownUlWrapper>
+//     );
+//   },
+// );
+
+const TimeDropdownUl = ({
+  mouseOver,
+  mouseOut,
+  propTime,
+  propState,
+  setState,
+  unit,
+}) => {
+  const ref = useRef<HTMLUListElement | null>(null);
+  const [scrollY, setScrollY] = useState(0);
+
+  const onClick = (HourIndex: number) => {
+    moveToScroll(ref, HourIndex);
+    setState(HourIndex);
+  };
+  const getCenterPositionFromIndex = (index: number): number => {
+    return BUTTON_HEIGHT * index;
+  };
+
+  const getScrollYIndexState = (scrollNumber) => {
+    return Math.floor((scrollNumber + 20) / 40);
+  };
+
+  const moveToScroll = (
+    currentRef: React.MutableRefObject<HTMLUListElement>,
+    index: number,
+  ): void => {
+    currentRef.current.scrollTo(0, getCenterPositionFromIndex(index));
+  };
+
+  const scrollEvent = (e) => {
+    setScrollY(e.target.scrollTop);
+    console.log(getScrollYIndexState(e.target.scrollTop));
+  };
+
+  useEffect(() => {
+    moveToScroll(ref, propState);
+  }, [propState]);
+
+  return (
+    <TimeDropdownUlWrapper
+      ref={ref}
+      tabindex="0"
+      onScroll={scrollEvent}
+      onMouseOver={mouseOver}
+      onMouseOut={mouseOut}
+    >
+      <EachColumnWrapper>
+        <SupportBlock />
+        {propTime.map((data, dataIndex) => (
+          <TimeDropdownLi
+            key={`${data}`}
+            onClick={() => {
+              onClick(dataIndex);
+            }}
+            active={dataIndex === propState}
+            scrollY={
+              Math.abs(scrollY - BUTTON_HEIGHT * dataIndex) >= 20
+                ? 0.2
+                : 1 -
+                  Math.abs(
+                    (scrollY - BUTTON_HEIGHT * dataIndex + 20) / 25 - 0.8,
+                  )
+            }
+          >
+            {data} {unit}
+          </TimeDropdownLi>
+        ))}
+        <SupportBlock />
+      </EachColumnWrapper>
+    </TimeDropdownUlWrapper>
+  );
+};
 export default TimePicker;

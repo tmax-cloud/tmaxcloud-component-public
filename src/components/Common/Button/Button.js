@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const Button_Custom = styled.button`
+  width: 100%;
   padding: 0 2rem;
   cursor: pointer;
   display: flex;

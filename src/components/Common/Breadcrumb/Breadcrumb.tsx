@@ -43,13 +43,20 @@ const ItemWrapper = styled.div`
     &:focus-visible,
     &:target {
       color: ${({ theme }) => theme.color.gray._800};
+      img {
+        opacity: 0.7;
+      }
     }
     &:active {
       color: ${({ theme }) => theme.color.gray._900};
+      img {
+        opacity: 0.8;
+      }
     }
     img {
       width: 1.4rem;
       height: 1.4rem;
+      opacity: 0.5;
     }
   }
   img {
@@ -61,7 +68,7 @@ const ItemWrapper = styled.div`
     color: ${({ theme }) => theme.color.gray._900};
     ${({ theme }) => theme.font.body3_500};
     img {
-      display: none;
+      opacity: 0.8;
     }
   }
 `;

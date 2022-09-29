@@ -28,7 +28,6 @@ const CustomPickerGlobalStyle = createGlobalStyle`
   padding:0 2rem 2rem 2rem;
   box-shadow: 0px 0px 16px 2px rgba(37, 50, 113, 0.12);
   border-radius: 16px;
-
 }
 
 
