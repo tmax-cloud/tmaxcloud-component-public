@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import Button from "../Button/Button";
+import { debounce } from "lodash";
 
 const Wrapper = styled.div`
   position: relative;
@@ -55,12 +56,11 @@ const TimeDropdownUlWrapper = styled.ul`
     background-color: transparent;
   }
 `;
-const EachColumnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 const TimeDropdownLi = styled.li`
+  display: list-item;
+  flex-basis: auto;
+  flex-shrink: 0;
   height: 1.6rem;
   padding: 1.2rem 0rem;
   text-align: center;
@@ -69,6 +69,8 @@ const TimeDropdownLi = styled.li`
   opacity: ${({ scrollY }) => scrollY};
 `;
 const SupportBlock = styled.div`
+  flex-shrink: 0;
+  width: 100%;
   height: 4rem;
 `;
 const SaveTimeButtonWrapper = styled.div``;
@@ -178,6 +180,7 @@ const Minute: string[] = [
 ];
 const BUTTON_HEIGHT = 40;
 
+/** TimePicker  */
 const TimePicker = () => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [time, setTime] = useState("00:00 AM");
@@ -209,6 +212,12 @@ const TimePicker = () => {
     toggleTimepicker();
   };
 
+  const onKeyPress = (e) => {
+    console.log(e);
+
+    if (e.key === "Enter" || e.key === " ") toggleTimepicker();
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", closeTimepickerEvent);
     document.addEventListener("keydown", keydownTimepickerEvent);
@@ -227,16 +236,18 @@ const TimePicker = () => {
           src="/asset/images/Icon/dummy_icon.svg"
           alt="dummy"
           onClick={toggleTimepicker}
+          onKeyPress={onKeyPress}
+          tabIndex="0"
         />
       </ClockWrapper>
       {openTimepicker && (
         <TimeDropdownWrapper ref={ref}>
           <TimeDropdownContentWrapper>
             <TimeDropdownUl
-              mouseOver={() => {
+              setHoverState={() => {
                 setHoverUl("HourS");
               }}
-              mouseOut={() => {
+              setHoverStateDefault={() => {
                 setHoverUl("");
               }}
               propTime={HourSystemKR}
@@ -245,10 +256,10 @@ const TimePicker = () => {
               unit=""
             />
             <TimeDropdownUl
-              mouseOver={() => {
+              setHoverState={() => {
                 setHoverUl("Hour");
               }}
-              mouseOut={() => {
+              setHoverStateDefault={() => {
                 setHoverUl("");
               }}
               propTime={Hour}
@@ -257,10 +268,10 @@ const TimePicker = () => {
               unit="시"
             />
             <TimeDropdownUl
-              mouseOver={() => {
+              setHoverState={() => {
                 setHoverUl("Minute");
               }}
-              mouseOut={() => {
+              setHoverStateDefault={() => {
                 setHoverUl("");
               }}
               propTime={Minute}
@@ -349,8 +360,8 @@ const TimePicker = () => {
 // );
 
 const TimeDropdownUl = ({
-  mouseOver,
-  mouseOut,
+  setHoverState,
+  setHoverStateDefault,
   propTime,
   propState,
   setState,
@@ -380,7 +391,7 @@ const TimeDropdownUl = ({
 
   const scrollEvent = (e) => {
     setScrollY(e.target.scrollTop);
-    console.log(getScrollYIndexState(e.target.scrollTop));
+    setState(getScrollYIndexState(e.target.scrollTop));
   };
 
   useEffect(() => {
@@ -390,35 +401,35 @@ const TimeDropdownUl = ({
   return (
     <TimeDropdownUlWrapper
       ref={ref}
-      tabindex="0"
-      onScroll={scrollEvent}
-      onMouseOver={mouseOver}
-      onMouseOut={mouseOut}
+      tabIndex="0"
+      onScroll={debounce(scrollEvent, 25)}
+      onMouseOver={setHoverState}
+      onMouseOut={setHoverStateDefault}
+      onKeyUp={setHoverState}
     >
-      <EachColumnWrapper>
-        <SupportBlock />
-        {propTime.map((data, dataIndex) => (
-          <TimeDropdownLi
-            key={`${data}`}
-            onClick={() => {
-              onClick(dataIndex);
-            }}
-            active={dataIndex === propState}
-            scrollY={
-              Math.abs(scrollY - BUTTON_HEIGHT * dataIndex) >= 20
-                ? 0.2
-                : 1 -
-                  Math.abs(
-                    (scrollY - BUTTON_HEIGHT * dataIndex + 20) / 25 - 0.8,
-                  )
-            }
-          >
-            {data} {unit}
-          </TimeDropdownLi>
-        ))}
-        <SupportBlock />
-      </EachColumnWrapper>
+      <SupportBlock />
+      {propTime.map((data, dataIndex) => (
+        <TimeDropdownLi
+          key={`${data}`}
+          onClick={() => {
+            onClick(dataIndex);
+          }}
+          active={dataIndex === propState}
+          scrollY={
+            Math.abs(scrollY - BUTTON_HEIGHT * dataIndex) >= 20
+              ? 0.2
+              : 1 -
+                Math.abs((scrollY - BUTTON_HEIGHT * dataIndex + 20) / 25 - 0.8)
+          }
+        >
+          {data} {unit}
+        </TimeDropdownLi>
+      ))}
+      <SupportBlock />
     </TimeDropdownUlWrapper>
   );
 };
+
+TimePicker.propTypes = {};
+TimePicker.defaultProps = {};
 export default TimePicker;

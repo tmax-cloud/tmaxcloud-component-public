@@ -1,9 +1,8 @@
 import TimePicker from "./TimePicker";
-import TimePicker_Custom from "./TimePicker_Custom";
 
 export default {
-  title: "개발중/TimePicker_Custom",
-  component: TimePicker_Custom,
+  title: "9월 5주차/TimePicker",
+  component: TimePicker,
   argTypes: {},
   decorators: [],
   parameters: {
@@ -16,15 +15,8 @@ export default {
     },
   },
 };
+const Template = (args) => <TimePicker {...args} />;
 
-const Template = (args) => <TimePicker_Custom {...args} />;
+export const TimePickerTemplate = Template.bind({});
 
-export const TimePicker_CustomTemplate = Template.bind({});
-
-TimePicker_CustomTemplate.args = {};
-
-const TimePickerTemplate = (args) => <TimePicker {...args} />;
-
-export const TimePickerTemplateTest = TimePickerTemplate.bind({});
-
-TimePickerTemplateTest.args = {};
+TimePickerTemplate.args = {};
