@@ -113,7 +113,7 @@ export const ContextMenu = () => {
   );
 };
 // 메뉴의 한 리스트 아이템
-const ContextMenuItem = () => {
+const ContextMenuItem = ({ arrowIcon }) => {
   const WrapperRef = useRef();
   const [view, setView] = useState(false);
   const [isLeft, setIsLeft] = useState(false);
@@ -138,7 +138,9 @@ const ContextMenuItem = () => {
       <button>
         <ContextMenuItemTitle>아이템</ContextMenuItemTitle>
       </button>
-      <ArrowIcon src="/asset/images/Icon/dummy_icon.svg" alt="화살표" />
+      {arrowIcon && (
+        <ArrowIcon src="/asset/images/Icon/dummy_icon.svg" alt="화살표" />
+      )}
       {view && <ContextMenuChild isLeft={isLeft} />}
     </ContextMenuItemWrapper>
   );

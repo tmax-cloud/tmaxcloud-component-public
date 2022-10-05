@@ -70,6 +70,7 @@ const TitleWrapper = styled.div`
 
 const ContentWrapper = styled.div``;
 
+/** 스토리북용 알림 */
 const SBNotification = (props) => {
   const [visible, isVisible] = useState(null);
 
@@ -91,6 +92,7 @@ const SBNotification = (props) => {
     </div>
   );
 };
+/** 개발용 알림 */
 const Notification = ({ state, title, content, visible }) => {
   return (
     <SingleWrapper state={state} visible={visible}>

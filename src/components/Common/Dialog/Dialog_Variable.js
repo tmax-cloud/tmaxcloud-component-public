@@ -408,7 +408,7 @@ Dialog_Variable.propTypes = {
     "RadioButton",
   ]),
   /** 헤더 */
-  title: PropTypes.element,
+  title: PropTypes.node,
   /** 메시지 영역 */
   content: PropTypes.node,
   /** 노출 여부 */

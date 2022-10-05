@@ -1,7 +1,7 @@
 import TextArea from "./TextArea";
 
 export default {
-  title: "9월4주차/TextArea",
+  title: "common/TextArea",
   component: TextArea,
   argTypes: {},
   decorators: [],

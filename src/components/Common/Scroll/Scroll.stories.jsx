@@ -1,7 +1,7 @@
 import { SBScroll } from "./Scroll";
 
 export default {
-  title: "9월4주차/scroll",
+  title: "common/scroll",
   component: SBScroll,
   argTypes: {},
   decorators: [],

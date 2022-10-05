@@ -1,8 +1,8 @@
-import Tooltip from "./Tooltip";
+import { SBTooltipCustom } from "./TooltipCustom";
 
 export default {
-  title: "개발중/tooltip",
-  component: Tooltip,
+  title: "10월 2주차/Tooltip",
+  component: SBTooltipCustom,
   argTypes: {},
   decorators: [],
   parameters: {
@@ -11,8 +11,12 @@ export default {
   },
 };
 
-const Template = (args) => <Tooltip {...args} />;
+const Template = (args) => <SBTooltipCustom {...args} />;
 
 export const TooltipTemplate = Template.bind({});
 
-TooltipTemplate.args = {};
+TooltipTemplate.args = {
+  title: "test",
+  placement: "bottom",
+  trigger: "hover",
+};

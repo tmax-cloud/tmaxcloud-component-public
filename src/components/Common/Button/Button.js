@@ -127,9 +127,14 @@ const Button_Custom = styled.button`
   `}
 `;
 
-const Button = ({ state, propSize, text, onClick }) => {
+const Button = ({ state, propSize, text, onClick, ...props }) => {
   return (
-    <Button_Custom state={state} propSize={propSize} onClick={onClick}>
+    <Button_Custom
+      state={state}
+      propSize={propSize}
+      onClick={onClick}
+      {...props}
+    >
       {text}
     </Button_Custom>
   );

@@ -55,6 +55,7 @@ const TimePicker_Custom = ({ handleTime }) => {
 };
 
 TimePicker_Custom.propTypes = {
+  /** 변경된 시간 저장 함수 */
   handleTime: PropTypes.func,
 };
 

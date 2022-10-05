@@ -294,6 +294,9 @@ const TimePicker = () => {
               propSize="XL"
               state="PrimaryB"
               text="확인"
+              onKeyUp={() => {
+                setHoverUl("");
+              }}
             />
           </SaveTimeButtonWrapper>
         </TimeDropdownWrapper>
@@ -401,7 +404,7 @@ const TimeDropdownUl = ({
   return (
     <TimeDropdownUlWrapper
       ref={ref}
-      tabIndex="0"
+      tabIndex={0}
       onScroll={debounce(scrollEvent, 25)}
       onMouseOver={setHoverState}
       onMouseOut={setHoverStateDefault}

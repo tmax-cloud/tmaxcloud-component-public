@@ -1,3 +1,5 @@
+import { DefaultTheme } from "styled-components";
+
 const font = {
   header1_700: `
     font-family:'SpoqaHanSansNeo-Bold';
@@ -532,7 +534,7 @@ const color = {
   },
 };
 
-export const defaultTheme = {
+export const defaultTheme: DefaultTheme = {
   font,
   color,
 };
