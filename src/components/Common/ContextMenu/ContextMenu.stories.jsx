@@ -19,3 +19,91 @@ export default {
 const Template = (args) => <ContextMenu {...args} />;
 
 export const ContextMenuTemplate = Template.bind({});
+
+ContextMenuTemplate.args = {
+  title: "기본 타이틀",
+  contextMenuItemProps: [
+    {
+      prefixIcon: "Icon",
+      itemTitle: "아이콘1",
+    },
+    {
+      prefixIcon: "Checkbox",
+      itemTitle: "체크박스1",
+    },
+    {
+      prefixIcon: "Label",
+      itemTitle: "라벨1",
+      contextMenuItemChildProps: [
+        {
+          title: "타이틀3",
+          contextMenuItemProps: [
+            {
+              prefixIcon: "Icon",
+              itemTitle: "아이콘3",
+            },
+            {
+              prefixIcon: "Checkbox",
+              itemTitle: "체크박스3",
+            },
+            {
+              prefixIcon: "Label",
+              itemTitle: "라벨3",
+            },
+            {
+              itemTitle: "아무것도없는3",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      itemTitle: "아무것도없는1",
+
+      contextMenuItemChildProps: [
+        {
+          title: "타이틀1",
+          contextMenuItemProps: [
+            {
+              prefixIcon: "Icon",
+              itemTitle: "아이콘2",
+              contextMenuItemChildProps: [
+                {
+                  title: "타이틀1",
+                  contextMenuItemProps: [
+                    {
+                      prefixIcon: "Icon",
+                      itemTitle: "아이콘2",
+                    },
+                    {
+                      prefixIcon: "Checkbox",
+                      itemTitle: "체크박스2",
+                    },
+                    {
+                      prefixIcon: "Label",
+                      itemTitle: "라벨2",
+                    },
+                    {
+                      itemTitle: "아무것도없는2",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              prefixIcon: "Checkbox",
+              itemTitle: "체크박스2",
+            },
+            {
+              prefixIcon: "Label",
+              itemTitle: "라벨2",
+            },
+            {
+              itemTitle: "아무것도없는2",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
