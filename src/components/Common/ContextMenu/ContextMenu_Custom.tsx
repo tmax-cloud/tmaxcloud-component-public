@@ -6,8 +6,18 @@ import { css } from "styled-components";
 type contextMenuPropsType = {
   /** 타이틀 */
   title: string;
-  /** 타이틀에 속한 MenuItem */
+  /** 타이틀에 속한 MenuItem ,
+   *  컨텍스트 내부 각 아이템의 앞자리를 선택할 수 있는 prefixIcon ,
+   *  각 아이템의 텍스트 부분을 마튼 itemTitle ,
+   *  해당 아이템 하위의 MenuItem을 나타내는 contextMenuItemChildProps(contextMenuPropsType 배열로 표현)
+   */
   contextMenuItemProps: Array<contextMenuItemPropsType>;
+  /** 생성될 contextMenu의 X위치. 자동측정*/
+  pageX: number;
+  /** 생성될 contextMenu의 Y위치. 자동측정*/
+  pageY?: number;
+  /** 우측의 여백이 없어 position을 right로 줘야하는지. 자동측정*/
+  isRight?: boolean;
 };
 /** MenuItem props */
 type contextMenuItemPropsType = {
@@ -15,23 +25,40 @@ type contextMenuItemPropsType = {
   prefixIcon?: "Icon" | "Checkbox" | "Label";
   /** 해당 MenuItem의 텍스트 타이틀 */
   itemTitle: string;
-  /** 화살표 존재 여부 */
+  /** 해당 아이템 하위의 MenuItem을 */
   contextMenuItemChildProps?: Array<contextMenuPropsType>;
 };
 type contextMenuItemChildPropsType = {
   /** 좌측에 렌더해야하는지 */
   isLeft: boolean;
-  /** 하위 Deps 메뉴 */
+  /** 하위 Deps MenuItem을 */
   contextMenuItemChildProps: Array<contextMenuPropsType>;
 };
-
-const Wrapper = styled.div`
-  width: inherit;
+const SBContextMenuTriggerWrapper = styled.div`
+  width: 10rem;
+  height: 20rem;
+  position: relative;
+  background-color: skyblue;
+  color: black;
+`;
+const SBButtonWrapper = styled.div`
   position: relative;
 `;
+const SBButton = styled.div`
+  background-color: red;
+`;
+
 const ContextMenuWrapper = styled.div`
-  top: 0.8rem;
-  width: inherit;
+  ${({ isRight, pageX }) =>
+    isRight
+      ? css`
+          right: ${pageX}px;
+        `
+      : css`
+          left: ${pageX}px;
+        `}
+  top: ${({ pageY }) => (pageY ? `${pageY}px` : `0.8rem`)};
+  width: auto;
   min-width: 20rem;
   position: absolute;
   z-index: 333;
@@ -120,22 +147,107 @@ const Title = styled.div`
   position: relative;
   padding: 0 0.8rem 0 2rem;
 `;
-/** 메뉴 전체 틀 and 1뎁스 */
-export const ContextMenu = ({
+/** 스토리북용 트리거 */
+const SBContextMenuTrigger = (args) => {
+  const ref = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const ChangeMenuState = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const CloseMenu = (e) => {
+    if (isMenuOpen && !ref.current.contains(e.target)) setIsMenuOpen(false);
+  };
+  const keydownEvent = (e) => {
+    if (isMenuOpen && e.key === "Escape") {
+      setIsMenuOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", CloseMenu);
+    document.addEventListener("keydown", keydownEvent);
+    return () => {
+      document.removeEventListener("mousedown", CloseMenu);
+      document.removeEventListener("keydown", keydownEvent);
+    };
+  });
+  return (
+    <>
+      <SBContextMenuTriggerWrapper ref={ref}>
+        배경 외부 클릭시 menu off
+        <br />
+        <SBButton onClick={ChangeMenuState}>menu 트리거</SBButton>
+        <SBButtonWrapper>
+          {isMenuOpen && <ContextMenu {...args} />}
+        </SBButtonWrapper>
+      </SBContextMenuTriggerWrapper>
+      <ContextMenuTriggerWithMouse {...args} />
+    </>
+  );
+};
+/** 마우스 우클릭 시 ContextMenu 생성 컴포넌트 */
+const ContextMenuTriggerWithMouse = (args) => {
+  const ref = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [pageX, setPageX] = useState(0);
+  const [pageY, setPageY] = useState(0);
+  const [isRight, setIsRight] = useState(false);
+  const CloseMenu = (e) => {
+    if (isMenuOpen && !ref.current.contains(e.target)) setIsMenuOpen(false);
+  };
+  const OpenMenuWithMouse = (e) => {
+    if (e.which == 3 || e.button == 2) {
+      setIsMenuOpen(true);
+      handleXPosition(e.pageX);
+      setPageY(e.pageY);
+      window.oncontextmenu = () => {
+        return false;
+      };
+    }
+  };
+  /** 좌측으로 돌려야하는지 */
+  const handleXPosition = (xPosition) => {
+    if (xPosition + 200 > window.innerWidth) {
+      setIsRight(true);
+      setPageX(window.innerWidth - xPosition);
+    } else {
+      setIsRight(false);
+      setPageX(xPosition);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("mousedown", CloseMenu);
+    document.addEventListener("contextmenu", OpenMenuWithMouse);
+    return () => {
+      document.removeEventListener("mousedown", CloseMenu);
+      document.removeEventListener("contextmenu", OpenMenuWithMouse);
+    };
+  });
+  return (
+    isMenuOpen && (
+      <div ref={ref}>
+        <ContextMenu {...args} pageX={pageX} pageY={pageY} isRight={isRight} />
+      </div>
+    )
+  );
+};
+
+/** ContextMenu의 시작을 맡는 틀 및 1뎁스 */
+const ContextMenu = ({
   title,
   contextMenuItemProps,
+  pageX,
+  pageY,
+  isRight,
 }: contextMenuPropsType) => {
-  console.log(title, contextMenuItemProps);
-
   return (
-    <Wrapper>
-      <ContextMenuWrapper>
-        <Title>{title}</Title>
-        {contextMenuItemProps.map((data) => (
-          <ContextMenuItem {...data} key={data.itemTitle} />
-        ))}
-      </ContextMenuWrapper>
-    </Wrapper>
+    <ContextMenuWrapper pageX={pageX} pageY={pageY} isRight={isRight}>
+      <Title>{title}</Title>
+      {contextMenuItemProps.map((data) => (
+        <ContextMenuItem {...data} key={data.itemTitle} />
+      ))}
+    </ContextMenuWrapper>
   );
 };
 /** 메뉴의 한 리스트 아이템 */
@@ -195,6 +307,7 @@ const ContextMenuItem = ({
     </ContextMenuItemWrapper>
   );
 };
+
 /** 하위 Deps 메뉴 */
 const ContextMenuItemChild = ({
   isLeft,
@@ -227,7 +340,7 @@ const ContextMenuItemChild = ({
         >
           {contextMenuItemChildProps.map(
             (contextMenuProps: contextMenuPropsType) => (
-              <>
+              <div key={contextMenuProps.title}>
                 <Title>{contextMenuProps.title}</Title>
                 <Divider />
                 {contextMenuProps.contextMenuItemProps.map(
@@ -238,7 +351,7 @@ const ContextMenuItemChild = ({
                     />
                   ),
                 )}
-              </>
+              </div>
             ),
           )}
         </ContextMenuChildWrapper_R>
@@ -250,7 +363,7 @@ const ContextMenuItemChild = ({
         >
           {contextMenuItemChildProps.map(
             (contextMenuProps: contextMenuPropsType) => (
-              <>
+              <div key={contextMenuProps.title}>
                 <Title>{contextMenuProps.title}</Title>
                 <Divider />
                 {contextMenuProps.contextMenuItemProps.map(
@@ -261,7 +374,7 @@ const ContextMenuItemChild = ({
                     />
                   ),
                 )}
-              </>
+              </div>
             ),
           )}
         </ContextMenuChildWrapper>
@@ -269,9 +382,10 @@ const ContextMenuItemChild = ({
     </div>
   );
 };
-
 ContextMenu.defaultProps = {
   title: "기본 타이틀",
+  pageX: 0,
+  isRight: false,
   contextMenuItemProps: [
     {
       prefixIcon: "Icon",
@@ -312,3 +426,4 @@ ContextMenu.defaultProps = {
     },
   ],
 };
+export { SBContextMenuTrigger, ContextMenuTriggerWithMouse, ContextMenu };
