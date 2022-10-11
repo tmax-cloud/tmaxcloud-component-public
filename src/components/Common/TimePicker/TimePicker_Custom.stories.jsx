@@ -1,7 +1,7 @@
 import TimePicker from "./TimePicker";
 
 export default {
-  title: "9월 5주차/TimePicker",
+  title: "common/TimePicker",
   component: TimePicker,
   argTypes: {},
   decorators: [],

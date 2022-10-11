@@ -26,4 +26,5 @@ ControllerTemplate.args = {
   size: "default",
   text: "test",
   disabled: false,
+  title: "title",
 };

@@ -15,11 +15,6 @@ export default {
   parameters: {
     componentSubtitle:
       "제한된 공간에 정보를 표시하기 위해 접을 수 있는 내용 패널",
-    docs: {
-      description: {
-        component: "Accordion",
-      },
-    },
   },
 };
 

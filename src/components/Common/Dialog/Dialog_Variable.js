@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
@@ -379,7 +379,30 @@ const Button_Layout = ({ buttonCount, children }) => {
       return <OneWrapper>{children}</OneWrapper>;
   }
 };
+const SBDialog_Variable = (props) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleModalActive = () => {
+    setIsModalVisible(true);
+  };
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
+  };
 
+  return (
+    <>
+      <button onClick={handleModalActive}>
+        스토리북 용 Dialog on/off 버튼
+      </button>
+
+      <Dialog_Variable
+        {...props}
+        isModalVisible={isModalVisible}
+        handleCancel={handleModalCancel}
+        footerButton={<button onClick={handleModalCancel}>버튼버튼버튼</button>}
+      />
+    </>
+  );
+};
 const Dialog_Variable = (props) => {
   switch (props.state) {
     case "Normal":
@@ -432,3 +455,4 @@ Dialog_Variable.defaultProps = {
 };
 
 export default Dialog_Variable;
+export { SBDialog_Variable };

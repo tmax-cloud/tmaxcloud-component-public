@@ -47,7 +47,6 @@ const SBButtonWrapper = styled.div`
 const SBButton = styled.div`
   background-color: red;
 `;
-
 const ContextMenuWrapper = styled.div`
   ${({ isRight, pageX }) =>
     isRight

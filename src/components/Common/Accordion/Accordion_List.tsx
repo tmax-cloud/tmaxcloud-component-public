@@ -1,39 +1,35 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
-
+/** 리스트형 아코디언 props 타입*/
+type Accordion_ListPropsType = {
+  /** 카테고리 */
+  category: string;
+  /** 타이틀 */
+  title: string;
+  /** 내용  */
+  content: string;
+  /** 이용 불가 여부 */
+  disabled: boolean;
+};
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  ${({ isClick, theme }) =>
-    isClick &&
-    css`
-      &::before {
-        width: 0.2rem;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        content: "";
-        background-color: ${theme.color.gray._900};
-      }
-    `};
+  border-bottom: 1px solid ${({ theme }) => theme.color.gray._300};
 `;
 const TitleArea = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   width: 100%;
-  height: 48px;
+  height: 9.6rem;
   padding-left: 2rem;
   padding-right: 2rem;
-  cursor: pointer;
-  ${({ theme }) => theme.font.body2_400};
-  ${({ isClick, theme }) =>
-    isClick ? theme.font.body2_500 : theme.font.body2_400}
+  padding-bottom: 1rem;
+  background-color: ${({ theme, isClick }) =>
+    isClick ? theme.color.gray._50 : theme.color.white._100};
   :hover {
     background-color: ${({ theme }) => theme.color.gray._50};
   }
@@ -52,8 +48,18 @@ const TitleArea = styled.div`
       }
     `};
 `;
+const Category = styled.div`
+  /* 500이 없음 */
+  color: ${({ theme }) => theme.color.gray._600};
+  ${({ theme }) => theme.font.detail2_400}
+  margin-bottom:5px;
+`;
+const Title = styled.div`
+  ${({ isClick, theme }) =>
+    isClick ? theme.font.body2_500 : theme.font.body2_400}
+`;
 const Icon = styled.div`
-  width: 24px;
+  width: 2.4rem;
   margin-left: 2rem;
   display: inline-flex;
   flex-direction: row;
@@ -63,27 +69,35 @@ const Icon = styled.div`
 const Content = styled.div`
   width: 100%;
   padding: 0 2rem 1rem 2rem;
-  background-color: ${({ theme }) => theme.color.white._100};
-
+  background-color: ${({ theme }) => theme.color.gray._50};
   span {
-    ${({ theme }) => theme.font.body3_400};
+    ${({ theme }) => theme.font.body2_400};
     color: ${({ theme }) => theme.color.gray._700};
   }
 `;
-const Accordion_Row = ({ title, content, disabled }) => {
+/** 리스트형 아코디언 */
+const Accordion_List = ({
+  category,
+  title,
+  content,
+  disabled,
+}: Accordion_ListPropsType) => {
   const [click, setClick] = useState(false);
   const onClick = () => {
     !disabled && setClick(!click);
   };
   return (
-    <Wrapper isClick={click}>
+    <Wrapper>
       <TitleArea onClick={onClick} isClick={click} disabled={disabled}>
-        <span>{title}</span>
+        <div>
+          <Category>{category}</Category>
+          <Title isClick={click}>{title}</Title>
+        </div>
         <Icon>
           {click ? (
-            <img src="asset/images/Icon/basic/Size=M-2.svg" alt="close" />
+            <img src="asset/images/Icon/dummy_icon.svg" alt="close" />
           ) : (
-            <img src="asset/images/Icon/basic/Size=M-1.svg" alt="open" />
+            <img src="asset/images/Icon/dummy_icon.svg" alt="open" />
           )}
         </Icon>
       </TitleArea>
@@ -95,15 +109,12 @@ const Accordion_Row = ({ title, content, disabled }) => {
     </Wrapper>
   );
 };
-Accordion_Row.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-  disabled: PropTypes.bool,
-};
-Accordion_Row.defaultProps = {
+
+Accordion_List.defaultProps = {
+  category: "카테고리",
   title: "타이틀",
   content: "내용물",
   disabled: false,
 };
 
-export default Accordion_Row;
+export default Accordion_List;

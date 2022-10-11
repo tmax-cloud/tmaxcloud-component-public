@@ -1,6 +1,6 @@
 import { Radio, Space } from "antd";
 import Button from "../Button/Button";
-import Dialog_Variable from "./Dialog_Variable";
+import Dialog_Variable, { SBDialog_Variable } from "./Dialog_Variable";
 
 export default {
   title: "Common/Dialog_Variable",
@@ -19,7 +19,7 @@ export default {
   },
 };
 
-const Template = (args) => <Dialog_Variable {...args} />;
+const Template = (args) => <SBDialog_Variable {...args} />;
 
 export const NormalTemplate = Template.bind({});
 

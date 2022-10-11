@@ -1,27 +1,46 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-
+/** 줄형 아코디언 props 타입 */
+type Accordion_RowPropsType = {
+  /** 타이틀 */
+  title: string;
+  /** 내용 */
+  content: string;
+  /** 이용 불가 여부 */
+  disabled: boolean;
+};
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid ${({ theme }) => theme.color.gray._300};
+  position: relative;
+  ${({ isClick, theme }) =>
+    isClick &&
+    css`
+      &::before {
+        width: 0.2rem;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        content: "";
+        background-color: ${theme.color.gray._900};
+      }
+    `};
 `;
 const TitleArea = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
   width: 100%;
-  height: 4.8rem;
+  height: 48px;
   padding-left: 2rem;
   padding-right: 2rem;
+  cursor: pointer;
   ${({ theme }) => theme.font.body2_400};
-  background-color: ${({ theme, isClick }) =>
-    isClick ? theme.color.gray._50 : theme.color.white._100};
-
+  ${({ isClick, theme }) =>
+    isClick ? theme.font.body2_500 : theme.font.body2_400}
   :hover {
     background-color: ${({ theme }) => theme.color.gray._50};
   }
@@ -41,7 +60,7 @@ const TitleArea = styled.div`
     `};
 `;
 const Icon = styled.div`
-  width: 2.4rem;
+  width: 24px;
   margin-left: 2rem;
   display: inline-flex;
   flex-direction: row;
@@ -51,34 +70,32 @@ const Icon = styled.div`
 const Content = styled.div`
   width: 100%;
   padding: 0 2rem 1rem 2rem;
-  background-color: ${({ theme }) => theme.color.gray._50};
+  background-color: ${({ theme }) => theme.color.white._100};
+
   span {
     ${({ theme }) => theme.font.body3_400};
     color: ${({ theme }) => theme.color.gray._700};
   }
 `;
-const Accordion_Box = ({ title, content, disabled }) => {
+/**줄형 아코디언 */
+const Accordion_Row = ({
+  title,
+  content,
+  disabled,
+}: Accordion_RowPropsType) => {
   const [click, setClick] = useState(false);
   const onClick = () => {
-    if (!disabled) {
-      setClick(!click);
-    }
+    !disabled && setClick(!click);
   };
   return (
-    <Wrapper>
+    <Wrapper isClick={click}>
       <TitleArea onClick={onClick} isClick={click} disabled={disabled}>
         <span>{title}</span>
         <Icon>
           {click ? (
-            <img
-              src="asset/images/Icon/arrow/Direction=up, Size=Medium.svg"
-              alt="close"
-            />
+            <img src="asset/images/Icon/dummy_icon.svg" alt="close" />
           ) : (
-            <img
-              src="asset/images/Icon/arrow/Direction=down, Size=Medium.svg"
-              alt="open"
-            />
+            <img src="asset/images/Icon/dummy_icon.svg" alt="open" />
           )}
         </Icon>
       </TitleArea>
@@ -90,15 +107,11 @@ const Accordion_Box = ({ title, content, disabled }) => {
     </Wrapper>
   );
 };
-Accordion_Box.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.string,
-  disabled: PropTypes.bool,
-};
-Accordion_Box.defaultProps = {
+
+Accordion_Row.defaultProps = {
   title: "타이틀",
   content: "내용물",
   disabled: false,
 };
 
-export default Accordion_Box;
+export default Accordion_Row;

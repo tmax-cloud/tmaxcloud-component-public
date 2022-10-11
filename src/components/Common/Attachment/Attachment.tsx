@@ -1,5 +1,14 @@
-import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+import React from "react";
+/** Attachment Props 타입 */
+type AttachmentPropsType = {
+  /** 타입 */
+  state: "Medium" | "Large";
+  /** 파일 이름 */
+  name: string;
+  /** 파일 크기 */
+  size: string;
+};
 
 const Wrapper = styled.div`
   width: fit-content;
@@ -48,8 +57,8 @@ const Size = styled.div`
   ${({ theme }) => theme.font.body3_400};
   color: ${({ theme }) => theme.color.gray._500};
 `;
-
-const Attacthment = ({ state, name, size }) => {
+/** Attachment */
+const Attachment = ({ state, name, size }: AttachmentPropsType) => {
   return (
     <Wrapper state={state}>
       <IconWrapper>
@@ -63,19 +72,10 @@ const Attacthment = ({ state, name, size }) => {
   );
 };
 
-Attacthment.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Medium", "Large"]),
-  /** 파일 이름 */
-  name: PropTypes.string,
-  /** 파일 크기 */
-  size: PropTypes.string,
-};
-
-Attacthment.defaultProps = {
+Attachment.defaultProps = {
   state: "Medium",
   name: "이름",
   size: "사이즈",
 };
 
-export default Attacthment;
+export default Attachment;

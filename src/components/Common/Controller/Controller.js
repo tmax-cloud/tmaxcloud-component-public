@@ -43,12 +43,15 @@ const SwitchCustomStyle = styled(Switch)`
   &.ant-switch-disabled {
     opacity: 1;
     background-color: ${({ theme }) => theme.color.gray._400};
+    .ant-switch-handle::before {
+      background-color: ${({ theme }) => theme.color.gray._200};
+    }
   }
 `;
 
 const RadioCustomStyle = styled(Radio)``;
 
-const Controller = ({ state, size, text, disabled }) => {
+const Controller = ({ state, size, text, disabled, title }) => {
   const onChange = (checked) => {
     console.log(checked);
   };
@@ -59,7 +62,7 @@ const Controller = ({ state, size, text, disabled }) => {
         size={size}
         defaultChecked
         onChange={onChange}
-        title="호 안에 수류탄"
+        title={title}
         disabled={disabled}
       />
     );
@@ -86,6 +89,8 @@ Controller.propTypes = {
   text: PropTypes.string,
   /** 이용가능 여부 */
   disabled: PropTypes.bool,
+  /** 호버 시 노출되는 텍스트 */
+  title: PropTypes.string,
 };
 
 Controller.defaultProps = {
@@ -93,6 +98,7 @@ Controller.defaultProps = {
   size: "default",
   text: "text",
   disabled: false,
+  title: "타이틀",
 };
 
 export default Controller;
