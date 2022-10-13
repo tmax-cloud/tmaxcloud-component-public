@@ -19,5 +19,5 @@ ButtonTemplate.args = {
   state: "PrimaryA",
   propSize: "XL",
   text: "이것은 템플릿 버튼",
-  onClick: () => console.log("템플릿 args"),
+  onClick: () => console.log("클릭 이벤트"),
 };

@@ -1,7 +1,18 @@
-import PropTypes from "prop-types";
-import styled from "styled-components";
-import { css } from "styled-components";
-
+import styled, { css } from "styled-components";
+type ChipPropsType = {
+  /** 타입 */
+  state: "Default" | "Input" | "Filter";
+  /** 아이콘 링크. image와 중복으로 줄 수 없음 */
+  icon?: string;
+  /** 이미지 링크. icon과 중복으로 줄 수 없음 */
+  image?: string;
+  /** 텍스트 */
+  text: string;
+  /** 제거 버튼 활성화 여부. Input 타입은 상시, Filter 타입은 선택형*/
+  isCloseAble: boolean;
+  /** 제거 버튼 클릭 시 이벤트 */
+  handleCloseButton: () => void;
+};
 const ChipWrapper = styled.button`
   display: inline-flex;
   flex-direction: row;
@@ -71,10 +82,17 @@ const CloseIcon = styled.img`
   opacity: 0.3;
 `;
 /**
- * @param {string} state 타입
- * @returns 테스트
+ * Default는 image,Icon 사용가능
+ * Input은과 Filter는 image,Icon, 사용가능 및 색이 어두움
  */
-const Chip = ({ state, icon, image, text, isCloseAble, handleCloseButton }) => {
+const Chip = ({
+  state,
+  icon,
+  image,
+  text,
+  isCloseAble,
+  handleCloseButton,
+}: ChipPropsType) => {
   return (
     <ChipWrapper
       state={state}
@@ -87,7 +105,7 @@ const Chip = ({ state, icon, image, text, isCloseAble, handleCloseButton }) => {
       {text}
       {isCloseAble && (
         <CloseIcon
-          src="/asset/images/Icon/content/Status=cancel, Type=fill.svg"
+          src="/asset/images/Icon/dummy_icon.svg"
           alt="닫기버튼"
           onClick={handleCloseButton}
           onKeyUp={handleCloseButton}
@@ -97,26 +115,11 @@ const Chip = ({ state, icon, image, text, isCloseAble, handleCloseButton }) => {
   );
 };
 
-Chip.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Default", "Input", "Filter"]),
-  /** 아이콘 링크. image와 중복으로 줄 수 없음 */
-  icon: PropTypes.string,
-  /** 이미지 링크. icon과 중복으로 줄 수 없음 */
-  image: PropTypes.string,
-  /** 텍스트 */
-  text: PropTypes.string,
-  /** 제거 버튼 활성화 여부. Input 타입은 상시, Filter 타입은 선택형*/
-  isCloseAble: PropTypes.bool,
-  /** 제거 버튼 클릭 시 이벤트 */
-  handleCloseButton: PropTypes.func,
-};
-
 Chip.defaultProps = {
   state: "Default",
   text: "Chip",
-  icon: "/asset/images/Icon/content/Status=cancel, Type=fill.svg",
-  image: "/asset/images/Icon/content/Status=cancel, Type=fill.svg",
+  icon: "/asset/images/Icon/dummy_icon.svg",
+  image: "/asset/images/Icon/dummy_icon.svg",
   isCloseAble: false,
   handleCloseButton: () => console.log("handleCloseButton"),
 };

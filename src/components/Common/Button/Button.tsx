@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 
 type ButtonPropsType = {
+  /** 타입 */
   state:
     | "PrimaryA"
     | "PrimaryB"
@@ -13,8 +14,8 @@ type ButtonPropsType = {
   propSize: "XL" | "L" | "M" | "S";
   /** 텍스트 */
   text: string;
-  /**클릭 이벤트 */
   onClick: () => void;
+  onKeyUp?: () => void;
 };
 
 const Button_Custom = styled.button`
@@ -142,11 +143,24 @@ const Button_Custom = styled.button`
     }
   `}
 `;
-
-const Button = (props) => {
-  console.log(props);
-
-  return <Button_Custom {...props}>{props.text}</Button_Custom>;
+/** 버튼 */
+const Button = ({
+  state,
+  propSize,
+  text,
+  onClick,
+  ...props
+}: ButtonPropsType) => {
+  return (
+    <Button_Custom
+      state={state}
+      propSize={propSize}
+      onClick={onClick}
+      {...props}
+    >
+      {text}
+    </Button_Custom>
+  );
 };
 
 Button.defaultProps = {

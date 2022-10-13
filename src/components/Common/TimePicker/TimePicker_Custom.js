@@ -32,7 +32,7 @@ const CustomPickerGlobalStyle = createGlobalStyle`
 
 
 `;
-/** antD 사용한 컴포넌트. 직접만들어 사용 X */
+/** antD 사용한 컴포넌트. 직접만들어 현재는 사용하지 않는다 */
 const TimePicker_Custom = ({ handleTime }) => {
   const onChange = (date, dateString) => {
     handleTime(date, dateString);

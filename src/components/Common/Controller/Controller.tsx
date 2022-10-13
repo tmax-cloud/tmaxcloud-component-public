@@ -1,7 +1,18 @@
-import PropTypes from "prop-types";
 import { Switch, Radio, Checkbox } from "antd";
 import styled from "styled-components";
 
+type ControllerPropTypes = {
+  /** 타입 */
+  state: "Switch" | "Radio" | "Checkbox" | "Spinner";
+  /** 크기(type = Switch전용) */
+  size: "small" | "default";
+  /** 내부 텍스트 */
+  text: string;
+  /** 이용가능 여부 */
+  disabled: boolean;
+  /** 호버 시 노출되는 텍스트 */
+  title: string;
+};
 const SwitchCustomStyle = styled(Switch)`
   background-color: ${({ theme }) => theme.color.gray._200};
   background-image: none;
@@ -48,10 +59,42 @@ const SwitchCustomStyle = styled(Switch)`
     }
   }
 `;
-
 const RadioCustomStyle = styled(Radio)``;
 
-const Controller = ({ state, size, text, disabled, title }) => {
+const SpinnerWrapper = styled.div`
+  width: 10.6rem;
+  height: 3.2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.6rem;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  background: ${({ theme }) => theme.color.white._100};
+  border: 1px solid ${({ theme }) => theme.color.gray._300};
+  border-radius: 0.8rem;
+`;
+const SpinnerCountImg = styled.img``;
+const SpinnerCountText = styled.div`
+  input {
+    all: unset;
+    width: 3rem;
+    ${({ theme }) => theme.font.body2_400};
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;
+/** 컨트롤러 */
+const Controller = ({
+  state,
+  size,
+  text,
+  disabled,
+  title,
+}: ControllerPropTypes) => {
   const onChange = (checked) => {
     console.log(checked);
   };
@@ -72,25 +115,22 @@ const Controller = ({ state, size, text, disabled, title }) => {
         {text}
       </RadioCustomStyle>
     );
-  else
+  else if (state === "Checkbox")
     return (
       <Checkbox onChange={onChange} disabled={disabled}>
         {text}
       </Checkbox>
     );
-};
-
-Controller.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Switch", "Radio", "Checkbox"]),
-  /** 크기(Switch전용) */
-  size: PropTypes.oneOf(["small", "default"]),
-  /** 내부 텍스트 */
-  text: PropTypes.string,
-  /** 이용가능 여부 */
-  disabled: PropTypes.bool,
-  /** 호버 시 노출되는 텍스트 */
-  title: PropTypes.string,
+  else
+    return (
+      <SpinnerWrapper>
+        <SpinnerCountImg src="asset/images/Icon/dummy_icon.svg" alt="minus" />
+        <SpinnerCountText>
+          <input type="number" />
+        </SpinnerCountText>
+        <SpinnerCountImg src="asset/images/Icon/dummy_icon.svg" alt="plus" />
+      </SpinnerWrapper>
+    );
 };
 
 Controller.defaultProps = {

@@ -19,10 +19,25 @@ export default {
 
 const Template = (args) => <Controller {...args} />;
 
-export const ControllerTemplate = Template.bind({});
-
-ControllerTemplate.args = {
+export const ControllerSwitchTemplate = Template.bind({});
+ControllerSwitchTemplate.args = {
   state: "Switch",
+  size: "default",
+  text: "test",
+  disabled: false,
+  title: "title",
+};
+export const ControllerRadioTemplate = Template.bind({});
+ControllerRadioTemplate.args = {
+  state: "Radio",
+  size: "default",
+  text: "test",
+  disabled: false,
+  title: "title",
+};
+export const ControllerCheckboxTemplate = Template.bind({});
+ControllerCheckboxTemplate.args = {
+  state: "Checkbox",
   size: "default",
   text: "test",
   disabled: false,
