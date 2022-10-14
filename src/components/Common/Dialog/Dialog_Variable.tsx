@@ -4,6 +4,28 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
+type Dialog_NormalPropsType = {
+  state:
+    | "Normal"
+    | "Alert"
+    | "AlertIcon"
+    | "ErrorMsg"
+    | "InputBox"
+    | "RadioButton";
+  /** 헤더 */
+  title: React.ReactNode;
+  /** 메시지 영역 */
+  content: React.ReactNode;
+  /** 노출 여부 */
+  isModalVisible: boolean;
+  /** 닫기 버튼 클릭 시 이벤트. 개발자 도구에서 확인 가능*/
+  handleCancel: () => void;
+  /** 버튼 갯수. 아래의 footerButton과 연결되어 작동하므로 같이 수정해 주어야함*/
+  buttonCount: number;
+  /** 버튼 컴포넌트. 스토리북 내 설정 불가 */
+  footerButton: React.ReactNode;
+};
+
 const Dialog_NormalStyle = styled(Modal)`
   .ant-modal-content {
     border-radius: 12px;

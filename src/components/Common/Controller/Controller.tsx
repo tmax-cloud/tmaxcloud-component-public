@@ -1,7 +1,8 @@
 import { Switch, Radio, Checkbox } from "antd";
+import { useState } from "react";
 import styled from "styled-components";
 
-type ControllerPropTypes = {
+type ControllerPropsType = {
   /** 타입 */
   state: "Switch" | "Radio" | "Checkbox" | "Spinner";
   /** 크기(type = Switch전용) */
@@ -10,8 +11,12 @@ type ControllerPropTypes = {
   text: string;
   /** 이용가능 여부 */
   disabled: boolean;
-  /** 호버 시 노출되는 텍스트 */
-  title: string;
+  /** 호버 시 노출되는 텍스트(type = Switch 전용) */
+  title?: string;
+  /**Spinner에 들어갈 숫자 */
+  number?: number;
+  /** number 설정하는 함수 */
+  setNumber?: (e) => void;
 };
 const SwitchCustomStyle = styled(Switch)`
   background-color: ${({ theme }) => theme.color.gray._200};
@@ -84,6 +89,8 @@ const SpinnerCountText = styled.div`
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     margin: 0;
   }
 `;
@@ -94,9 +101,32 @@ const Controller = ({
   text,
   disabled,
   title,
-}: ControllerPropTypes) => {
+  number,
+  setNumber,
+}: ControllerPropsType) => {
+  const [spinnerNumber, setSpinnerNumber] = useState<number>(number || null);
   const onChange = (checked) => {
     console.log(checked);
+  };
+  const onChangeSpinner = (e) => {
+    if (
+      e.target.value.length <= 3 &&
+      e.nativeEvent.data != "-" &&
+      e.target.value >= 0
+    ) {
+      setSpinnerNumber(Number(e.target.value.replace(/[^0-9]/g, "")));
+      setNumber(Number(e.target.value.replace(/[^0-9]/g, "")));
+    }
+  };
+  /** 한글도 막으려했지만 브라우저에서 한글 자판을 인식하지 못한다고 하여 -만 제한. */
+  const checkMinus = (e) => {
+    if (e.nativeEvent.key === "-") e.preventDefault();
+  };
+  const onNumberMinus = () => {
+    if (spinnerNumber - 1 >= 0) setSpinnerNumber(spinnerNumber - 1);
+  };
+  const onNumberPlus = () => {
+    if (spinnerNumber + 1 <= 999) setSpinnerNumber(spinnerNumber + 1);
   };
 
   if (state === "Switch")
@@ -124,11 +154,27 @@ const Controller = ({
   else
     return (
       <SpinnerWrapper>
-        <SpinnerCountImg src="asset/images/Icon/dummy_icon.svg" alt="minus" />
+        <SpinnerCountImg
+          src="asset/images/Icon/dummy_icon.svg"
+          alt="minus"
+          onClick={onNumberMinus}
+        />
         <SpinnerCountText>
-          <input type="number" />
+          <input
+            type="number"
+            onChange={onChangeSpinner}
+            onKeyDown={checkMinus}
+            placeholder="000"
+            min="0"
+            max="999"
+            value={spinnerNumber || ""}
+          />
         </SpinnerCountText>
-        <SpinnerCountImg src="asset/images/Icon/dummy_icon.svg" alt="plus" />
+        <SpinnerCountImg
+          src="asset/images/Icon/dummy_icon.svg"
+          alt="plus"
+          onClick={onNumberPlus}
+        />
       </SpinnerWrapper>
     );
 };

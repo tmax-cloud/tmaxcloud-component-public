@@ -1,9 +1,12 @@
 import { ConfigProvider, Space, DatePicker } from "antd";
-import React, { forwardRef } from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import PropTypes from "prop-types";
 import "moment/locale/ko";
 import locale from "antd/lib/locale/ko_KR";
+
+type DatePicker_CustomPropsType = {
+  /** 타입 */
+  state: "Default" | "Yearly" | "Monthly";
+};
 
 const DatePicker_CustomWrapper = styled.div``;
 const DatePicker_CustomStyle = styled(DatePicker)`
@@ -114,7 +117,9 @@ const CustomPickerGlobalStyle = createGlobalStyle`
 }
 }
 `;
-const DatePicker_Custom = ({ state }) => {
+
+/**현재 날짜 표시는 일 까지만 표시되고 월, 달은 미지원. */
+const DatePicker_Custom = ({ state }: DatePicker_CustomPropsType) => {
   const onChange = (date, dateString) => {
     console.log(date, dateString);
   };
@@ -161,13 +166,8 @@ const DatePicker_Custom = ({ state }) => {
   );
 };
 
-DatePicker_Custom.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Default", "Yearly", "Monthly"]),
-};
-
 DatePicker_Custom.defaultProps = {
   state: "Default",
 };
 
-export default DatePicker_Custom;
+export { DatePicker_Custom };

@@ -1,7 +1,19 @@
 import { Modal } from "antd";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import { useState } from "react";
+
+type DialogPropsType = {
+  /** 타이틀 영역 */
+  title: string;
+  /** 컨텐츠 영역 */
+  contents: string;
+  /** 모달 창 노출 여부. 스토리북에서 컨트롤 불가 */
+  isModalVisible: boolean;
+  /** 닫기 버튼 클릭 이벤트 */
+  handleCancel: () => void;
+  /** Dialog 창 하단의 버튼 영역. */
+  footerButton: React.ReactNode;
+};
 
 const DialogWrapper = styled.div``;
 const Modal_CustomStyle = styled(Modal)`
@@ -36,8 +48,9 @@ const Modal_CustomStyle = styled(Modal)`
     line-height: 5.6rem;
   }
 `;
+
 /** 스토리북 용 Dialog 버튼 포함한 컴포넌트. */
-const SBDialog = (props) => {
+const SBDialog = (props: DialogPropsType) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalActive = () => {
     setIsModalVisible(true);
@@ -69,7 +82,7 @@ const Dialog = ({
   footerButton,
   isModalVisible,
   handleCancel,
-}) => {
+}: DialogPropsType) => {
   return (
     <DialogWrapper>
       <Modal_CustomStyle
@@ -84,19 +97,6 @@ const Dialog = ({
       </Modal_CustomStyle>
     </DialogWrapper>
   );
-};
-
-Dialog.propTypes = {
-  /** 타이틀 영역 */
-  title: PropTypes.string,
-  /** 컨텐츠 영역 */
-  contents: PropTypes.string,
-  /** 모달 창 노출 여부. 스토리북에서 컨트롤 불가 */
-  isModalVisible: PropTypes.bool,
-  /** 닫기 버튼 클릭 이벤트 */
-  handleCancel: PropTypes.func,
-  /** Dialog 창 하단의 버튼 영역. */
-  footerButton: PropTypes.node,
 };
 
 Dialog.defaultProps = {
