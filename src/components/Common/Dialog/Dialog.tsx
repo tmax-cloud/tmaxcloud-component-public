@@ -49,7 +49,7 @@ const Modal_CustomStyle = styled(Modal)`
   }
 `;
 
-/** 스토리북 용 Dialog 버튼 포함한 컴포넌트. */
+/** 스토리북 용 Button을 포함한 Dialog */
 const SBDialog = (props: DialogPropsType) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalActive = () => {

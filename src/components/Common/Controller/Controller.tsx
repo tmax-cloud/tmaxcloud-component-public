@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 type ControllerPropsType = {
   /** 타입 */
-  state: "Switch" | "Radio" | "Checkbox" | "Spinner";
+  state: "Switch" | "Checkbox" | "Spinner";
   /** 크기(type = Switch전용) */
   size: "small" | "default";
   /** 내부 텍스트 */
@@ -13,9 +13,12 @@ type ControllerPropsType = {
   disabled: boolean;
   /** 호버 시 노출되는 텍스트(type = Switch 전용) */
   title?: string;
-  /**Spinner에 들어갈 숫자 */
+
+  /** 상태변경시 동작하는 함수 (type = Switch,Checkbox 전용)*/
+  onChange: (e) => void;
+  /**Spinner에 들어갈 숫자(type = Spinner 전용) */
   number?: number;
-  /** number 설정하는 함수 */
+  /** number 설정하는 함수(type = Spinner 전용) */
   setNumber?: (e) => void;
 };
 const SwitchCustomStyle = styled(Switch)`
@@ -64,8 +67,6 @@ const SwitchCustomStyle = styled(Switch)`
     }
   }
 `;
-const RadioCustomStyle = styled(Radio)``;
-
 const SpinnerWrapper = styled.div`
   width: 10.6rem;
   height: 3.2rem;
@@ -103,11 +104,10 @@ const Controller = ({
   title,
   number,
   setNumber,
+  onChange,
 }: ControllerPropsType) => {
   const [spinnerNumber, setSpinnerNumber] = useState<number>(number || null);
-  const onChange = (checked) => {
-    console.log(checked);
-  };
+
   const onChangeSpinner = (e) => {
     if (
       e.target.value.length <= 3 &&
@@ -138,12 +138,6 @@ const Controller = ({
         title={title}
         disabled={disabled}
       />
-    );
-  else if (state === "Radio")
-    return (
-      <RadioCustomStyle onChange={onChange} disabled={disabled}>
-        {text}
-      </RadioCustomStyle>
     );
   else if (state === "Checkbox")
     return (
@@ -185,6 +179,7 @@ Controller.defaultProps = {
   text: "text",
   disabled: false,
   title: "타이틀",
+  onChange: (e) => console.log(e),
 };
 
 export default Controller;

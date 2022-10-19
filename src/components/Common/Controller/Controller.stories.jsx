@@ -26,20 +26,16 @@ ControllerSwitchTemplate.args = {
   text: "test",
   disabled: false,
   title: "title",
+  onChange: (e) => console.log(e),
 };
-export const ControllerRadioTemplate = Template.bind({});
-ControllerRadioTemplate.args = {
-  state: "Radio",
-  size: "default",
-  text: "test",
-  disabled: false,
-};
+
 export const ControllerCheckboxTemplate = Template.bind({});
 ControllerCheckboxTemplate.args = {
   state: "Checkbox",
   size: "default",
   text: "test",
   disabled: false,
+  onChange: (e) => console.log(e),
 };
 export const ControllerSpinnerTemplate = Template.bind({});
 ControllerSpinnerTemplate.args = {
@@ -51,4 +47,5 @@ ControllerSpinnerTemplate.args = {
   setNumber: (e) => {
     console.log("setNumber");
   },
+  onChange: (e) => console.log(e),
 };

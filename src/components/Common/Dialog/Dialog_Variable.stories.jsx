@@ -1,6 +1,7 @@
 import { Radio, Space } from "antd";
 import Button from "../Button/Button";
 import Dialog_Variable, { SBDialog_Variable } from "./Dialog_Variable";
+import { SBDialog_Variable_Custom } from "./Dialog_VariableCustom";
 
 export default {
   title: "Common/Dialog_Variable",
@@ -10,12 +11,6 @@ export default {
   parameters: {
     componentSubtitle:
       "Dialog : Alert는 중요한 정보 제공, 혹은 사용자의 결정 등 필수적인 액션이 필요한 경우 호출하는 모달 형태의 컴포넌트이다. 호출 시, 제어권을 독점하여 종료 전까지 다른 작업이 불가하다.",
-    docs: {
-      description: {
-        component:
-          "제어권을 독점하기때문에 Docs에서는 열람이 어렵다. 또한 각 템플릿에서 isModalVisible이 False여야 확인이 가능하다.",
-      },
-    },
   },
 };
 
@@ -137,3 +132,7 @@ RadioButtonTemplate.args = {
     </>
   ),
 };
+
+const NewTemplate = (args) => <SBDialog_Variable_Custom {...args} />;
+
+export const NewTestTemplate = NewTemplate.bind({});

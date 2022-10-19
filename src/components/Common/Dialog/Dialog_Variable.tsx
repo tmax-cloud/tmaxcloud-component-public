@@ -1,7 +1,6 @@
 import { Modal } from "antd";
 import React, { useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import Button from "../Button/Button";
 
 type Dialog_NormalPropsType = {
@@ -255,7 +254,7 @@ const Dialog_Normal = ({
   handleCancel,
   buttonCount,
   footerButton,
-}) => {
+}: Dialog_NormalPropsType) => {
   return (
     <Dialog_NormalStyle
       width="36rem"
@@ -390,7 +389,7 @@ const Dialog_RadioButton = ({
     </Dialog_RadioButtonStyle>
   );
 };
-
+/** 버튼 갯수에 따라 분류 */
 const Button_Layout = ({ buttonCount, children }) => {
   switch (buttonCount) {
     case 3:
@@ -401,6 +400,7 @@ const Button_Layout = ({ buttonCount, children }) => {
       return <OneWrapper>{children}</OneWrapper>;
   }
 };
+/** 스토리북 용 Button을 포함한 Dialog_Variable */
 const SBDialog_Variable = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalActive = () => {
@@ -425,6 +425,7 @@ const SBDialog_Variable = (props) => {
     </>
   );
 };
+
 const Dialog_Variable = (props) => {
   switch (props.state) {
     case "Normal":
@@ -440,30 +441,6 @@ const Dialog_Variable = (props) => {
     case "RadioButton":
       return <Dialog_RadioButton {...props} />;
   }
-};
-
-Dialog_Variable.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf([
-    "Normal",
-    "Alert",
-    "AlertIcon",
-    "ErrorMsg",
-    "InputBox",
-    "RadioButton",
-  ]),
-  /** 헤더 */
-  title: PropTypes.node,
-  /** 메시지 영역 */
-  content: PropTypes.node,
-  /** 노출 여부 */
-  isModalVisible: PropTypes.bool,
-  /** 닫기 버튼 클릭 시 이벤트. 개발자 도구에서 확인 가능*/
-  handleCancel: PropTypes.func,
-  /** 버튼 갯수. 아래의 footerButton과 연결되어 작동하므로 같이 수정해 주어야함*/
-  buttonCount: PropTypes.number,
-  /** 버튼 컴포넌트. 스토리북 내 설정 불가 */
-  footerButton: PropTypes.node,
 };
 
 Dialog_Variable.defaultProps = {

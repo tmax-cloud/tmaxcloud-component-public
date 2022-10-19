@@ -1,6 +1,6 @@
 import React from "react";
 
-import InputBox from "./InputBox";
+import { SBInputBox, InputBox } from "./InputBox";
 
 export default {
   title: "Common/InputBox",
@@ -23,13 +23,12 @@ export default {
   },
 };
 
-const Template = (args) => <InputBox {...args} />;
+const Template = (args) => <SBInputBox {...args} />;
 
 export const InputBoxTemplate = Template.bind({});
 
 InputBoxTemplate.args = {
   state: "Box",
-  size: 36,
   showCount: false,
   maxLength: 50,
   allowClear: false,
