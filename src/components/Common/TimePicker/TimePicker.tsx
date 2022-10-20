@@ -3,6 +3,11 @@ import styled, { css } from "styled-components";
 import Button from "../Button/Button";
 import { debounce } from "lodash";
 
+type TimePickerPropsType = {
+  /** TimePicker의 확인 버튼을 클릭시 활성화 되는  함수*/
+  onChange: (e: string) => void;
+};
+
 const Wrapper = styled.div`
   position: relative;
 `;
@@ -181,7 +186,7 @@ const Minute: string[] = [
 const BUTTON_HEIGHT = 40;
 
 /** TimePicker  */
-const TimePicker = () => {
+const TimePicker = ({ onChange }: TimePickerPropsType) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [time, setTime] = useState("00:00 AM");
   const [openTimepicker, setOpenTimepicker] = useState(false);
@@ -210,6 +215,9 @@ const TimePicker = () => {
       `${Hour[hourIndexState]}:${Minute[minuteIndexState]} ${HourSystemEN[hourSystemIndexState]}`,
     );
     toggleTimepicker();
+    onChange(
+      `${Hour[hourIndexState]}:${Minute[minuteIndexState]} ${HourSystemEN[hourSystemIndexState]}`,
+    );
   };
 
   const onKeyPress = (e) => {
@@ -433,6 +441,7 @@ const TimeDropdownUl = ({
   );
 };
 
-TimePicker.propTypes = {};
-TimePicker.defaultProps = {};
+TimePicker.defaultProps = {
+  onChange: (e) => console.log(e),
+};
 export default TimePicker;

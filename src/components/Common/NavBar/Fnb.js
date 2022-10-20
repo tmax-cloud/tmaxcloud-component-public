@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MenuList from "../../utils/menuList";
-
+/**보류 */
 export default function Fnb() {
   return (
     <Layout>

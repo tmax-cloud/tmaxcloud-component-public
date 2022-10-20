@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export default {
   title: "Common/Notification",
-  component: SBNotification,
+  component: Notification,
   argTypes: {},
   decorators: [],
   parameters: {

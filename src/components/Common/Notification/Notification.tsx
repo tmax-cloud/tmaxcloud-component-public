@@ -2,6 +2,18 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import styled, { css } from "styled-components";
 
+type NotificationPropsType = {
+  /** 타입 */
+  state: "Success" | "Error" | "Notice" | "Warning" | "Info" | "Default";
+
+  /** 타이틀 */
+  title: string;
+  /** 컨텐츠 부분. 텍스트나 component를 입력할 수 있다. 스토리북 내 설정 불가 */
+  content: React.ReactNode;
+  /** 노출 여부 */
+  visible: boolean;
+};
+
 const SingleWrapper = styled.div`
   animation-name: ${({ visible }) => (visible ? "FadeIn" : "FadeOut")};
   opacity: ${({ visible }) => (visible ? 1 : 0)};
@@ -93,7 +105,12 @@ const SBNotification = (props) => {
   );
 };
 /** 개발용 알림 */
-const Notification = ({ state, title, content, visible }) => {
+const Notification = ({
+  state,
+  title,
+  content,
+  visible,
+}: NotificationPropsType) => {
   return (
     <SingleWrapper state={state} visible={visible}>
       <TitleWrapper>
@@ -103,21 +120,6 @@ const Notification = ({ state, title, content, visible }) => {
       {content && <ContentWrapper>{content}</ContentWrapper>}
     </SingleWrapper>
   );
-};
-SBNotification.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf([
-    "Success",
-    "Error",
-    "Notice",
-    "Warning",
-    "Info",
-    "Default",
-  ]),
-  /** 타이틀 */
-  title: PropTypes.string,
-  /** 컨텐츠 부분. 텍스트나 component를 입력할 수 있다. 스토리북 내 설정 불가 */
-  content: PropTypes.node,
 };
 
 SBNotification.defaultProps = {

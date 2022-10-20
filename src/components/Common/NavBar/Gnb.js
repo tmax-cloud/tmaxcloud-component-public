@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Lnb } from "../../";
 import MenuList from "../../utils/menuList";
-
+/**보류 */
 export default function Gnb({ setTitle, title }) {
   return (
     <>

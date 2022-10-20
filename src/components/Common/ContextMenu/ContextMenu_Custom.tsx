@@ -8,12 +8,12 @@ type contextMenuPropsType = {
   title: string;
   /** 타이틀에 속한 MenuItem ,
    *  컨텍스트 내부 각 아이템의 앞자리를 선택할 수 있는 prefixIcon ,
-   *  각 아이템의 텍스트 부분을 마튼 itemTitle ,
+   *  각 아이템의 텍스트 부분의 itemTitle ,
    *  해당 아이템 하위의 MenuItem을 나타내는 contextMenuItemChildProps(contextMenuPropsType 배열로 표현)
    */
   contextMenuItemProps: Array<contextMenuItemPropsType>;
   /** 생성될 contextMenu의 X위치. 자동측정*/
-  pageX: number;
+  pageX?: number;
   /** 생성될 contextMenu의 Y위치. 자동측정*/
   pageY?: number;
   /** 우측의 여백이 없어 position을 right로 줘야하는지. 자동측정*/
@@ -147,7 +147,7 @@ const Title = styled.div`
   padding: 0 0.8rem 0 2rem;
 `;
 /** 스토리북용 트리거 */
-const SBContextMenuTrigger = (args) => {
+const SBContextMenuTrigger = (args: contextMenuPropsType) => {
   const ref = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -185,6 +185,23 @@ const SBContextMenuTrigger = (args) => {
     </>
   );
 };
+/** ContextMenu의 시작을 맡는 틀 및 1뎁스 */
+const ContextMenu = ({
+  title,
+  contextMenuItemProps,
+  pageX,
+  pageY,
+  isRight,
+}: contextMenuPropsType) => {
+  return (
+    <ContextMenuWrapper pageX={pageX} pageY={pageY} isRight={isRight}>
+      <Title>{title}</Title>
+      {contextMenuItemProps.map((data) => (
+        <ContextMenuItem {...data} key={data.itemTitle} />
+      ))}
+    </ContextMenuWrapper>
+  );
+};
 /** 마우스 우클릭 시 ContextMenu 생성 컴포넌트 */
 const ContextMenuTriggerWithMouse = (args) => {
   const ref = useRef(null);
@@ -195,6 +212,7 @@ const ContextMenuTriggerWithMouse = (args) => {
   const CloseMenu = (e) => {
     if (isMenuOpen && !ref.current.contains(e.target)) setIsMenuOpen(false);
   };
+  /** 마우스 우클릭 시 노출 함수 */
   const OpenMenuWithMouse = (e) => {
     if (e.which == 3 || e.button == 2) {
       setIsMenuOpen(true);
@@ -205,7 +223,7 @@ const ContextMenuTriggerWithMouse = (args) => {
       };
     }
   };
-  /** 좌측으로 돌려야하는지 */
+  /** 좌측,우측 노출 결정하는 함수 */
   const handleXPosition = (xPosition) => {
     if (xPosition + 200 > window.innerWidth) {
       setIsRight(true);
@@ -232,23 +250,6 @@ const ContextMenuTriggerWithMouse = (args) => {
   );
 };
 
-/** ContextMenu의 시작을 맡는 틀 및 1뎁스 */
-const ContextMenu = ({
-  title,
-  contextMenuItemProps,
-  pageX,
-  pageY,
-  isRight,
-}: contextMenuPropsType) => {
-  return (
-    <ContextMenuWrapper pageX={pageX} pageY={pageY} isRight={isRight}>
-      <Title>{title}</Title>
-      {contextMenuItemProps.map((data) => (
-        <ContextMenuItem {...data} key={data.itemTitle} />
-      ))}
-    </ContextMenuWrapper>
-  );
-};
 /** 메뉴의 한 리스트 아이템 */
 const ContextMenuItem = ({
   prefixIcon,

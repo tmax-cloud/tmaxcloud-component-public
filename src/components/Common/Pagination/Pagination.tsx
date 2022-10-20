@@ -1,5 +1,25 @@
-import PropTypes from "prop-types";
 import styled from "styled-components";
+
+type PaginationPropsType = {
+  /** 타입 (Combination은 미지원)*/
+  state: "Input" | "Table" | "Combination";
+  /** 현재 페이지. 스토리북에서는 nowPage를 조절하는것으로 숫자 변경 가능 */
+  nowPage: number;
+  /** 한번에 보여줄 테이블의 갯수(Type = table 전용) */
+  unit?: number;
+  /** 총 페이지 수 */
+  allPage: number;
+  /** 페이지 이동 함수 */
+  handlePage: () => void;
+  /** 이전 페이지 이동 함수 */
+  handlePrev: () => void;
+  /** 다음 페이지 이동 함수 */
+  handleNext: () => void;
+  /** 가장 처음 페이지 이동 함수 */
+  handlePrevEnd: () => void;
+  /** 가장 끝 페이지 이동 함수 */
+  handleNextEnd: () => void;
+};
 
 const Wrapper = styled.div`
   height: 3.2rem;
@@ -43,7 +63,7 @@ const PageWrapper = styled.div`
   }
 `;
 
-const DefaultPagination = ({
+const InputPagination = ({
   nowPage,
   allPage,
   handlePage,
@@ -51,7 +71,7 @@ const DefaultPagination = ({
   handleNext,
   handlePrevEnd,
   handleNextEnd,
-}) => {
+}: PaginationPropsType) => {
   return (
     <Wrapper>
       <button onClick={handlePrevEnd}>
@@ -90,7 +110,7 @@ const TablePagination = ({
   handlePage,
   handlePrev,
   handleNext,
-}) => {
+}: PaginationPropsType) => {
   return (
     <Wrapper>
       <PageWrapper>
@@ -109,36 +129,16 @@ const TablePagination = ({
     </Wrapper>
   );
 };
-
-const Pagination = (props) => {
-  if (props.state === "Default") return <DefaultPagination {...props} />;
+/** 개선 필요 */
+const Pagination = (props: PaginationPropsType) => {
+  if (props.state === "Input") return <InputPagination {...props} />;
   else if (props.state === "Table") return <TablePagination {...props} />;
-  else return <div {...props} />;
-};
-
-Pagination.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Default", "Table", "Combination"]),
-  /** 현재 페이지. 스토리북에서는 nowPage를 조절하는것으로 숫자 변경 가능 */
-  nowPage: PropTypes.number,
-  /** Table에서 사용할 단위. 한번에 보여줄 테이블의 갯 수 */
-  unit: PropTypes.number,
-  /** 총 페이지 수 */
-  allPage: PropTypes.number,
-  /** 페이지 이동 함수 */
-  handlePage: PropTypes.func,
-  /** 이전 페이지 이동 함수 */
-  handlePrev: PropTypes.func,
-  /** 다음 페이지 이동 함수 */
-  handleNext: PropTypes.func,
-  /** 가장 처음 페이지 이동 함수 */
-  handlePrevEnd: PropTypes.func,
-  /** 가장 끝 페이지 이동 함수 */
-  handleNextEnd: PropTypes.func,
+  else if (props.state === "Combination") return <div />;
+  else <div />;
 };
 
 Pagination.defaultProps = {
-  state: "Default",
+  state: "Input",
   nowPage: 1,
   unit: 5,
   allPage: 10,

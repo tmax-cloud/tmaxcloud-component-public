@@ -1,5 +1,15 @@
-import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
+type BadgePropsType = {
+  /** 타입 */
+  state: "Default" | "Icon" | "Dot";
+  /** 높이 기준의 사이즈. 이를 기준으로 폰트 크기, 아이콘 크기, radius, padding이 상이 */
+  size: "Xlarge" | "Large" | "Medium" | "Small";
+  /** 배경색상 */
+  backgroundColor: string;
+  /** 텍스트 */
+  text: string;
+};
 
 const Wrapper = styled.div`
   width: fit-content;
@@ -41,7 +51,7 @@ const Wrapper = styled.div`
   }}
 `;
 
-const Badge = ({ state, size, backgroundColor, text }) => {
+const Badge = ({ state, size, backgroundColor, text }: BadgePropsType) => {
   return (
     <Wrapper state={state} backgroundColor={backgroundColor} size={size}>
       {state === "Icon" && (
@@ -50,17 +60,6 @@ const Badge = ({ state, size, backgroundColor, text }) => {
       <span>{text}</span>
     </Wrapper>
   );
-};
-
-Badge.propTypes = {
-  /** 타입 */
-  state: PropTypes.oneOf(["Default", "Icon", "Dot"]),
-  /** 높이 기준의 사이즈. 이를 기준으로 폰트 크기, 아이콘 크기, radius, padding이 상이 */
-  size: PropTypes.oneOf(["Xlarge", "Large", "Medium", "Small"]),
-  /** 배경색상 */
-  backgroundColor: PropTypes.string,
-  /** 텍스트 */
-  text: PropTypes.string,
 };
 
 Badge.defaultProps = {

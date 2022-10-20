@@ -19,4 +19,6 @@ const Template = (args) => <TimePicker {...args} />;
 
 export const TimePickerTemplate = Template.bind({});
 
-TimePickerTemplate.args = {};
+TimePickerTemplate.args = {
+  onChange: (e) => console.log(e),
+};

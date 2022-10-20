@@ -1,6 +1,16 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
+
+type TextAreaPropsType = {
+  /** 텍스트가 변경되는 경우 발생하는 함수 */
+  onChange: (e: HTMLTextAreaElement) => void;
+  /** 에러 발생 여부 */
+  error: boolean;
+  /** 에러 메시지 */
+  errorMessage?: string;
+  /** 사용 불가 여부 체크 */
+  disabled: boolean;
+};
 
 const TextareaStyle = styled.textarea`
   display: block;
@@ -49,7 +59,12 @@ const ErrorMessageStyle = styled.div`
   color: ${({ theme }) => theme.color.error._100};
 `;
 
-const TextArea = ({ onChange, error, errorMessage, disabled }) => {
+const TextArea = ({
+  onChange,
+  error,
+  errorMessage,
+  disabled,
+}: TextAreaPropsType) => {
   return (
     <>
       <div>
@@ -60,16 +75,6 @@ const TextArea = ({ onChange, error, errorMessage, disabled }) => {
   );
 };
 
-TextArea.propTypes = {
-  /** 텍스트가 변경되는 경우 발생하는 함수 */
-  onChange: PropTypes.func,
-  /** 에러 발생 여부 */
-  error: PropTypes.bool,
-  /** 에러 메시지 */
-  errorMessage: PropTypes.string,
-  /** 사용 불가 여부 체크 */
-  disabled: PropTypes.bool,
-};
 TextArea.defaultProps = {
   onChange: (e) => console.log(e.target.value),
   error: false,

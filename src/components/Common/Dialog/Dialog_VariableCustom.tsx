@@ -7,7 +7,14 @@ import { InputBox } from "../InputBox/InputBox";
 type SBDialogPropsType = {
   state: "Normal" | "Alert" | "AlertIcon" | "Error" | "InputBox" | "Radio";
 };
-
+type DialogPropsType = {
+  /** subtext의 각 영역은 Div로 구분 */
+  children: React.ReactNode;
+};
+type DialogFooterPropsType = DialogPropsType & {
+  /** 버튼 갯수 */
+  buttonCount: number;
+};
 const Dialog_VariableCustomWrapper = styled.div`
   position: fixed;
   top: 0;
@@ -121,7 +128,7 @@ const OneButtonWrapper = styled.div`
     width: 100%;
   }
 `;
-/** 스토리북 용 Button을 포함한 Dialog_Variable */
+/** 스토리북 용 Button을 포함한 Dialog_Variable Custom버전 */
 const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleModalActive = () => {
@@ -234,19 +241,19 @@ const Dialog_VariableCustomMain = ({
     )
   );
 };
-const DialogTitleWithSubText = ({ children }) => {
+const DialogTitleWithSubText = ({ children }: DialogPropsType) => {
   return (
     <DialogTitleWithSubTextWrapper>{children}</DialogTitleWithSubTextWrapper>
   );
 };
-const DialogTitleWithoutSubText = ({ children }) => {
+const DialogTitleWithoutSubText = ({ children }: DialogPropsType) => {
   return (
     <DialogTitleWithoutSubTextWrapper>
       {children}
     </DialogTitleWithoutSubTextWrapper>
   );
 };
-const DialogTitleWithoutSubTextWithIcon = ({ children }) => {
+const DialogTitleWithoutSubTextWithIcon = ({ children }: DialogPropsType) => {
   return (
     <DialogTitleWithoutSubTextWithIconWrapper>
       {children}
@@ -254,26 +261,26 @@ const DialogTitleWithoutSubTextWithIcon = ({ children }) => {
   );
 };
 /**div 2개로 텍스트와 에러메시지 영역 구분 */
-const DialogSubtextWithError = ({ children }) => {
+const DialogSubtextWithError = ({ children }: DialogPropsType) => {
   return (
     <DialogSubtextWithErrorWrapper>{children}</DialogSubtextWithErrorWrapper>
   );
 };
-const DialogSubtextWithInputBox = ({ children }) => {
+const DialogSubtextWithInputBox = ({ children }: DialogPropsType) => {
   return (
     <DialogSubtextWithInputBoxWrapper>
       {children}
     </DialogSubtextWithInputBoxWrapper>
   );
 };
-const DialogSubtextWithRadioButton = ({ children }) => {
+const DialogSubtextWithRadioButton = ({ children }: DialogPropsType) => {
   return (
     <DialogSubtextWithRadioButtonWrapper>
       {children}
     </DialogSubtextWithRadioButtonWrapper>
   );
 };
-const Button_Layout = ({ buttonCount, children }) => {
+const Button_Layout = ({ buttonCount, children }: DialogFooterPropsType) => {
   switch (buttonCount) {
     case 3:
       return <ThreeButtonWrapper>{children}</ThreeButtonWrapper>;

@@ -246,7 +246,7 @@ const OneWrapper = styled.div`
     width: 100%;
   }
 `;
-// footer 는 전부 상속 및 버튼 수에 따라 layout을 달리하도록 컴포넌트 별도 생성
+/** ant Design을 사용한 Dialog_Variable */
 const Dialog_Normal = ({
   title,
   content,
@@ -389,7 +389,7 @@ const Dialog_RadioButton = ({
     </Dialog_RadioButtonStyle>
   );
 };
-/** 버튼 갯수에 따라 분류 */
+// footer 는 전부 상속 및 버튼 수에 따라 layout을 달리하도록 컴포넌트 별도 생성
 const Button_Layout = ({ buttonCount, children }) => {
   switch (buttonCount) {
     case 3:

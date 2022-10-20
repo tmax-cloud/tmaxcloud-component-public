@@ -37,6 +37,7 @@ const TitleArea = styled.div`
   height: 48px;
   padding-left: 2rem;
   padding-right: 2rem;
+  border-radius: 0.4rem;
   cursor: pointer;
   ${({ theme }) => theme.font.body2_400};
   ${({ isClick, theme }) =>

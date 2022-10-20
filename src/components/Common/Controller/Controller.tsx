@@ -5,17 +5,17 @@ import styled from "styled-components";
 type ControllerPropsType = {
   /** 타입 */
   state: "Switch" | "Checkbox" | "Spinner";
-  /** 크기(type = Switch전용) */
-  size: "small" | "default";
   /** 내부 텍스트 */
   text: string;
   /** 이용가능 여부 */
   disabled: boolean;
+  /** 크기(type = Switch전용) */
+  size?: "small" | "default";
   /** 호버 시 노출되는 텍스트(type = Switch 전용) */
   title?: string;
 
   /** 상태변경시 동작하는 함수 (type = Switch,Checkbox 전용)*/
-  onChange: (e) => void;
+  onChange?: (e) => void;
   /**Spinner에 들어갈 숫자(type = Spinner 전용) */
   number?: number;
   /** number 설정하는 함수(type = Spinner 전용) */
