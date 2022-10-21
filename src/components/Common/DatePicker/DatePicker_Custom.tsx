@@ -18,25 +18,31 @@ const DatePicker_CustomStyle = styled(DatePicker)`
   border-radius: 8px;
   box-shadow: none;
   padding: 0 0.4rem 0 1.1rem;
+  border-radius: 1.2rem;
   :hover {
     border: 1px solid ${({ theme }) => theme.color.gray._500};
   }
   &.ant-picker-focused {
     border: 1px solid ${({ theme }) => theme.color.gray._900};
   }
-
-  .ant-picker-panel-container {
-    box-shadow: 0px 0px 16px 2px rgba(37, 50, 113, 0.12);
-    border-radius: 16px;
-  }
 `;
 const CustomPickerGlobalStyle = createGlobalStyle`
-.ant-picker-suffix {
+  .ant-picker-date-panel{
+    width:auto;
+  }
+  .ant-picker-suffix {
     width: 2.8rem;
     height: 2.8rem;
     align-items: center;
     justify-content: center;
   }  
+  .ant-picker-panel-container {
+    box-shadow: 0px 0px 16px 2px rgba(37, 50, 113, 0.12);
+    border-radius: 1.2rem;
+  }
+  .ant-picker-date-panel .ant-picker-body{
+    padding: .5rem 1.6rem 1.6rem 1.6rem;
+  }
   .ant-picker-content{
     ${({ theme }) => theme.font.body4_400};
   }
@@ -70,20 +76,17 @@ const CustomPickerGlobalStyle = createGlobalStyle`
     opacity: 0.3;
   }
   .ant-picker-date-panel .ant-picker-content .ant-picker-cell:first-child ,.ant-picker-content th:first-child  {
-
     color: ${({ theme }) => theme.color.error._100};
     .ant-picker-cell-today .ant-picker-cell-inner{
-    color: ${({ theme }) => theme.color.error._100};
-
+      color: ${({ theme }) => theme.color.error._100};
     }
   }
 /* 상단 버튼 */
 .ant-picker-header{
    align-items: center;
    border-bottom: none;
-   padding-top:1rem;
-   padding-bottom:1rem;
-   .ant-picker-header-prev-btn,.ant-picker-header-super-prev-btn,.ant-picker-header-next-btn,.ant-picker-header-super-next-btn{
+   padding:1.6rem 1.6rem .5rem 1.6rem;
+  .ant-picker-header-prev-btn,.ant-picker-header-super-prev-btn,.ant-picker-header-next-btn,.ant-picker-header-super-next-btn{
       width: 2.4rem;
       height:2.4rem;
       border-radius: 100px;
@@ -100,10 +103,10 @@ const CustomPickerGlobalStyle = createGlobalStyle`
 }
 .ant-picker-header-view{
   display: flex;
-    align-items: center;
-    justify-content: center;
-    ${({ theme }) => theme.font.body2_500};
-    .ant-picker-year-btn,.ant-picker-month-btn,.ant-picker-decade-btn{
+  align-items: center;
+  justify-content: center;
+  ${({ theme }) => theme.font.body2_500};
+  .ant-picker-year-btn,.ant-picker-month-btn,.ant-picker-decade-btn{
   height:2.6rem;
   color:${({ theme }) => theme.color.gray._900};
   border-radius:4px;
@@ -112,7 +115,7 @@ const CustomPickerGlobalStyle = createGlobalStyle`
   align-items: center;
   :hover{
     color:${({ theme }) => theme.color.gray._900};
-  background-color: ${({ theme }) => theme.color.black._4};;
+    background-color: ${({ theme }) => theme.color.black._4};;
   }
 }
 }

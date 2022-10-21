@@ -22,7 +22,6 @@ export const ContextMenuTemplate = Template.bind({});
 
 ContextMenuTemplate.args = {
   title: "기본 타이틀",
-
   contextMenuItemProps: [
     {
       prefixIcon: "Icon",

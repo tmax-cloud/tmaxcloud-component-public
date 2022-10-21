@@ -6,8 +6,7 @@ export default {
   argTypes: {},
   decorators: [],
   parameters: {
-    componentSubtitle:
-      "객체 선택 및 옵션의 true / false 상태를 조절할 수 있는 세 가지의 컨트롤 모음이다.",
+    componentSubtitle: "추후 확장성을 고려하여 개발 예정",
   },
 };
 

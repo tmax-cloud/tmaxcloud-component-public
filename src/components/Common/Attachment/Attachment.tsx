@@ -10,7 +10,7 @@ type AttachmentPropsType = {
   size: string;
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.button`
   width: fit-content;
   display: flex;
   flex-direction: row;
@@ -21,6 +21,16 @@ const Wrapper = styled.div`
   border: 0.1rem solid ${({ theme }) => theme.color.gray._300};
   border-radius: 0.8rem;
   padding: 1.25rem 1.2rem;
+  :hover {
+    background-color: ${({ theme }) => theme.color.gray._50};
+    border: 0.1rem solid ${({ theme }) => theme.color.gray._500};
+  }
+  :active,
+  :focus-visible,
+  :focus {
+    background-color: ${({ theme }) => theme.color.gray._100};
+    border: 0.1rem solid ${({ theme }) => theme.color.gray._900};
+  }
 `;
 
 const IconWrapper = styled.div``;

@@ -21,6 +21,47 @@ type ControllerPropsType = {
   /** number 설정하는 함수(type = Spinner 전용) */
   setNumber?: (e) => void;
 };
+const CheckboxLabel = styled.label`
+  display: inline-flex;
+  gap: 0.8rem;
+  height: 2rem;
+  align-items: center;
+  ${({ theme }) => theme.font.body_400};
+`;
+const CheckboxInput = styled.input`
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  width: 2rem;
+  height: 2rem;
+  &::after {
+    content: " ";
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.6rem;
+    border: 0.1rem solid ${({ theme }) => theme.color.blueGray._300};
+    background-color: ${({ theme }) => theme.color.white._100};
+  }
+  &:disabled::after {
+    border: 0.1rem solid ${({ theme }) => theme.color.gray._400};
+    background-color: ${({ theme }) => theme.color.gray._200};
+  }
+  &:checked {
+    &::after {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: ${({ theme }) => theme.color.marine._500};
+      color: white;
+      content: url("/asset/images/Icon/small-check.svg");
+    }
+  }
+  &:disabled:checked::after {
+    background-color: ${({ theme }) => theme.color.gray._400};
+  }
+`;
 const SwitchCustomStyle = styled(Switch)`
   background-color: ${({ theme }) => theme.color.gray._200};
   background-image: none;
@@ -141,9 +182,14 @@ const Controller = ({
     );
   else if (state === "Checkbox")
     return (
-      <Checkbox onChange={onChange} disabled={disabled}>
+      <CheckboxLabel>
+        <CheckboxInput
+          type="checkbox"
+          onChange={onChange}
+          disabled={disabled}
+        />
         {text}
-      </Checkbox>
+      </CheckboxLabel>
     );
   else
     return (
