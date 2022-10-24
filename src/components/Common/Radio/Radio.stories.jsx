@@ -1,4 +1,4 @@
-import { Radio } from "./Radio";
+import { Radio, SBRadio } from "./Radio";
 
 export default {
   title: "개발중/Radio",
@@ -10,6 +10,6 @@ export default {
   },
 };
 
-const Template = (args) => <Radio {...args} />;
+const Template = (args) => <SBRadio {...args} />;
 
-export const RadioTemplate = Template.bind({});
+export const SBRadioTemplate = Template.bind({});

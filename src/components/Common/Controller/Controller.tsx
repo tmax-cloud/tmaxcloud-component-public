@@ -26,7 +26,7 @@ const CheckboxLabel = styled.label`
   gap: 0.8rem;
   height: 2rem;
   align-items: center;
-  ${({ theme }) => theme.font.body_400};
+  ${({ theme }) => theme.font.body2_400};
 `;
 const CheckboxInput = styled.input`
   -webkit-appearance: none;

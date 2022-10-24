@@ -1,7 +1,7 @@
 import { ContextMenu, SBContextMenuTrigger } from "./ContextMenu_Custom";
 
 export default {
-  title: "10월 2주차/ContextMenu_Custom",
+  title: "common/ContextMenu_Custom",
   component: ContextMenu,
   argTypes: {},
   decorators: [],

@@ -76,3 +76,27 @@ h3 {
     visibility: hidden;
   }
 }
+@keyframes RadioBtnClickScale {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(0.5);
+  }
+}
+@keyframes RadioBtnClickGrow {
+  0% {
+    box-shadow: 0 0 0 0.1rem rgba(24, 144, 255, 0.12);
+  }
+  100% {
+    box-shadow: 0 0 0 0.3rem rgba(24, 144, 255, 0.12);
+  }
+}
+@keyframes RadioBtnUnClick {
+  0% {
+    background-color: #3864ff;
+  }
+  100% {
+    background-color: #ffffff;
+  }
+}

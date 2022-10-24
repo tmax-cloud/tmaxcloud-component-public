@@ -1,7 +1,7 @@
 import { SBTooltipCustom } from "./TooltipCustom";
 
 export default {
-  title: "10월 2주차/Tooltip",
+  title: "common/Tooltip",
   component: SBTooltipCustom,
   argTypes: {},
   decorators: [],
