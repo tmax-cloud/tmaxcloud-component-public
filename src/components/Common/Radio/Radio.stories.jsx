@@ -1,7 +1,7 @@
 import { Radio, SBRadio } from "./Radio";
 
 export default {
-  title: "개발중/Radio",
+  title: "Common/Radio",
   component: Radio,
   argTypes: {},
   decorators: [],

@@ -1,12 +1,22 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
+import styled, { ThemeProvider } from "styled-components";
+import { defaultTheme } from "styles/theme";
+import { fakeDefaultTheme } from "styles/faketheme";
+
+const Test = styled.div`
+  background-color: ${({ theme }) => theme.color.marine._700};
+`;
 
 function App() {
+  const [click, isClick] = useState(false);
   return (
-    <div className="App">
-      <div>hello world</div>
-    </div>
+    <ThemeProvider theme={click ? fakeDefaultTheme : defaultTheme}>
+      <Test className="App">
+        <div>hello world</div>
+      </Test>
+      <button onClick={() => isClick(!click)}>모드변경</button>
+    </ThemeProvider>
   );
 }
 

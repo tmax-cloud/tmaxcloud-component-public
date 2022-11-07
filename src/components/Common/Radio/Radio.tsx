@@ -3,9 +3,13 @@ type RadioMainPropsType = {
   children: React.ReactNode;
 };
 type RadioLabelPropsType = {
+  /** 라디오 버튼의 우측 텍스트 부분 */
   children: React.ReactNode;
+  /** Radio value값 */
   value: string;
+  /** Radio name 값 */
   name: string;
+  /** disabled 여부 */
   isDisabled: boolean;
 };
 const Label = styled.label`

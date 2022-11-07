@@ -6,6 +6,8 @@ body {
   padding: 0;
   margin: 0;
   word-break: keep-all;
+  word-wrap: break-word;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -98,5 +100,14 @@ h3 {
   }
   100% {
     background-color: #ffffff;
+  }
+}
+/** Spinner 컴포넌트에서 사용 */
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

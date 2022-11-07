@@ -84,6 +84,14 @@ const FilterChipWrapper = styled.div`
     }
   `}
 `;
+const Icon = styled.img`
+  width: 1.45rem;
+  height: 1.45rem;
+`;
+const Image = styled.img`
+  width: 2rem;
+  height: 2rem;
+`;
 const CloseIcon = styled.img`
   opacity: 0.3;
 `;
@@ -104,16 +112,16 @@ const Chip = ({
   if (state === "Default") {
     return (
       <DefaultChipWrapper icon={icon} image={image}>
-        {icon && <img src={icon} alt="제거" />}
-        {image && <img src={image} alt="이미지" />}
+        {icon && <Icon src={icon} alt="아이콘" />}
+        {image && <Image src={image} alt="이미지" />}
         {text}
       </DefaultChipWrapper>
     );
   } else if (state === "Input")
     return (
       <InputChipWrapper icon={icon} image={image} isCloseAble={isCloseAble}>
-        {icon && <img src={icon} alt="제거" />}
-        {image && <img src={image} alt="이미지" />}
+        {icon && <Icon src={icon} alt="아이콘" />}
+        {image && <Image src={image} alt="이미지" />}
         {text}
 
         <CloseIcon
@@ -127,8 +135,8 @@ const Chip = ({
   else
     return (
       <FilterChipWrapper icon={icon} image={image} isCloseAble={isCloseAble}>
-        {icon && <img src={icon} alt="제거" />}
-        {image && <img src={image} alt="이미지" />}
+        {icon && <Icon src={icon} alt="아이콘" />}
+        {image && <Image src={image} alt="이미지" />}
         {text}
         {isCloseAble && (
           <CloseIcon

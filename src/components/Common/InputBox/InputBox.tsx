@@ -1,11 +1,10 @@
 import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { HTMLAttributes, useState } from "react";
 
-type InputBoxPropsType = {
+type InputBoxPropsType = HTMLAttributes<HTMLInputElement> & {
   /** 타입 */
   state: "Box" | "Line" | "Fill";
-
   /** 입력할 수 있는 최대 글자 수와 현재 입력된 글자 수 표기 여부 */
   showCount: boolean;
   /** 입력할 수 있는 최대 글자 수 */
@@ -22,8 +21,6 @@ type InputBoxPropsType = {
   advise: string;
   /** 입력값 */
   value: string;
-  /** 입력 값 변화 이벤트 */
-  onChange: (e) => void;
   /** 입력 값 초기화 이벤트 */
   handleClear: () => void;
 };
@@ -35,6 +32,7 @@ const InputBoxWrapper = styled.div`
 `;
 const InputBoxStyle = styled.input`
   width: 100%;
+  height: 3.2rem;
   ${({ theme }) => theme.font.body2_400};
   color: ${({ theme, error }) =>
     error ? theme.color.error._100 : theme.color.gray._900};
@@ -191,7 +189,8 @@ const ButtonBox = styled.span`
   position: absolute;
   right: 2.8rem;
   z-index: 1;
-  top: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
 `;
 const ClearButton = styled.img`
   width: 2rem;
@@ -250,8 +249,8 @@ const InputBox = ({
   disabled,
   advise,
   value,
-  onChange,
   handleClear,
+  ...props
 }: InputBoxPropsType) => {
   return (
     <InputBoxWrapper>
@@ -264,7 +263,7 @@ const InputBox = ({
         placeholder={placeholder}
         error={error}
         disabled={disabled}
-        onChange={onChange}
+        {...props}
       />
       <ButtonBox>
         {allowClear && (

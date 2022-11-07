@@ -25,7 +25,7 @@ type contextMenuItemPropsType = {
   prefixIcon?: "Icon" | "Checkbox" | "Label";
   /** 해당 MenuItem의 텍스트 타이틀 */
   itemTitle: string;
-  /** 해당 아이템 하위의 MenuItem을 */
+  /** 해당 아이템 하위의 MenuItem*/
   contextMenuItemChildProps?: Array<contextMenuPropsType>;
 };
 type contextMenuItemChildPropsType = {
