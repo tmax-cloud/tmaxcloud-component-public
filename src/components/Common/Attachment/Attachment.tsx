@@ -66,6 +66,8 @@ const Name = styled.div`
 const Size = styled.div`
   ${({ theme }) => theme.font.body3_400};
   color: ${({ theme }) => theme.color.gray._500};
+  height: 2.2rem;
+  line-height: 2.2rem;
 `;
 /** Attachment */
 const Attachment = ({ state, name, size }: AttachmentPropsType) => {

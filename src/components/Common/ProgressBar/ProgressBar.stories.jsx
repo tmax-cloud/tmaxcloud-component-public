@@ -1,7 +1,7 @@
 import { ProgressBar } from "./ProgressBar";
 
 export default {
-  title: "개발중/ProgressBar",
+  title: "11월 2주차/ProgressBar",
   component: ProgressBar,
   argTypes: {},
   decorators: [],
@@ -15,4 +15,9 @@ const Template = (args) => <ProgressBar {...args} />;
 
 export const ProgressBarTemplate = Template.bind({});
 
-ProgressBarTemplate.args = {};
+ProgressBarTemplate.args = {
+  title: "title",
+  description: "description",
+  nowPercent: 50,
+  size: "Small",
+};

@@ -18,10 +18,12 @@ const DatePicker_CustomStyle = styled(DatePicker)`
   border-radius: 8px;
   box-shadow: none;
   padding: 0 0.4rem 0 1.1rem;
-  border-radius: 1.2rem;
+  border-radius: 0.8rem;
   :hover {
-    border: 1px solid ${({ theme }) => theme.color.gray._500};
+    background: ${({ theme }) => theme.color.gray._100};
+    border: 0.1rem solid ${({ theme }) => theme.color.gray._500};
   }
+
   &.ant-picker-focused {
     border: 1px solid ${({ theme }) => theme.color.gray._900};
   }
@@ -35,6 +37,11 @@ const CustomPickerGlobalStyle = createGlobalStyle`
     height: 2.8rem;
     align-items: center;
     justify-content: center;
+    pointer-events: all;
+    :hover{
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 50%;
+    }
   }  
   .ant-picker-panel-container {
     box-shadow: 0px 0px 16px 2px rgba(37, 50, 113, 0.12);

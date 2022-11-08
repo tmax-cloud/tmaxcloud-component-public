@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
 import { HTMLAttributes, useState } from "react";
 
 type InputBoxPropsType = HTMLAttributes<HTMLInputElement> & {
@@ -28,6 +27,9 @@ type InputBoxPropsType = HTMLAttributes<HTMLInputElement> & {
 const InputBoxWrapper = styled.div`
   width: 100%;
   display: inline-block;
+  position: relative;
+`;
+const WithoutAdvise = styled.div`
   position: relative;
 `;
 const InputBoxStyle = styled.input`
@@ -209,10 +211,10 @@ const InputCount = styled.span`
   color: ${({ theme }) => theme.color.gray._400};
 `;
 const AdviseStyle = styled.div`
+  ${({ theme }) => theme.font.body4_400};
   margin-top: 1.1rem;
   margin-bottom: 0.3rem;
   span {
-    ${({ theme }) => theme.font.body4_400};
     color: ${({ theme, error }) =>
       error ? theme.color.error._100 : theme.color.gray._500};
     padding-bottom: 0.4rem;
@@ -254,32 +256,34 @@ const InputBox = ({
 }: InputBoxPropsType) => {
   return (
     <InputBoxWrapper>
-      <InputBoxStyle
-        state={state}
-        value={value}
-        showCount={showCount}
-        maxLength={maxLength}
-        allowClear={allowClear}
-        placeholder={placeholder}
-        error={error}
-        disabled={disabled}
-        {...props}
-      />
-      <ButtonBox>
-        {allowClear && (
-          <ClearButton
-            src="/asset/images/Icon/dummy_icon.svg"
-            alt="clearButton"
-            onClick={handleClear}
-            disabled={disabled}
-          />
-        )}
-        {showCount && (
-          <InputCount>
-            {value.length}/{maxLength}
-          </InputCount>
-        )}
-      </ButtonBox>
+      <WithoutAdvise>
+        <InputBoxStyle
+          state={state}
+          value={value}
+          showCount={showCount}
+          maxLength={maxLength}
+          allowClear={allowClear}
+          placeholder={placeholder}
+          error={error}
+          disabled={disabled}
+          {...props}
+        />
+        <ButtonBox>
+          {allowClear && (
+            <ClearButton
+              src="/asset/images/Icon/dummy_icon.svg"
+              alt="clearButton"
+              onClick={handleClear}
+              disabled={disabled}
+            />
+          )}
+          {showCount && (
+            <InputCount>
+              {value.length}/{maxLength}
+            </InputCount>
+          )}
+        </ButtonBox>
+      </WithoutAdvise>
       {error && (
         <AdviseStyle error={error}>
           <span>{advise}</span>

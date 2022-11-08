@@ -33,7 +33,6 @@ BreadcrumbTemplate.args = {
       href: "/",
     },
   ],
-  size: "Large",
   disabled: false,
 };
 
@@ -74,6 +73,5 @@ IconBreadcrumbTemplate.args = {
       href: "/",
     },
   ],
-  size: "Large",
   disabled: false,
 };

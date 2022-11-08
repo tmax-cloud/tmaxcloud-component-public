@@ -18,9 +18,7 @@ type propListType = {
 type propType = {
   /** 최상위 페이지부터 propListType으로 된 배열로 연결 */
   propList: Array<propListType>;
-  /** 사이즈는 높이 기준으로 Xlarge ,Large ,Medium ,Small 사용. 하지만 명세가 없어 개발 X */
-  size: "Xlarge" | "Large" | "Medium" | "Small";
-  /** 사용 불가인 경우. 구체적인 개발 X */
+  /** 사용 불가인 경우. 질문필요 */
   disabled: false | true;
 };
 
@@ -73,7 +71,7 @@ const ItemWrapper = styled.div`
   }
 `;
 /**spec & size 부족 상태 */
-const Breadcrumb = ({ propList, size, disabled }: propType) => {
+const Breadcrumb = ({ propList, disabled }: propType) => {
   return (
     <Wrapper>
       {propList.map((el, index) => (
@@ -86,6 +84,7 @@ const Breadcrumb = ({ propList, size, disabled }: propType) => {
               {el.text}
             </a>
           </ItemWrapper>
+
           {index + 1 !== propList.length && (
             <img src="/asset/images/Icon/dummy_icon.svg" alt="화살표 아이콘" />
           )}
@@ -118,7 +117,6 @@ Breadcrumb.defaultProps = {
       href: "/",
     },
   ],
-  size: "Xlarge",
 };
 
 export default Breadcrumb;

@@ -35,7 +35,10 @@ const Input = styled.input`
     border: 0.1rem solid ${({ theme }) => theme.color.blueGray._300};
     background-color: ${({ theme }) => theme.color.white._100};
   }
-
+  &:hover::after {
+    background-color: ${({ theme }) => theme.color.marine._50};
+    border: 1px solid ${({ theme }) => theme.color.marine._500};
+  }
   &:checked::after {
     background-color: ${({ theme }) => theme.color.marine._500};
     animation: RadioBtnClickGrow 0.3s linear;

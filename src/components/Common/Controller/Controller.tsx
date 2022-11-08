@@ -35,6 +35,13 @@ const CheckboxInput = styled.input`
   outline: 0;
   width: 2rem;
   height: 2rem;
+
+  &:hover {
+    :not(:checked)::after {
+      background-color: ${({ theme }) => theme.color.marine._50};
+      border: 1px solid ${({ theme }) => theme.color.marine._500};
+    }
+  }
   &::after {
     content: " ";
     display: inline-block;
@@ -49,7 +56,7 @@ const CheckboxInput = styled.input`
     background-color: ${({ theme }) => theme.color.gray._200};
   }
   &:checked {
-    &::after {
+    ::after {
       display: inline-flex;
       align-items: center;
       justify-content: center;
