@@ -72,12 +72,15 @@ const ProgressBar = ({
       <ProgressBarHeader>
         <TitleWrapper>
           <TitleIcon
-            src="asset/images/Icon/dummy_icon.svg"
+            src="asset/images/Icon/content/file/line/Default.svg"
             alt="타이틀 아이콘"
           />
           <Title>{title}</Title>
         </TitleWrapper>
-        <CheckIcon src="asset/images/Icon/dummy_icon.svg" alt="타이틀 아이콘" />
+        <CheckIcon
+          src="asset/images/Icon/content/circle_button/success/fill.svg"
+          alt="타이틀 아이콘"
+        />
       </ProgressBarHeader>
       <ProgressLineWrapper size={size}>
         <ProgressLine nowPercent={nowPercent} />

@@ -27,6 +27,24 @@ const Wrapper = styled.div`
   flex-direction: row;
   gap: 1.6rem;
   align-items: center;
+  button {
+    width: 2.4rem;
+    height: 2.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2.4rem;
+    :hover {
+      background-color: ${({ theme }) => theme.color.black._4};
+    }
+    :focus {
+      background-color: ${({ theme }) => theme.color.black._10};
+    }
+  }
+  img {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
 `;
 
 const PageWrapper = styled.div`
@@ -47,6 +65,12 @@ const PageWrapper = styled.div`
     color: ${({ theme }) => theme.color.gray._900};
     border: 0.1rem solid ${({ theme }) => theme.color.gray._300};
     border-radius: 0.8rem;
+    background: ${({ theme }) => theme.color.white._100};
+
+    :hover {
+      border: 1px solid ${({ theme }) => theme.color.gray._500};
+      border-radius: 8px;
+    }
     :focus-visible {
       border: 0.1rem solid ${({ theme }) => theme.color.gray._900};
     }
@@ -75,10 +99,13 @@ const InputPagination = ({
   return (
     <Wrapper>
       <button onClick={handlePrevEnd}>
-        <img src="/asset/images/Icon/dummy_icon.svg" alt="prev_end" />
+        <img
+          src="/asset/images/Icon/arrow/double_arrow/left.svg"
+          alt="prev_end"
+        />
       </button>
       <button onClick={handlePrev}>
-        <img src="/asset/images/Icon/dummy_icon.svg" alt="prev" />
+        <img src="/asset/images/Icon/arrow/arrow/left/Medium.svg" alt="prev" />
       </button>
       <PageWrapper>
         <span>
@@ -94,10 +121,13 @@ const InputPagination = ({
         <span>{allPage}</span>
       </PageWrapper>
       <button onClick={handleNext}>
-        <img src="/asset/images/Icon/dummy_icon.svg" alt="next" />
+        <img src="/asset/images/Icon/arrow/arrow/right/Medium.svg" alt="next" />
       </button>
       <button onClick={handleNextEnd}>
-        <img src="/asset/images/Icon/dummy_icon.svg" alt="next_end" />
+        <img
+          src="/asset/images/Icon/arrow/double_arrow/right.svg"
+          alt="next_end"
+        />
       </button>
     </Wrapper>
   );
@@ -120,10 +150,16 @@ const TablePagination = ({
         <span>of</span>
         <span>{allPage}</span>
         <button onClick={handlePrev}>
-          <img src="/asset/images/Icon/dummy_icon.svg" alt="prev" />
+          <img
+            src="/asset/images/Icon/arrow/arrow/left/Medium.svg"
+            alt="prev"
+          />
         </button>
         <button onClick={handleNext}>
-          <img src="/asset/images/Icon/dummy_icon.svg" alt="next" />
+          <img
+            src="/asset/images/Icon/arrow/arrow/right/Medium.svg"
+            alt="next"
+          />
         </button>
       </PageWrapper>
     </Wrapper>

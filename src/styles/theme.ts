@@ -86,6 +86,11 @@ const font = {
     font-size:1.2rem;
     font-weight:700;
     `,
+  body4_500: `
+    font-family:'SpoqaHanSansNeo-Regular';
+    font-size:1.2rem;
+    font-weight:500;
+    `,
   body4_400: `
     font-family:'SpoqaHanSansNeo-Regular';
     font-size:1.2rem;

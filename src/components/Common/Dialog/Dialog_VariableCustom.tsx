@@ -266,6 +266,7 @@ const DialogSubtextWithError = ({ children }: DialogPropsType) => {
     <DialogSubtextWithErrorWrapper>{children}</DialogSubtextWithErrorWrapper>
   );
 };
+/**InputBox의 div 스타일이 들어있는 영역 */
 const DialogSubtextWithInputBox = ({ children }: DialogPropsType) => {
   return (
     <DialogSubtextWithInputBoxWrapper>
@@ -273,6 +274,7 @@ const DialogSubtextWithInputBox = ({ children }: DialogPropsType) => {
     </DialogSubtextWithInputBoxWrapper>
   );
 };
+/** RadioButton의 div 스타일이 들어있는 영역 */
 const DialogSubtextWithRadioButton = ({ children }: DialogPropsType) => {
   return (
     <DialogSubtextWithRadioButtonWrapper>
@@ -296,7 +298,7 @@ SBDialog_Variable_Custom.defaultProps = {
 };
 
 export { SBDialog_Variable_Custom };
-
+/** 합성컴포넌트로 제작 */
 export const Dialog_VariableCustom = Object.assign(Dialog_VariableCustomMain, {
   TitleWithSubText: DialogTitleWithSubText,
   TitleWithoutSubText: DialogTitleWithoutSubText,

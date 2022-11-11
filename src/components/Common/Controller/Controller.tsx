@@ -128,7 +128,15 @@ const SpinnerWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray._300};
   border-radius: 0.8rem;
 `;
-const SpinnerCountImg = styled.img``;
+const SpinnerCountImg = styled.img`
+  border-radius: 2.4rem;
+  :hover {
+    background-color: ${({ theme }) => theme.color.black._4};
+  }
+  :active {
+    background-color: ${({ theme }) => theme.color.black._10};
+  }
+`;
 const SpinnerCountText = styled.div`
   input {
     all: unset;
@@ -202,7 +210,7 @@ const Controller = ({
     return (
       <SpinnerWrapper>
         <SpinnerCountImg
-          src="asset/images/Icon/dummy_icon.svg"
+          src="asset/images/Icon/basic/minus/M.svg"
           alt="minus"
           onClick={onNumberMinus}
         />
@@ -218,7 +226,7 @@ const Controller = ({
           />
         </SpinnerCountText>
         <SpinnerCountImg
-          src="asset/images/Icon/dummy_icon.svg"
+          src="asset/images/Icon/basic/plus/M.svg"
           alt="plus"
           onClick={onNumberPlus}
         />

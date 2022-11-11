@@ -54,6 +54,13 @@ h3 {
 * {
   box-sizing: border-box;
 }
+input {
+  outline: none;
+}
+input :focus-visible {
+  outline: none;
+}
+
 /* Notification */
 @keyframes FadeIn {
   from {

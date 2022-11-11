@@ -22,6 +22,9 @@ const DatePicker_CustomStyle = styled(DatePicker)`
   :hover {
     background: ${({ theme }) => theme.color.gray._100};
     border: 0.1rem solid ${({ theme }) => theme.color.gray._500};
+    input::placeholder {
+      color: ${({ theme }) => theme.color.gray._900};
+    }
   }
 
   &.ant-picker-focused {
@@ -29,8 +32,10 @@ const DatePicker_CustomStyle = styled(DatePicker)`
   }
 `;
 const CustomPickerGlobalStyle = createGlobalStyle`
-  .ant-picker-date-panel{
-    width:auto;
+ 
+  .ant-picker-date-panel,.ant-picker-year-panel,.ant-picker-month-panel{
+    height:29rem;
+    overflow-y: scroll;
   }
   .ant-picker-suffix {
     width: 2.8rem;
@@ -126,9 +131,10 @@ const CustomPickerGlobalStyle = createGlobalStyle`
   }
 }
 }
+.ant-picker-month-panel .ant-picker-year-panel .ant-picker-content,{
+  height:2.43rem;
+}
 `;
-
-/**현재 날짜 표시는 일 까지만 표시되고 월, 달은 미지원. */
 const DatePicker_Custom = ({ state }: DatePicker_CustomPropsType) => {
   const onChange = (date, dateString) => {
     console.log(date, dateString);

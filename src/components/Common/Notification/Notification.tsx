@@ -5,7 +5,6 @@ import styled, { css } from "styled-components";
 type NotificationPropsType = {
   /** 타입 */
   state: "Success" | "Error" | "Notice" | "Warning" | "Info" | "Default";
-
   /** 타이틀 */
   title: string;
   /** 컨텐츠 부분. 텍스트나 component를 입력할 수 있다. 스토리북 내 설정 불가 */

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 /** 아이콘 타입 및 라벨 */
 type propIconType = {
   /** 아이콘 */
@@ -14,12 +14,12 @@ type propListType = {
   text: string;
   /** 이동할 페이지 링크 */
   href: string;
+  /** 사용 불가인 경우. */
+  disabled: boolean;
 };
 type propType = {
   /** 최상위 페이지부터 propListType으로 된 배열로 연결 */
   propList: Array<propListType>;
-  /** 사용 불가인 경우. 질문필요 */
-  disabled: false | true;
 };
 
 const Wrapper = styled.div`
@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   color: ${({ theme }) => theme.color.gray._600};
   ${({ theme }) => theme.font.body3_400};
+  align-items: center;
 `;
 const ItemWrapper = styled.div`
   a {
@@ -57,10 +58,17 @@ const ItemWrapper = styled.div`
       opacity: 0.5;
     }
   }
-  img {
-    width: 1.2rem;
-    height: 1.2rem;
-  }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      a {
+        color: ${({ theme }) => theme.color.gray._400};
+        pointer-events: none;
+        img {
+          opacity: 0.4;
+        }
+      }
+    `}
 
   &:last-of-type {
     color: ${({ theme }) => theme.color.gray._900};
@@ -70,13 +78,16 @@ const ItemWrapper = styled.div`
     }
   }
 `;
-/**spec & size 부족 상태 */
-const Breadcrumb = ({ propList, disabled }: propType) => {
+const ArrowIcon = styled.img`
+  width: 1.2rem;
+  height: 1.2rem;
+`;
+const Breadcrumb = ({ propList }: propType) => {
   return (
     <Wrapper>
       {propList.map((el, index) => (
         <>
-          <ItemWrapper key={el.text}>
+          <ItemWrapper key={el.text} disabled={el.disabled}>
             <a href={el.href}>
               {el.propIcon && (
                 <img src={el.propIcon.icon} alt={el.propIcon.iconLabel} />
@@ -86,7 +97,10 @@ const Breadcrumb = ({ propList, disabled }: propType) => {
           </ItemWrapper>
 
           {index + 1 !== propList.length && (
-            <img src="/asset/images/Icon/dummy_icon.svg" alt="화살표 아이콘" />
+            <ArrowIcon
+              src="/asset/images/Icon/arrow/arrow/right/Medium.svg"
+              alt="화살표 아이콘"
+            />
           )}
         </>
       ))}
@@ -103,6 +117,7 @@ Breadcrumb.defaultProps = {
       },
       text: "test1",
       href: "/",
+      disabled: false,
     },
     {
       propIcon: {
@@ -111,10 +126,12 @@ Breadcrumb.defaultProps = {
       },
       text: "test2",
       href: "/",
+      disabled: false,
     },
     {
       text: "test3",
       href: "/",
+      disabled: false,
     },
   ],
 };

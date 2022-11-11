@@ -1,6 +1,6 @@
 import { Tooltip } from "antd";
 import { ReactNode } from "react";
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 type sbPropType = {
   /** 툴팁에 들어갈 텍스트 */
@@ -51,14 +51,17 @@ const TooltipStyle = createGlobalStyle`
   max-width: 18.3rem;
   padding:0;
   ${({ theme }) => theme.font.body4_400};
+
   /** 화살표 클래스 */
   .ant-tooltip-arrow{
     display:none;
   }
   /** 내부 스타일 클래스 */
   .ant-tooltip-inner{
+    min-width: auto;
+    min-height:2.4rem;
     word-break: break-all;
-    padding: .3rem .8rem 1.2rem .8rem;
+    padding: .3rem .8rem;
     color: ${({ theme }) => theme.color.white._100};
     background-color: ${({ theme }) => theme.color.black._100};
   }

@@ -38,7 +38,7 @@ const Badge = ({ state, backgroundColor, text }: BadgePropsType) => {
   return state !== "Dot" ? (
     <Wrapper state={state} backgroundColor={backgroundColor}>
       {state === "Icon" && (
-        <img src="/asset/images/Icon/dummy_icon.svg" alt="notice" />
+        <img src="/asset/images/Icon/basic/bell-badge/fill.svg" alt="notice" />
       )}
       <span>{text}</span>
     </Wrapper>

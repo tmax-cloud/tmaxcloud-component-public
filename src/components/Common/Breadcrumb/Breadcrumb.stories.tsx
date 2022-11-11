@@ -19,21 +19,24 @@ BreadcrumbTemplate.args = {
     {
       text: "test1",
       href: "/",
+      disabled: false,
     },
     {
       text: "test2",
       href: "/",
+      disabled: false,
     },
     {
       text: "test3",
       href: "/",
+      disabled: true,
     },
     {
       text: "test4",
       href: "/",
+      disabled: false,
     },
   ],
-  disabled: false,
 };
 
 export const IconBreadcrumbTemplate = Template.bind({});
@@ -47,6 +50,7 @@ IconBreadcrumbTemplate.args = {
       },
       text: "test1",
       href: "/",
+      disabled: false,
     },
     {
       propIcon: {
@@ -55,6 +59,7 @@ IconBreadcrumbTemplate.args = {
       },
       text: "test2",
       href: "/",
+      disabled: false,
     },
     {
       propIcon: {
@@ -63,6 +68,7 @@ IconBreadcrumbTemplate.args = {
       },
       text: "test3",
       href: "/",
+      disabled: true,
     },
     {
       propIcon: {
@@ -71,6 +77,7 @@ IconBreadcrumbTemplate.args = {
       },
       text: "test4",
       href: "/",
+      disabled: false,
     },
   ],
   disabled: false,

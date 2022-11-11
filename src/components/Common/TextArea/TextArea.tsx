@@ -13,13 +13,50 @@ type TextAreaPropsType = {
 };
 
 const TextareaStyle = styled.textarea`
+  cursor: auto;
   display: block;
   resize: auto;
   min-width: 32rem;
   min-height: 11rem;
-  padding: 1.2rem 1.2rem 0.1rem 1.2rem;
+  padding: 1.6rem 1.6rem 0.1rem 1.6rem;
   border-radius: 10px;
   margin-bottom: 1.4rem;
+  line-height: 1.4rem;
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.color.gray._500};
+  }
+  ::-webkit-scrollbar {
+    width: 1.8rem;
+    height: 1.8rem;
+    overflow: visible;
+  }
+  ::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color.gray._200};
+    background-clip: padding-box;
+    border: 0.6rem solid transparent;
+    border-radius: 1rem;
+    min-height: 3.8rem;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: ${({ theme }) => theme.color.gray._500};
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 1rem;
+  }
+  /** 스크롤 우측 하단의 코너 부분 */
+  ::-webkit-scrollbar-corner {
+    border: none;
+  }
+  ::-webkit-resizer {
+    border: none;
+    background-position: 0.2rem 0.2rem;
+    background-image: url("asset/images/Icon/Ico_Stretch.svg");
+    background-repeat: no-repeat;
+  }
   ${({ theme }) => theme.font.body2_400};
   ${({ theme, error, disabled }) => {
     if (error)

@@ -95,9 +95,15 @@ const Accordion_List = ({
         </div>
         <Icon>
           {click ? (
-            <img src="asset/images/Icon/dummy_icon.svg" alt="close" />
+            <img
+              src="asset/images/Icon/arrow/arrow/up/Medium.svg"
+              alt="close"
+            />
           ) : (
-            <img src="asset/images/Icon/dummy_icon.svg" alt="open" />
+            <img
+              src="asset/images/Icon/arrow/arrow/down/Medium.svg"
+              alt="open"
+            />
           )}
         </Icon>
       </TitleArea>

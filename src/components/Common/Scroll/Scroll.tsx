@@ -35,6 +35,9 @@ const Wrapper = styled.div`
     border-style: solid;
     border-color: transparent;
   }
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
 `;
 
 const ScrollHeight = styled.div`
@@ -58,6 +61,9 @@ body{
     border-style: solid;
     border-color: transparent;
   }
+  ::-webkit-scrollbar-corner{
+    display:none;
+  }
 `;
 const WhiteGlobalStyle = createGlobalStyle`
 body{
@@ -74,6 +80,9 @@ body{
     border-style: solid;
     border-color: transparent;
   }
+  ::-webkit-scrollbar-corner{
+    display:none;
+  }
 `;
 const DimGlobalStyle = createGlobalStyle`
 body{
@@ -89,6 +98,9 @@ body{
     border-width: 0.8rem;
     border-style: solid;
     border-color: transparent;
+  }
+  ::-webkit-scrollbar-corner {
+    display: none;
   }
 `;
 /**크롬, 사파리, 오페라 브라우저 한정. 여백이 상단에만 존재할 시 radius가 제대로 먹히지 않아 아래에도 동일하게 8px 부여(실제 적용은 .8rem). 실제 scroll은 테스트 필요. */

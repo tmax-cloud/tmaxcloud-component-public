@@ -38,7 +38,6 @@ const InputBoxStyle = styled.input`
   ${({ theme }) => theme.font.body2_400};
   color: ${({ theme, error }) =>
     error ? theme.color.error._100 : theme.color.gray._900};
-
   ${({ state, theme, error, showCount, allowClear, disabled }) => {
     if (state === "Box")
       return css`
@@ -83,7 +82,6 @@ const InputBoxStyle = styled.input`
             ${error ? theme.color.error._100 : theme.color.gray._500};
         }
         :focus-visible {
-          outline: none;
           border: 0.1rem solid
             ${error ? theme.color.error._100 : theme.color.gray._900};
         }
@@ -93,7 +91,7 @@ const InputBoxStyle = styled.input`
           border: none;
           padding: 0.55rem 0rem 0.55rem 0rem;
           border-bottom: 0.15rem solid ${
-            error ? theme.color.error._100 : theme.color.gray._900
+            error ? theme.color.error._100 : theme.color.gray._300
           };
           background-color:${theme.color.white._100}
           ${() => {
@@ -110,28 +108,21 @@ const InputBoxStyle = styled.input`
                 padding-right: 4.4rem;
               `;
           }}
-         
-     
            :hover {
              border-bottom: 0.2rem solid
                ${error ? theme.color.error._100 : theme.color.gray._900};
            }
-     
-        
            :focus-visible {
-           outline: none;
            border-bottom: 0.2rem solid ${
              error ? theme.color.error._100 : theme.color.gray._900
            };
           }
-      
           ${
             disabled &&
             css`
               cursor: not-allowed;
             `
           }
-          
         `;
     else if (state === "Fill")
       return css`
@@ -189,7 +180,7 @@ const ButtonBox = styled.span`
   align-items: center;
   gap: 0.8rem;
   position: absolute;
-  right: 2.8rem;
+  right: 1.2rem;
   z-index: 1;
   top: 50%;
   transform: translateY(-50%);
@@ -198,17 +189,15 @@ const ClearButton = styled.img`
   width: 2rem;
   height: 2rem;
   ${({ disabled }) =>
-    disabled
-      ? css`
-          opacity: 0.1;
-        `
-      : css`
-          opacity: 0.3;
-        `}
+    disabled &&
+    css`
+      opacity: 0.5;
+    `}
 `;
 const InputCount = styled.span`
   ${({ theme }) => theme.font.body3_400};
   color: ${({ theme }) => theme.color.gray._400};
+  height: 1.8rem;
 `;
 const AdviseStyle = styled.div`
   ${({ theme }) => theme.font.body4_400};
@@ -271,7 +260,7 @@ const InputBox = ({
         <ButtonBox>
           {allowClear && (
             <ClearButton
-              src="/asset/images/Icon/dummy_icon.svg"
+              src="/asset/images/Icon/clear-16px.svg"
               alt="clearButton"
               onClick={handleClear}
               disabled={disabled}

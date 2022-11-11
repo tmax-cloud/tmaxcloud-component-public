@@ -3,9 +3,9 @@ type ChipPropsType = {
   /** 타입 */
   state: "Default" | "Input" | "Filter";
   /** 아이콘 링크. image와 중복으로 줄 수 없음 */
-  icon?: string | false;
+  icon?: false | string;
   /** 이미지 링크. icon과 중복으로 줄 수 없음 */
-  image?: string | false;
+  image?: false | string;
   /** 텍스트 */
   text: string;
   /** 제거 버튼 활성화 여부. Input 타입은 상시, Filter 타입은 선택형*/
@@ -92,9 +92,7 @@ const Image = styled.img`
   width: 2rem;
   height: 2rem;
 `;
-const CloseIcon = styled.img`
-  opacity: 0.3;
-`;
+const CloseIcon = styled.img``;
 /**
  * Default는 image,Icon 사용가능
  * Input은과 Filter는 image,Icon, 사용가능 및 색이 어두움
@@ -125,7 +123,7 @@ const Chip = ({
         {text}
 
         <CloseIcon
-          src="/asset/images/Icon/dummy_icon.svg"
+          src="/asset/images/Icon/clear-16px.svg"
           alt="닫기버튼"
           onClick={handleCloseButton}
           onKeyUp={handleCloseButton}
@@ -140,7 +138,7 @@ const Chip = ({
         {text}
         {isCloseAble && (
           <CloseIcon
-            src="/asset/images/Icon/dummy_icon.svg"
+            src="/asset/images/Icon/clear-16px.svg"
             alt="닫기버튼"
             onClick={handleCloseButton}
             onKeyUp={handleCloseButton}

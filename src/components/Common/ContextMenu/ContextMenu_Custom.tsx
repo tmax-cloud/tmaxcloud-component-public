@@ -128,8 +128,10 @@ const PrefixIconWrapper = styled.div`
   padding-right: 0.8rem;
 `;
 const ArrowIcon = styled.img`
+  width: 1.8rem;
+  height: 1.8rem;
   position: absolute;
-  right: 0;
+  right: 0.8rem;
 `;
 const Divider = styled.div`
   height: 1px;
@@ -296,7 +298,10 @@ const ContextMenuItem = ({
         <ContextMenuItemTitle>{itemTitle}</ContextMenuItemTitle>
       </button>
       {contextMenuItemChildProps && (
-        <ArrowIcon src="/asset/images/Icon/dummy_icon.svg" alt="화살표" />
+        <ArrowIcon
+          src="/asset/images/Icon/arrow/arrow/right/Small.svg"
+          alt="화살표"
+        />
       )}
       {contextMenuItemChildProps && view && (
         <ContextMenuItemChild

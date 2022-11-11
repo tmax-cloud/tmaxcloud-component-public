@@ -94,9 +94,9 @@ const Accordion_Row = ({
         <span>{title}</span>
         <Icon>
           {click ? (
-            <img src="asset/images/Icon/dummy_icon.svg" alt="close" />
+            <img src="asset/images/Icon/basic/minus/M.svg" alt="close" />
           ) : (
-            <img src="asset/images/Icon/dummy_icon.svg" alt="open" />
+            <img src="asset/images/Icon/basic/plus/M.svg" alt="open" />
           )}
         </Icon>
       </TitleArea>

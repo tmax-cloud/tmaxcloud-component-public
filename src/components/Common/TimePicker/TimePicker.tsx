@@ -22,12 +22,24 @@ const ClockWrapper = styled.div`
   border-radius: 8px;
   position: relative;
 `;
+const ClockIconWrapper = styled.div`
+  width: 2.8rem;
+  height: 2.8rem;
+  display: inline-flex;
+  right: 0.4rem;
+  top: 0.2rem;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 2.8rem;
+  cursor: pointer;
+  :hover {
+    background-color: ${({ theme }) => theme.color.black._4};
+  }
+`;
 const ClockIcon = styled.img`
   width: 2rem;
   height: 2rem;
-  position: absolute;
-  right: 0.8rem;
-  top: 0.6rem;
 `;
 const TimeDropdownWrapper = styled.div`
   position: absolute;
@@ -69,7 +81,15 @@ const TimeDropdownLi = styled.li`
   height: 1.6rem;
   padding: 1.2rem 0rem;
   text-align: center;
-  ${({ theme }) => theme.font.body2_700};
+  color: ${({ theme }) => theme.color.gray._900};
+  ${({ active, theme }) =>
+    active
+      ? css`
+          ${theme.font.body2_700}
+        `
+      : css`
+          ${theme.font.body4_500}
+        `};
   margin: 0;
   opacity: ${({ scrollY }) => scrollY};
 `;
@@ -240,13 +260,15 @@ const TimePicker = ({ onChange }: TimePickerPropsType) => {
     <Wrapper>
       <ClockWrapper>
         {time}
-        <ClockIcon
-          src="/asset/images/Icon/dummy_icon.svg"
-          alt="dummy"
-          onClick={toggleTimepicker}
-          onKeyPress={onKeyPress}
-          tabIndex="0"
-        />
+        <ClockIconWrapper>
+          <ClockIcon
+            src="/asset/images/Icon/status/clock/line.svg"
+            alt="dummy"
+            onClick={toggleTimepicker}
+            onKeyPress={onKeyPress}
+            tabIndex="0"
+          />
+        </ClockIconWrapper>
       </ClockWrapper>
       {openTimepicker && (
         <TimeDropdownWrapper ref={ref}>

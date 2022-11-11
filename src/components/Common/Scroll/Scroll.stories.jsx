@@ -14,3 +14,7 @@ export default {
 const Template = (args) => <SBScroll {...args} />;
 
 export const ScrollTemplate = Template.bind({});
+
+ScrollTemplate.args = {
+  state: "White",
+};
