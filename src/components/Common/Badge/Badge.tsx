@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import { ReactComponent as bellBadgeIcon } from "Icon/basic/bell-badge/fill.svg";
 type BadgePropsType = {
   /** 타입 */
   state: "Default" | "Icon" | "Dot";
@@ -33,13 +33,16 @@ const DotWrapper = styled.div`
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: 1rem;
 `;
+const BellBadgeIcon = styled(bellBadgeIcon)`
+  width: 1rem;
+  height: 1rem;
+  color: ${({ theme }) => theme.color.white._100};
+`;
 
 const Badge = ({ state, backgroundColor, text }: BadgePropsType) => {
   return state !== "Dot" ? (
     <Wrapper state={state} backgroundColor={backgroundColor}>
-      {state === "Icon" && (
-        <img src="/asset/images/Icon/basic/bell-badge/fill.svg" alt="notice" />
-      )}
+      {state === "Icon" && <BellBadgeIcon />}
       <span>{text}</span>
     </Wrapper>
   ) : (

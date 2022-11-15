@@ -1,4 +1,8 @@
 import styled from "styled-components";
+import { ReactComponent as doubleLeftIcon } from "Icon/arrow/double_arrow/left.svg";
+import { ReactComponent as leftIcon } from "Icon/arrow/arrow/left/Medium.svg";
+import { ReactComponent as doubleRightIcon } from "Icon/arrow/double_arrow/right.svg";
+import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Medium.svg";
 
 type PaginationPropsType = {
   /** 타입 (Combination은 미지원)*/
@@ -86,7 +90,26 @@ const PageWrapper = styled.div`
     -moz-appearance: textfield;
   }
 `;
-
+const DoubleLeftIcon = styled(doubleLeftIcon)`
+  width: 1.6rem;
+  height: 1.6rem;
+  color: ${({ theme }) => theme.color.gray._500};
+`;
+const LeftIcon = styled(leftIcon)`
+  width: 1.6rem;
+  height: 1.6rem;
+  color: ${({ theme }) => theme.color.gray._500};
+`;
+const DoubleRightIcon = styled(doubleRightIcon)`
+  width: 1.6rem;
+  height: 1.6rem;
+  color: ${({ theme }) => theme.color.gray._500};
+`;
+const RightIcon = styled(rightIcon)`
+  width: 1.6rem;
+  height: 1.6rem;
+  color: ${({ theme }) => theme.color.gray._500};
+`;
 const InputPagination = ({
   nowPage,
   allPage,
@@ -99,13 +122,10 @@ const InputPagination = ({
   return (
     <Wrapper>
       <button onClick={handlePrevEnd}>
-        <img
-          src="/asset/images/Icon/arrow/double_arrow/left.svg"
-          alt="prev_end"
-        />
+        <DoubleLeftIcon />
       </button>
       <button onClick={handlePrev}>
-        <img src="/asset/images/Icon/arrow/arrow/left/Medium.svg" alt="prev" />
+        <LeftIcon />
       </button>
       <PageWrapper>
         <span>
@@ -121,13 +141,10 @@ const InputPagination = ({
         <span>{allPage}</span>
       </PageWrapper>
       <button onClick={handleNext}>
-        <img src="/asset/images/Icon/arrow/arrow/right/Medium.svg" alt="next" />
+        <RightIcon />
       </button>
       <button onClick={handleNextEnd}>
-        <img
-          src="/asset/images/Icon/arrow/double_arrow/right.svg"
-          alt="next_end"
-        />
+        <DoubleRightIcon />
       </button>
     </Wrapper>
   );

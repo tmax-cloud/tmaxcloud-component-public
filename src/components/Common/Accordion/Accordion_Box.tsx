@@ -1,5 +1,8 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
+import { ReactComponent as arrowUpIcon } from "Icon/arrow/arrow/up/Medium.svg";
+import { ReactComponent as arrowDownIcon } from "Icon/arrow/arrow/down/Medium.svg";
+
 /** 박스형 아코디언 props 타입 */
 type Accordion_BoxPropsType = {
   /** 타이틀 */
@@ -65,6 +68,16 @@ const Content = styled.div`
     color: ${({ theme }) => theme.color.gray._700};
   }
 `;
+const ArrowUpIcon = styled(arrowUpIcon)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.color.gray._900}; ;
+`;
+const ArrowDownIcon = styled(arrowDownIcon)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.color.gray._600}; ;
+`;
 /** 박스형 아코디언 */
 const Accordion_Box = ({
   title,
@@ -78,23 +91,12 @@ const Accordion_Box = ({
       setClick(!click);
     }
   };
+
   return (
     <Wrapper>
       <TitleArea onClick={onClick} isClick={click} disabled={disabled}>
         <span>{title}</span>
-        <Icon>
-          {click ? (
-            <img
-              src="asset/images/Icon/arrow/arrow/up/Medium.svg"
-              alt="close"
-            />
-          ) : (
-            <img
-              src="asset/images/Icon/arrow/arrow/down/Medium.svg"
-              alt="open"
-            />
-          )}
-        </Icon>
+        <Icon>{click ? <ArrowUpIcon /> : <ArrowDownIcon />}</Icon>
       </TitleArea>
       {click && (
         <Content>

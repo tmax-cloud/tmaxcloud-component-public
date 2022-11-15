@@ -1,5 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { ReactComponent as fileIcon } from "Icon/content/file/line/Default.svg";
+import { ReactComponent as circleButtonIcon } from "Icon/content/circle_button/success/fill.svg";
+
 type ProgressBarPropsType = {
   title: string;
   description: string;
@@ -21,19 +24,21 @@ const TitleWrapper = styled.div`
   flex-direction: row;
   align-items: flex-end;
 `;
-const TitleIcon = styled.img`
+const FileIcon = styled(fileIcon)`
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.4rem;
   margin-bottom: 0.3rem;
+  color: ${({ theme }) => theme.color.black._100};
 `;
 const Title = styled.div`
   ${({ theme }) => theme.font.body4_400};
   line-height: 18px;
 `;
-const CheckIcon = styled.img`
+const CircleButtonIcon = styled(circleButtonIcon)`
   width: 1.5rem;
   height: 1.5rem;
+  color: ${({ theme }) => theme.color.marine._500};
 `;
 const ProgressLineWrapper = styled.div`
   width: 100%;
@@ -71,16 +76,10 @@ const ProgressBar = ({
     <ProgressBarWrapper>
       <ProgressBarHeader>
         <TitleWrapper>
-          <TitleIcon
-            src="asset/images/Icon/content/file/line/Default.svg"
-            alt="타이틀 아이콘"
-          />
+          <FileIcon />
           <Title>{title}</Title>
         </TitleWrapper>
-        <CheckIcon
-          src="asset/images/Icon/content/circle_button/success/fill.svg"
-          alt="타이틀 아이콘"
-        />
+        <CircleButtonIcon />
       </ProgressBarHeader>
       <ProgressLineWrapper size={size}>
         <ProgressLine nowPercent={nowPercent} />

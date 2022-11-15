@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { css } from "styled-components";
-
+import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Small.svg";
 /** 1Deps 타이틀 및 해당 타이틀에 속한 MenuItem*/
 type contextMenuPropsType = {
   /** 타이틀 */
@@ -127,11 +127,12 @@ const ContextMenuChildWrapper_R = styled.div`
 const PrefixIconWrapper = styled.div`
   padding-right: 0.8rem;
 `;
-const ArrowIcon = styled.img`
+const RightIcon = styled(rightIcon)`
   width: 1.8rem;
   height: 1.8rem;
   position: absolute;
-  right: 0.8rem;
+  right:.8rem;
+  color: {({theme}) => theme.color.gray._700};
 `;
 const Divider = styled.div`
   height: 1px;
@@ -297,12 +298,7 @@ const ContextMenuItem = ({
       <button>
         <ContextMenuItemTitle>{itemTitle}</ContextMenuItemTitle>
       </button>
-      {contextMenuItemChildProps && (
-        <ArrowIcon
-          src="/asset/images/Icon/arrow/arrow/right/Small.svg"
-          alt="화살표"
-        />
-      )}
+      {contextMenuItemChildProps && <RightIcon />}
       {contextMenuItemChildProps && view && (
         <ContextMenuItemChild
           isLeft={isLeft}

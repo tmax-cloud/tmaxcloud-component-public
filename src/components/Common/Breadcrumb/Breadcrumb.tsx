@@ -1,5 +1,7 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
+import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Medium.svg";
+
 /** 아이콘 타입 및 라벨 */
 type propIconType = {
   /** 아이콘 */
@@ -78,9 +80,10 @@ const ItemWrapper = styled.div`
     }
   }
 `;
-const ArrowIcon = styled.img`
+const RightIcon = styled(rightIcon)`
   width: 1.2rem;
   height: 1.2rem;
+  color: ${({ theme }) => theme.color.gray._600};
 `;
 const Breadcrumb = ({ propList }: propType) => {
   return (
@@ -96,12 +99,7 @@ const Breadcrumb = ({ propList }: propType) => {
             </a>
           </ItemWrapper>
 
-          {index + 1 !== propList.length && (
-            <ArrowIcon
-              src="/asset/images/Icon/arrow/arrow/right/Medium.svg"
-              alt="화살표 아이콘"
-            />
-          )}
+          {index + 1 !== propList.length && <RightIcon />}
         </>
       ))}
     </Wrapper>

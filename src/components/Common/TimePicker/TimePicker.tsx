@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import Button from "../Button/Button";
 import { debounce } from "lodash";
+import { ReactComponent as clockIcon } from "Icon/status/clock/line.svg";
 
 type TimePickerPropsType = {
   /** TimePicker의 확인 버튼을 클릭시 활성화 되는  함수*/
@@ -14,6 +15,7 @@ const Wrapper = styled.div`
 const ClockWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 14.9rem;
   height: 3.4rem;
   padding: 0.6rem 1.2rem;
@@ -22,24 +24,21 @@ const ClockWrapper = styled.div`
   border-radius: 8px;
   position: relative;
 `;
-const ClockIconWrapper = styled.div`
-  width: 2.8rem;
-  height: 2.8rem;
-  display: inline-flex;
-  right: 0.4rem;
-  top: 0.2rem;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  border-radius: 2.8rem;
-  cursor: pointer;
-  :hover {
-    background-color: ${({ theme }) => theme.color.black._4};
-  }
-`;
-const ClockIcon = styled.img`
+
+const ClockIcon = styled(clockIcon)`
   width: 2rem;
   height: 2rem;
+  color: ${({ theme }) => theme.color.gray._400};
+  :hover,
+  :active,
+  :focus-visible,
+  :focus {
+    color: ${({ theme }) => theme.color.gray._700};
+  }
+  :focus-visible,
+  :focus {
+    outline: none;
+  }
 `;
 const TimeDropdownWrapper = styled.div`
   position: absolute;
@@ -260,15 +259,11 @@ const TimePicker = ({ onChange }: TimePickerPropsType) => {
     <Wrapper>
       <ClockWrapper>
         {time}
-        <ClockIconWrapper>
-          <ClockIcon
-            src="/asset/images/Icon/status/clock/line.svg"
-            alt="dummy"
-            onClick={toggleTimepicker}
-            onKeyPress={onKeyPress}
-            tabIndex="0"
-          />
-        </ClockIconWrapper>
+        <ClockIcon
+          onClick={toggleTimepicker}
+          onKeyPress={onKeyPress}
+          tabIndex="0"
+        />
       </ClockWrapper>
       {openTimepicker && (
         <TimeDropdownWrapper ref={ref}>

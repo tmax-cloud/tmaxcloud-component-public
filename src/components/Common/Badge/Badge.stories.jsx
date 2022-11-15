@@ -1,7 +1,7 @@
 import Badge from "./Badge";
 
 export default {
-  title: "11월 2주차/Badge",
+  title: "Common/Badge",
   component: Badge,
   argTypes: { backgroundColor: { control: "color" } },
   decorators: [],

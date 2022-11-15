@@ -1,5 +1,8 @@
 import { useState } from "react";
 import styled, { css } from "styled-components";
+import { ReactComponent as minusIcon } from "Icon/basic/minus/M.svg";
+import { ReactComponent as plusIcon } from "Icon/basic/plus/M.svg";
+
 /** 줄형 아코디언 props 타입 */
 type Accordion_RowPropsType = {
   /** 타이틀 */
@@ -78,6 +81,17 @@ const Content = styled.div`
     color: ${({ theme }) => theme.color.gray._700};
   }
 `;
+const MinusIcon = styled(minusIcon)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.color.gray._900}; ;
+`;
+const PlusIcon = styled(plusIcon)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.color.gray._600}; ;
+`;
+
 /**줄형 아코디언 */
 const Accordion_Row = ({
   title,
@@ -92,13 +106,7 @@ const Accordion_Row = ({
     <Wrapper isClick={click}>
       <TitleArea onClick={onClick} isClick={click} disabled={disabled}>
         <span>{title}</span>
-        <Icon>
-          {click ? (
-            <img src="asset/images/Icon/basic/minus/M.svg" alt="close" />
-          ) : (
-            <img src="asset/images/Icon/basic/plus/M.svg" alt="open" />
-          )}
-        </Icon>
+        <Icon>{click ? <MinusIcon /> : <PlusIcon />}</Icon>
       </TitleArea>
       {click && (
         <Content>

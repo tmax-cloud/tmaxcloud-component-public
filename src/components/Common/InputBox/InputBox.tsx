@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { HTMLAttributes, useState } from "react";
-
+import { ReactComponent as cancelIcon } from "Icon/content/circle_button/cancel/fill.svg";
 type InputBoxPropsType = HTMLAttributes<HTMLInputElement> & {
   /** 타입 */
   state: "Box" | "Line" | "Fill";
@@ -185,15 +185,6 @@ const ButtonBox = styled.span`
   top: 50%;
   transform: translateY(-50%);
 `;
-const ClearButton = styled.img`
-  width: 2rem;
-  height: 2rem;
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      opacity: 0.5;
-    `}
-`;
 const InputCount = styled.span`
   ${({ theme }) => theme.font.body3_400};
   color: ${({ theme }) => theme.color.gray._400};
@@ -208,6 +199,20 @@ const AdviseStyle = styled.div`
       error ? theme.color.error._100 : theme.color.gray._500};
     padding-bottom: 0.4rem;
   }
+`;
+const CancelIcon = styled(cancelIcon)`
+  width: 2rem;
+  height: 2rem;
+  color: ${({ theme }) => theme.color.gray._400};
+  :hover {
+    color: ${({ theme }) => theme.color.gray._700};
+  }
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      color: ${({ theme }) => theme.color.gray._300};
+      pointer-events: none;
+    `}
 `;
 const SBInputBox = (args: InputBoxPropsType) => {
   const [value, setValue] = useState("");
@@ -259,12 +264,7 @@ const InputBox = ({
         />
         <ButtonBox>
           {allowClear && (
-            <ClearButton
-              src="/asset/images/Icon/clear-16px.svg"
-              alt="clearButton"
-              onClick={handleClear}
-              disabled={disabled}
-            />
+            <CancelIcon onClick={handleClear} disabled={disabled} />
           )}
           {showCount && (
             <InputCount>

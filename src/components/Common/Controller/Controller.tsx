@@ -1,6 +1,8 @@
 import { Switch, Radio, Checkbox } from "antd";
 import { useState } from "react";
 import styled from "styled-components";
+import { ReactComponent as minusIcon } from "Icon/basic/minus/M.svg";
+import { ReactComponent as plusIcon } from "Icon/basic/plus/M.svg";
 
 type ControllerPropsType = {
   /** 타입 */
@@ -128,15 +130,6 @@ const SpinnerWrapper = styled.div`
   border: 1px solid ${({ theme }) => theme.color.gray._300};
   border-radius: 0.8rem;
 `;
-const SpinnerCountImg = styled.img`
-  border-radius: 2.4rem;
-  :hover {
-    background-color: ${({ theme }) => theme.color.black._4};
-  }
-  :active {
-    background-color: ${({ theme }) => theme.color.black._10};
-  }
-`;
 const SpinnerCountText = styled.div`
   input {
     all: unset;
@@ -149,6 +142,30 @@ const SpinnerCountText = styled.div`
     -moz-appearance: none;
     appearance: none;
     margin: 0;
+  }
+`;
+const MinusIcon = styled(minusIcon)`
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 2.4rem;
+  color: ${({ theme }) => theme.color.gray._600};
+  :hover {
+    background-color: ${({ theme }) => theme.color.black._4};
+  }
+  :active {
+    background-color: ${({ theme }) => theme.color.black._10};
+  }
+`;
+const PlusIcon = styled(plusIcon)`
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 2.4rem;
+  color: ${({ theme }) => theme.color.gray._600};
+  :hover {
+    background-color: ${({ theme }) => theme.color.black._4};
+  }
+  :active {
+    background-color: ${({ theme }) => theme.color.black._10};
   }
 `;
 /** 컨트롤러 */
@@ -209,11 +226,7 @@ const Controller = ({
   else
     return (
       <SpinnerWrapper>
-        <SpinnerCountImg
-          src="asset/images/Icon/basic/minus/M.svg"
-          alt="minus"
-          onClick={onNumberMinus}
-        />
+        <MinusIcon onClick={onNumberMinus} />
         <SpinnerCountText>
           <input
             type="number"
@@ -225,11 +238,7 @@ const Controller = ({
             value={spinnerNumber || ""}
           />
         </SpinnerCountText>
-        <SpinnerCountImg
-          src="asset/images/Icon/basic/plus/M.svg"
-          alt="plus"
-          onClick={onNumberPlus}
-        />
+        <PlusIcon onClick={onNumberPlus} />
       </SpinnerWrapper>
     );
 };
