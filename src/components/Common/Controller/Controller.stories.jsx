@@ -25,7 +25,6 @@ ControllerSwitchTemplate.args = {
   size: "default",
   text: "test",
   disabled: false,
-  title: "title",
   onChange: (e) => console.log(e),
 };
 

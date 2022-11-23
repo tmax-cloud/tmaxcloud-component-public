@@ -1,4 +1,6 @@
 import styled, { css } from "styled-components";
+import { ReactComponent as cancelIcon } from "Icon/content/circle_button/cancel/fill.svg";
+
 type ChipPropsType = {
   /** 타입 */
   state: "Default" | "Input" | "Filter";
@@ -92,7 +94,15 @@ const Image = styled.img`
   width: 2rem;
   height: 2rem;
 `;
-const CloseIcon = styled.img``;
+const CancelIcon = styled(cancelIcon)`
+  color: ${({ theme }) => theme.color.gray._400};
+  :hover {
+    color: ${({ theme }) => theme.color.gray._700};
+  }
+  :active {
+    color: ${({ theme }) => theme.color.gray._900};
+  }
+`;
 /**
  * Default는 image,Icon 사용가능
  * Input은과 Filter는 image,Icon, 사용가능 및 색이 어두움
@@ -122,12 +132,7 @@ const Chip = ({
         {image && <Image src={image} alt="이미지" />}
         {text}
 
-        <CloseIcon
-          src="/asset/images/Icon/clear-16px.svg"
-          alt="닫기버튼"
-          onClick={handleCloseButton}
-          onKeyUp={handleCloseButton}
-        />
+        <CancelIcon onClick={handleCloseButton} onKeyUp={handleCloseButton} />
       </InputChipWrapper>
     );
   else
@@ -137,12 +142,7 @@ const Chip = ({
         {image && <Image src={image} alt="이미지" />}
         {text}
         {isCloseAble && (
-          <CloseIcon
-            src="/asset/images/Icon/clear-16px.svg"
-            alt="닫기버튼"
-            onClick={handleCloseButton}
-            onKeyUp={handleCloseButton}
-          />
+          <CancelIcon onClick={handleCloseButton} onKeyUp={handleCloseButton} />
         )}
       </FilterChipWrapper>
     );

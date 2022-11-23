@@ -7,14 +7,12 @@ import { ReactComponent as plusIcon } from "Icon/basic/plus/M.svg";
 type ControllerPropsType = {
   /** 타입 */
   state: "Switch" | "Checkbox" | "Spinner";
-  /** 내부 텍스트 */
-  text: string;
+  /** 내부 텍스트, 호버 시 노출되는 텍스트(type = Switch 전용)*/
+  text?: string;
   /** 이용가능 여부 */
   disabled: boolean;
   /** 크기(type = Switch전용) */
   size?: "small" | "default";
-  /** 호버 시 노출되는 텍스트(type = Switch 전용) */
-  title?: string;
 
   /** 상태변경시 동작하는 함수 (type = Switch,Checkbox 전용)*/
   onChange?: (e) => void;
@@ -28,6 +26,7 @@ const CheckboxLabel = styled.label`
   gap: 0.8rem;
   height: 2rem;
   align-items: center;
+  cursor: pointer;
   ${({ theme }) => theme.font.body2_400};
 `;
 const CheckboxInput = styled.input`
@@ -37,9 +36,9 @@ const CheckboxInput = styled.input`
   outline: 0;
   width: 2rem;
   height: 2rem;
-
-  &:hover {
-    :not(:checked)::after {
+  &:hover,
+  &:focus-visible {
+    :not(:checked, :disabled)::after {
       background-color: ${({ theme }) => theme.color.marine._50};
       border: 1px solid ${({ theme }) => theme.color.marine._500};
     }
@@ -53,10 +52,7 @@ const CheckboxInput = styled.input`
     border: 0.1rem solid ${({ theme }) => theme.color.blueGray._300};
     background-color: ${({ theme }) => theme.color.white._100};
   }
-  &:disabled::after {
-    border: 0.1rem solid ${({ theme }) => theme.color.gray._400};
-    background-color: ${({ theme }) => theme.color.gray._200};
-  }
+
   &:checked {
     ::after {
       display: inline-flex;
@@ -64,7 +60,13 @@ const CheckboxInput = styled.input`
       justify-content: center;
       background-color: ${({ theme }) => theme.color.marine._500};
       color: white;
-      content: url("/asset/images/Icon/small-check.svg");
+      content: url("/asset/images/backgroundIcon/small-check.svg");
+    }
+  }
+  &:disabled {
+    ::after {
+      border: 0.1rem solid ${({ theme }) => theme.color.gray._400};
+      background-color: ${({ theme }) => theme.color.gray._200};
     }
   }
   &:disabled:checked::after {
@@ -149,6 +151,7 @@ const MinusIcon = styled(minusIcon)`
   height: 2.4rem;
   border-radius: 2.4rem;
   color: ${({ theme }) => theme.color.gray._600};
+  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.black._4};
   }
@@ -161,6 +164,7 @@ const PlusIcon = styled(plusIcon)`
   height: 2.4rem;
   border-radius: 2.4rem;
   color: ${({ theme }) => theme.color.gray._600};
+  cursor: pointer;
   :hover {
     background-color: ${({ theme }) => theme.color.black._4};
   }
@@ -174,7 +178,6 @@ const Controller = ({
   size,
   text,
   disabled,
-  title,
   number,
   setNumber,
   onChange,
@@ -208,7 +211,7 @@ const Controller = ({
         size={size}
         defaultChecked
         onChange={onChange}
-        title={title}
+        title={text}
         disabled={disabled}
       />
     );
@@ -248,7 +251,6 @@ Controller.defaultProps = {
   size: "default",
   text: "text",
   disabled: false,
-  title: "타이틀",
   onChange: (e) => console.log(e),
 };
 

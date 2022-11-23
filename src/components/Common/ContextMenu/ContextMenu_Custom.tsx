@@ -131,8 +131,8 @@ const RightIcon = styled(rightIcon)`
   width: 1.8rem;
   height: 1.8rem;
   position: absolute;
-  right:.8rem;
-  color: {({theme}) => theme.color.gray._700};
+  right: 0.8rem;
+  color: {({ theme })=>theme.color.gray._700};
 `;
 const Divider = styled.div`
   height: 1px;
@@ -281,17 +281,26 @@ const ContextMenuItem = ({
         {
           Icon: (
             <PrefixIconWrapper>
-              <img src="/asset/images/Icon/dummy_icon.svg" alt="Icon" />
+              <img
+                src="/asset/images/backgroundIcon/dummy_icon.svg"
+                alt="Icon"
+              />
             </PrefixIconWrapper>
           ),
           Checkbox: (
             <PrefixIconWrapper>
-              <img src="/asset/images/Icon/dummy_icon.svg" alt="Checkbox" />
+              <img
+                src="/asset/images/backgroundIcon/dummy_icon.svg"
+                alt="Checkbox"
+              />
             </PrefixIconWrapper>
           ),
           Label: (
             <PrefixIconWrapper>
-              <img src="/asset/images/Icon/dummy_icon.svg" alt="Label" />
+              <img
+                src="/asset/images/backgroundIcon/dummy_icon.svg"
+                alt="Label"
+              />
             </PrefixIconWrapper>
           ),
         }[prefixIcon]}

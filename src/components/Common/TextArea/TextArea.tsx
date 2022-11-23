@@ -54,7 +54,7 @@ const TextareaStyle = styled.textarea`
   ::-webkit-resizer {
     border: none;
     background-position: 0.2rem 0.2rem;
-    background-image: url("asset/images/Icon/Ico_Stretch.svg");
+    background-image: url("asset/images/backgroundIcon/Ico_Stretch.svg");
     background-repeat: no-repeat;
   }
   ${({ theme }) => theme.font.body2_400};

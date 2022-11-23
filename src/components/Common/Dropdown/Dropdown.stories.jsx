@@ -1,6 +1,8 @@
+import { Dropdown } from "./Dropdown";
+
 export default {
   title: "개발중/Dropdown",
-  component: null,
+  component: Dropdown,
   argTypes: {},
   decorators: [
     (Story) => (
@@ -19,6 +21,6 @@ export default {
   },
 };
 
-const Template = (args) => <div {...args} />;
+const Template = (args) => <Dropdown {...args} />;
 
 export const tmpTemplate = Template.bind({});

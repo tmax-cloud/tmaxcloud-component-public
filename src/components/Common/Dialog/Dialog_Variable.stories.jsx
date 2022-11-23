@@ -1,5 +1,5 @@
 import { Radio, Space } from "antd";
-import Button from "../Button/Button";
+import Button from "components/Common/Button/Button";
 import Dialog_Variable, { SBDialog_Variable } from "./Dialog_Variable";
 import { SBDialog_Variable_Custom } from "./Dialog_VariableCustom";
 

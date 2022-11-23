@@ -113,7 +113,7 @@ const Notification = ({
   return (
     <SingleWrapper state={state} visible={visible}>
       <TitleWrapper>
-        <img src="asset/images/Icon/dummy_icon.svg" alt="dummy" />
+        <img src="asset/images/backgroundIcon/dummy_icon.svg" alt="dummy" />
         <span>{title}</span>
       </TitleWrapper>
       {content && <ContentWrapper>{content}</ContentWrapper>}

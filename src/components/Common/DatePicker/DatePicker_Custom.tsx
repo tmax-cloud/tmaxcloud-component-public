@@ -29,6 +29,13 @@ const DatePicker_CustomStyle = styled(DatePicker)`
 
   &.ant-picker-focused {
     border: 1px solid ${({ theme }) => theme.color.gray._900};
+    .ant-picker-suffix {
+      background: rgba(0, 0, 0, 0.04);
+      border-radius: 50%;
+    }
+    input::placeholder {
+      color: ${({ theme }) => theme.color.gray._900};
+    }
   }
 `;
 const CustomPickerGlobalStyle = createGlobalStyle`
@@ -79,7 +86,6 @@ const CustomPickerGlobalStyle = createGlobalStyle`
     border:1px solid ${({ theme }) => theme.color.gray._900};
     border-radius: 100px;
   }
-
   .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
     background-color: ${({ theme }) => theme.color.blueGray._900};
   color:${({ theme }) => theme.color.white._100};    
@@ -97,7 +103,9 @@ const CustomPickerGlobalStyle = createGlobalStyle`
 .ant-picker-header{
    align-items: center;
    border-bottom: none;
-   padding:1.6rem 1.6rem .5rem 1.6rem;
+   padding:1.6rem 3rem .5rem 3rem;
+   height:4.7rem;
+   justify-content: space-between;
   .ant-picker-header-prev-btn,.ant-picker-header-super-prev-btn,.ant-picker-header-next-btn,.ant-picker-header-super-next-btn{
       width: 2.4rem;
       height:2.4rem;
@@ -113,10 +121,15 @@ const CustomPickerGlobalStyle = createGlobalStyle`
       }
   }
 }
+.ant-picker-year-panel .ant-picker-content,.ant-picker-month-panel .ant-picker-content,.ant-picker-decade-panel .ant-picker-content {
+height:24.3rem;
+}
 .ant-picker-header-view{
+  flex:none;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: inherit;
   ${({ theme }) => theme.font.body2_500};
   .ant-picker-year-btn,.ant-picker-month-btn,.ant-picker-decade-btn{
   height:2.6rem;
@@ -131,8 +144,12 @@ const CustomPickerGlobalStyle = createGlobalStyle`
   }
 }
 }
-.ant-picker-month-panel .ant-picker-year-panel .ant-picker-content,{
+.ant-picker-month-panel .ant-picker-year-panel .ant-picker-content {
   height:2.43rem;
+}
+.ant-picker-super-next-icon{
+  width:1.2rem;
+  height:1.2rem;
 }
 `;
 const DatePicker_Custom = ({ state }: DatePicker_CustomPropsType) => {

@@ -45,7 +45,7 @@ IconBreadcrumbTemplate.args = {
   propList: [
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "/asset/images/backgroundIcon/dummy_icon.svg",
         iconLabel: "text1의 아이콘",
       },
       text: "test1",
@@ -54,7 +54,7 @@ IconBreadcrumbTemplate.args = {
     },
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "/asset/images/backgroundIcon/dummy_icon.svg",
         iconLabel: "text2의 아이콘",
       },
       text: "test2",
@@ -63,7 +63,7 @@ IconBreadcrumbTemplate.args = {
     },
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "/asset/images/backgroundIcon/dummy_icon.svg",
         iconLabel: "text3의 아이콘",
       },
       text: "test3",
@@ -72,7 +72,7 @@ IconBreadcrumbTemplate.args = {
     },
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "/asset/images/backgroundIcon/dummy_icon.svg",
         iconLabel: "text4의 아이콘",
       },
       text: "test4",

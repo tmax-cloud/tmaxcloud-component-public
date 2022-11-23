@@ -73,7 +73,7 @@ const Attachment = ({ state, name, size }: AttachmentPropsType) => {
   return (
     <Wrapper state={state}>
       <IconWrapper>
-        <Icon src="/asset/images/Icon/dummy_icon.svg" alt="file" />
+        <Icon src="/asset/images/backgroundIcon/dummy_icon.svg" alt="file" />
       </IconWrapper>
       <DataWrapper state={state}>
         <Name>{name}</Name>

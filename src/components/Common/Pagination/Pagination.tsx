@@ -167,16 +167,10 @@ const TablePagination = ({
         <span>of</span>
         <span>{allPage}</span>
         <button onClick={handlePrev}>
-          <img
-            src="/asset/images/Icon/arrow/arrow/left/Medium.svg"
-            alt="prev"
-          />
+          <LeftIcon />
         </button>
         <button onClick={handleNext}>
-          <img
-            src="/asset/images/Icon/arrow/arrow/right/Medium.svg"
-            alt="next"
-          />
+          <RightIcon />
         </button>
       </PageWrapper>
     </Wrapper>
