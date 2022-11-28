@@ -24,3 +24,6 @@ export default {
 const Template = (args) => <Dropdown {...args} />;
 
 export const tmpTemplate = Template.bind({});
+tmpTemplate.args = {
+  state: "Default",
+};
