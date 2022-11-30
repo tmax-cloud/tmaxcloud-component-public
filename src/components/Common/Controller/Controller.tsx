@@ -36,6 +36,7 @@ const CheckboxInput = styled.input`
   outline: 0;
   width: 2rem;
   height: 2rem;
+  cursor: pointer;
   &:hover,
   &:focus-visible {
     :not(:checked, :disabled)::after {

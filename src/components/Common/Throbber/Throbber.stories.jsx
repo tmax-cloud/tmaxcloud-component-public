@@ -1,7 +1,7 @@
 import Throbber from "./Throbber";
 
 export default {
-  title: "11월 2주차/Throbber",
+  title: "Common/Throbber",
   component: Throbber,
   argTypes: {},
   decorators: [],

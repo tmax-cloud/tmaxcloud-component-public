@@ -1,7 +1,7 @@
 import { ProgressBar } from "./ProgressBar";
 
 export default {
-  title: "11월 2주차/ProgressBar",
+  title: "Common/ProgressBar",
   component: ProgressBar,
   argTypes: {},
   decorators: [],
