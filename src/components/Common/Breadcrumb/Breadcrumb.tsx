@@ -5,7 +5,7 @@ import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Medium.svg";
 /** 아이콘 타입 및 라벨 */
 type propIconType = {
   /** 아이콘 */
-  icon: string;
+  icon: React.ReactNode;
   /** 아이콘 불러오기 실패시 노출될 텍스트 */
   iconLabel: string;
 };
@@ -86,15 +86,15 @@ const RightIcon = styled(rightIcon)`
   color: ${({ theme }) => theme.color.gray._600};
 `;
 const Breadcrumb = ({ propList }: propType) => {
+  console.log();
+
   return (
     <Wrapper>
       {propList.map((el, index) => (
         <>
           <ItemWrapper key={el.text} disabled={el.disabled}>
             <a href={el.href}>
-              {el.propIcon && (
-                <img src={el.propIcon.icon} alt={el.propIcon.iconLabel} />
-              )}
+              {el.propIcon && el.propIcon.icon}
               {el.text}
             </a>
           </ItemWrapper>
