@@ -31,5 +31,3 @@ jobs:
         if: ${{ always() }}
       - run: npm run tsc
         if: ${{ always() }}
-      - run: npm run build
-        if: ${{ always() }}
