@@ -9,7 +9,7 @@ on: push
 jobs:
   test:
     # job의 이름을 정해줍니다.
-    name: Test lint, tsc, build
+    name: Test lint, tsc
     # 저는 해당 job을 리눅스 환경에서 사용할 거예요. 다른 플랫폼이 올 수도 있겠죠?
     runs-on: ubuntu-latest
 
