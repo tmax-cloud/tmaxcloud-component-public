@@ -31,7 +31,6 @@ jobs:
         # 이 Action은 node-version이라는 값을 받을 수 있네요?
         # 아까 NODE_VERSION이라는 Secret을 만들었는데요,
         # ${{ secrets.XXX }}라는 값으로 GitHub의 Secrets 값을 가져올 수 있어요.
-        # node-version은 16.13.1이 되겠죠?
         with:
           node-version: ${{ secrets.NODE_VERSION }}
 
@@ -86,6 +85,7 @@ jobs:
         # 아까 secrets로 접근할 수 있게 만들어놓은 슬랙 url을 여기에 써볼게요.
         # with 키워드와 함께 slack_incoming_url 값으로 넘겨줍니다.
         with:
+          status: failure
           slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
 
       - name: Send slack if completed
@@ -96,4 +96,3 @@ jobs:
         with:
           status: success
           slack_incoming_url: ${{ secrets.SLACK_INCOMING_URL }}
-          #test
