@@ -1,0 +1,41 @@
+name: deploy
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+
+    env:
+      CI: false
+    strategy:
+      matrix:
+        node-version: ${{ secrets.NODE_VERSION }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ secrets.SLACK_INCOMING_URL }}
+        uses: actions/ setup-node@v3
+        id: cache
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+          cache: "npm"
+
+      - name: check module cache
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: npm-packages-${{ hashFiles('**/package-lock.json')}}
+
+      - name: Install modules
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Build storybook
+        run: npm run build-sb
+
+      - name: Deploy build outputs
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static
