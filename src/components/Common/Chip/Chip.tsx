@@ -1,13 +1,14 @@
 import styled, { css } from "styled-components";
 import { ReactComponent as cancelIcon } from "Icon/content/circle_button/cancel/fill.svg";
+import { ReactComponent as dummy } from "Icon/dummy_icon.svg";
 
 type ChipPropsType = {
   /** 타입 */
   state: "Default" | "Input" | "Filter";
   /** 아이콘 링크. image와 중복으로 줄 수 없음 */
-  icon?: false | string;
+  icon?: React.ReactNode;
   /** 이미지 링크. icon과 중복으로 줄 수 없음 */
-  image?: false | string;
+  image?: React.ReactNode;
   /** 텍스트 */
   text: string;
   /** 제거 버튼 활성화 여부. Input 타입은 상시, Filter 타입은 선택형*/
@@ -86,14 +87,7 @@ const FilterChipWrapper = styled.div`
     }
   `}
 `;
-const Icon = styled.img`
-  width: 1.45rem;
-  height: 1.45rem;
-`;
-const Image = styled.img`
-  width: 2rem;
-  height: 2rem;
-`;
+
 const CancelIcon = styled(cancelIcon)`
   color: ${({ theme }) => theme.color.gray._400};
   :hover {
@@ -120,16 +114,16 @@ const Chip = ({
   if (state === "Default") {
     return (
       <DefaultChipWrapper icon={icon} image={image}>
-        {icon && <Icon src={icon} alt="아이콘" />}
-        {image && <Image src={image} alt="이미지" />}
+        {icon}
+        {image}
         {text}
       </DefaultChipWrapper>
     );
   } else if (state === "Input")
     return (
       <InputChipWrapper icon={icon} image={image} isCloseAble={isCloseAble}>
-        {icon && <Icon src={icon} alt="아이콘" />}
-        {image && <Image src={image} alt="이미지" />}
+        {icon}
+        {image}
         {text}
 
         <CancelIcon onClick={handleCloseButton} onKeyUp={handleCloseButton} />
@@ -138,8 +132,8 @@ const Chip = ({
   else
     return (
       <FilterChipWrapper icon={icon} image={image} isCloseAble={isCloseAble}>
-        {icon && <Icon src={icon} alt="아이콘" />}
-        {image && <Image src={image} alt="이미지" />}
+        {icon}
+        {image}
         {text}
         {isCloseAble && (
           <CancelIcon onClick={handleCloseButton} onKeyUp={handleCloseButton} />
@@ -151,6 +145,8 @@ const Chip = ({
 Chip.defaultProps = {
   state: "Default",
   text: "Chip",
+  icon: false,
+  image: false,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
 

@@ -1,4 +1,6 @@
 import Chip from "./Chip";
+import styled, { css } from "styled-components";
+import { ReactComponent as dummy } from "Icon/dummy_icon.svg";
 
 export default {
   title: "Common/Chip",
@@ -12,7 +14,14 @@ export default {
 };
 
 const Template = (args) => <Chip {...args} />;
-
+const Icon = styled(dummy)`
+  width: 1.45rem;
+  height: 1.45rem;
+`;
+const Image = styled(dummy)`
+  width: 2rem;
+  height: 2rem;
+`;
 export const DefaultChipTemplate = Template.bind({});
 DefaultChipTemplate.args = {
   state: "Default",
@@ -23,14 +32,14 @@ export const DefaultChipIconTemplate = Template.bind({});
 DefaultChipIconTemplate.args = {
   state: "Default",
   text: "Default",
-  icon: "/asset/images/backgroundIcon/dummy_icon.svg",
+  icon: <Icon />,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
 export const DefaultChipImageTemplate = Template.bind({});
 DefaultChipImageTemplate.args = {
   state: "Default",
   text: "Default",
-  image: "/asset/images/backgroundIcon/dummy_icon.svg",
+  image: <Image />,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
 
@@ -47,8 +56,8 @@ export const InputChipIconTemplate = Template.bind({});
 InputChipIconTemplate.args = {
   state: "Input",
   text: "Input",
-  icon: "/asset/images/backgroundIcon/dummy_icon.svg",
   isCloseAble: true,
+  icon: <Icon />,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
 
@@ -57,7 +66,7 @@ export const InputChipImageTemplate = Template.bind({});
 InputChipImageTemplate.args = {
   state: "Input",
   text: "Input",
-  image: "/asset/images/backgroundIcon/dummy_icon.svg",
+  image: <Image />,
   isCloseAble: true,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
@@ -75,7 +84,7 @@ export const FilterChipIconTemplate = Template.bind({});
 FilterChipIconTemplate.args = {
   state: "Filter",
   text: "Filter",
-  icon: "/asset/images/backgroundIcon/dummy_icon.svg",
+  icon: <Icon />,
   isCloseAble: false,
   handleCloseButton: () => console.log("handleCloseButton"),
 };
@@ -84,7 +93,7 @@ export const FilterChipImageTemplate = Template.bind({});
 FilterChipImageTemplate.args = {
   state: "Filter",
   text: "Filter",
-  image: "/asset/images/backgroundIcon/dummy_icon.svg",
+  image: <Image />,
   isCloseAble: false,
   handleCloseButton: () => console.log("handleCloseButton"),
 };

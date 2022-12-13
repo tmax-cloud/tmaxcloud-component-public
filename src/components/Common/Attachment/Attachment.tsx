@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { ReactComponent as dummy } from "Icon/dummy_icon.svg";
 import React from "react";
 /** Attachment Props 타입 */
 type AttachmentPropsType = {
@@ -8,6 +9,8 @@ type AttachmentPropsType = {
   name: string;
   /** 파일 크기 */
   size: string;
+  /** 아이콘 이미지 */
+  icon: React.ReactNode;
 };
 
 const Wrapper = styled.button`
@@ -35,7 +38,7 @@ const Wrapper = styled.button`
 
 const IconWrapper = styled.div``;
 
-const Icon = styled.img`
+const Icon = styled(dummy)`
   width: 2rem;
   height: 2rem;
 `;
@@ -69,12 +72,10 @@ const Size = styled.div`
   height: 1.8rem;
 `;
 /** Attachment */
-const Attachment = ({ state, name, size }: AttachmentPropsType) => {
+const Attachment = ({ state, name, size, icon }: AttachmentPropsType) => {
   return (
     <Wrapper state={state}>
-      <IconWrapper>
-        <Icon src="/asset/images/backgroundIcon/dummy_icon.svg" alt="file" />
-      </IconWrapper>
+      <IconWrapper>{icon}</IconWrapper>
       <DataWrapper state={state}>
         <Name>{name}</Name>
         <Size>{size}</Size>
@@ -87,6 +88,7 @@ Attachment.defaultProps = {
   state: "Medium",
   name: "이름",
   size: "사이즈",
+  icon: <Icon />,
 };
 
 export default Attachment;

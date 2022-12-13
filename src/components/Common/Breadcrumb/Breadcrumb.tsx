@@ -110,7 +110,7 @@ Breadcrumb.defaultProps = {
   propList: [
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "asset/images/Icon/dummy_icon.svg",
         iconLabel: "text1의 아이콘",
       },
       text: "test1",
@@ -119,7 +119,7 @@ Breadcrumb.defaultProps = {
     },
     {
       propIcon: {
-        icon: "/asset/images/Icon/dummy_icon.svg",
+        icon: "asset/images/Icon/dummy_icon.svg",
         iconLabel: "text2의 아이콘",
       },
       text: "test2",
