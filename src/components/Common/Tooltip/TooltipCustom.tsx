@@ -79,7 +79,7 @@ const SBTooltipCustom = ({ title, placement, trigger }: sbPropType) => {
         trigger={trigger}
         overlayClassName="custom_tooltip"
       >
-        <img src="/asset/images/backgroundIcon/dummy_icon.svg" alt="dummy" />
+        <img src="asset/images/backgroundIcon/dummy_icon.svg" alt="dummy" />
       </Tooltip>
     </>
   );
@@ -109,6 +109,6 @@ TooltipCustom.defaultProps = {
   title: "test",
   placement: "bottom",
   trigger: "hover",
-  children: <img src="/asset/images/icon/dummy_icon.svg" alt="dummy" />,
+  children: <img src="asset/images/icon/dummy_icon.svg" alt="dummy" />,
 };
 export { SBTooltipCustom, TooltipCustom };
