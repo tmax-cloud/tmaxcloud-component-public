@@ -3,7 +3,7 @@ import { SBDropdown, Dropdown } from "./Dropdown";
 import { ReactComponent as cancelIcon } from "Icon/content/circle_button/cancel/fill.svg";
 
 export default {
-  title: "11월 5주차/Dropdown",
+  title: "Common/Dropdown",
   component: Dropdown,
   argTypes: {},
   decorators: [

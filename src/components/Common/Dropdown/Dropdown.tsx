@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef, HTMLAttributes } from "react";
-import { ReactComponent as FilterIcon } from "Icon/content/filter/fill.svg";
 import styled, { css } from "styled-components";
-import { Icontest } from "./icontest";
 import { ReactComponent as arrowDownIcon } from "Icon/arrow/arrow/down/Small.svg";
 import { ReactComponent as arrowRightIcon } from "Icon/arrow/arrow/right/Small.svg";
 import Controller from "../Controller/Controller";
@@ -197,6 +195,7 @@ const ControlIcon = styled.div`
   border: 1px solid ${({ theme }) => theme.color.blueGray._300};
   border-radius: 0.6rem;
 `;
+
 /** Control 요소 사용 불가 */
 const SBDropdown = ({
   state,
@@ -211,7 +210,6 @@ const SBDropdown = ({
     useState(placeHolderText);
 
   const onClickDropdownSB = (e) => {
-    console.log(e);
     if (state === "Default") {
       setPlaceHolderTextState(e);
     } else if (state === "Content") {
@@ -225,14 +223,17 @@ const SBDropdown = ({
       }
     }
   };
+  console.log(ArrowDownIcon);
   return (
-    <Dropdown
-      state={state}
-      placeHolderText={placeHolderTextState}
-      onClickDropdown={onClickDropdownSB}
-      dropdownChildren={dropdownChildren}
-      placeHolderOption={placeHolderOptionState}
-    />
+    <>
+      <Dropdown
+        state={state}
+        placeHolderText={placeHolderTextState}
+        onClickDropdown={onClickDropdownSB}
+        dropdownChildren={dropdownChildren}
+        placeHolderOption={placeHolderOptionState}
+      />
+    </>
   );
 };
 
@@ -247,7 +248,6 @@ const Dropdown = ({
   const ref = useRef(null);
   const [active, setActive] = useState(false);
   const disabled = false;
-  console.log(state);
 
   const onClick = () => {
     setActive(!active);

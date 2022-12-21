@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as fileIcon } from "Icon/content/file/line/Default.svg";
 
 export default {
-  title: "11월 5주차/Breadcrumb",
+  title: "Common/Breadcrumb",
   component: Breadcrumb,
   argTypes: {},
   decorators: [],
