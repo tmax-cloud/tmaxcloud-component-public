@@ -19,6 +19,5 @@ describe("Attachment 공통 테스트", () => {
     );
     expect(screen.getByText("이름")).toBeTruthy();
     expect(screen.getByText("크기")).toBeTruthy();
-    console.log(screen.getByText("크기").style.color);
   });
 });
