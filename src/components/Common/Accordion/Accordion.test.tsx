@@ -25,6 +25,7 @@ describe("Accordion 공통 테스트", () => {
     /** 다시 클릭 후 하단 내용 노출 X */
     expect(() => screen.getByText("테스트 내용")).toThrow(Error);
   });
+
   it("disabled 활성화시 click 이벤트 정지 여부", () => {
     render(
       <ThemeProvider theme={defaultTheme}>
@@ -54,8 +55,10 @@ describe("Accordion 타입별 카테고리 텍스트 노출 테스트", () => {
         />
       </ThemeProvider>,
     );
+    consoasdfasdfle.log("error");
     expect(() => screen.getByText("아코디언 테스트")).toThrow(Error);
   });
+
   it("List Type 카테고리 노출 O", () => {
     render(
       <ThemeProvider theme={defaultTheme}>
@@ -70,6 +73,7 @@ describe("Accordion 타입별 카테고리 텍스트 노출 테스트", () => {
     );
     expect(() => screen.getByText("아코디언 테스트")).toBeTruthy();
   });
+
   it("Row Type 카테고리 노출 X", () => {
     render(
       <ThemeProvider theme={defaultTheme}>
