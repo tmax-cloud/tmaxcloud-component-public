@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Accordion 공통 테스트 matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-gKXOVf knFhxB"
+  >
+    <div
+      class="sc-iBkjds gVxndz"
+    >
+      <div>
+        <div
+          class="sc-ftvSup cTnNJp"
+        >
+          아코디언 테스트
+        </div>
+        <div
+          class="sc-papXJ QbWaf"
+        >
+          테스트 제목
+        </div>
+      </div>
+      <div
+        class="sc-jqUVSM bIizqJ"
+      >
+        <svg
+          class="sc-crXcEl kmverq"
+        >
+          Medium.svg
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
