@@ -55,7 +55,6 @@ describe("Accordion 타입별 카테고리 텍스트 노출 테스트", () => {
         />
       </ThemeProvider>,
     );
-    consoasdfasdfle.log("error");
     expect(() => screen.getByText("아코디언 테스트")).toThrow(Error);
   });
 
