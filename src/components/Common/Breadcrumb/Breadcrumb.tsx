@@ -1,6 +1,7 @@
 import * as React from "react";
 import styled, { css } from "styled-components";
 import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Medium.svg";
+import { Link } from "react-router-dom";
 
 /** 아이콘 타입 및 라벨 */
 type propIconType = {
@@ -86,21 +87,19 @@ const RightIcon = styled(rightIcon)`
   color: ${({ theme }) => theme.color.gray._600};
 `;
 const Breadcrumb = ({ propList }: propType) => {
-  console.log();
-
   return (
     <Wrapper>
       {propList.map((el, index) => (
-        <>
-          <ItemWrapper key={el.text} disabled={el.disabled}>
-            <a href={el.href}>
+        <span key={el.text}>
+          <ItemWrapper disabled={el.disabled}>
+            <Link to={el.href}>
               {el.propIcon && el.propIcon.icon}
               {el.text}
-            </a>
+            </Link>
           </ItemWrapper>
 
           {index + 1 !== propList.length && <RightIcon />}
-        </>
+        </span>
       ))}
     </Wrapper>
   );

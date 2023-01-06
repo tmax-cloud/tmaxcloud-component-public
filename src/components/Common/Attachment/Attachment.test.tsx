@@ -1,23 +1,19 @@
 import Attachment from "./Attachment";
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "styles/theme";
-describe("Attachment 공통 테스트", () => {
-  it("matches snapshot", () => {
-    const utils = render(
-      <ThemeProvider theme={defaultTheme}>
-        <Attachment state="Medium" name="이름" size="크기" />
-      </ThemeProvider>,
+import { StyledComponentRenderSetting } from "hook/test/hook";
+import { screen } from "@testing-library/react";
+describe("Attachment state 별 텍스트 노출 테스트", () => {
+  it("Medium state 텍스트 노출 확인", () => {
+    StyledComponentRenderSetting(
+      <Attachment state="Medium" name="이름" size="크기" />,
     );
-    expect(utils.container).toMatchSnapshot();
+    expect(screen.queryByText("이름")).toBeInTheDocument();
+    expect(screen.queryByText("크기")).toBeInTheDocument();
   });
-  it("텍스트 노출 확인", () => {
-    render(
-      <ThemeProvider theme={defaultTheme}>
-        <Attachment state="Medium" name="이름" size="크기" />
-      </ThemeProvider>,
+  it("Large state 텍스트 노출 확인", () => {
+    StyledComponentRenderSetting(
+      <Attachment state="Large" name="이름" size="크기" />,
     );
-    expect(screen.getByText("이름")).toBeTruthy();
-    expect(screen.getByText("크기")).toBeTruthy();
+    expect(screen.queryByText("이름")).toBeInTheDocument();
+    expect(screen.queryByText("크기")).toBeInTheDocument();
   });
 });

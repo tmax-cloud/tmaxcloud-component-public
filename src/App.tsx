@@ -4,20 +4,17 @@ import styled, { ThemeProvider } from "styled-components";
 import { defaultTheme } from "styles/theme";
 import { fakeDefaultTheme } from "styles/faketheme";
 import TextArea from "components/Common/TextArea/TextArea";
-
-const Test = styled.div`
-  background-color: ${({ theme }) => theme.color.marine._700};
-`;
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   const [click, isClick] = useState(false);
   return (
     <ThemeProvider theme={click ? fakeDefaultTheme : defaultTheme}>
-      <Test className="App">
+      <BrowserRouter>
         <div>hello world</div>
-      </Test>
-      <TextArea />
-      <button onClick={() => isClick(!click)}>모드변경</button>
+        <TextArea />
+        <button onClick={() => isClick(!click)}>모드변경</button>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
