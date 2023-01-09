@@ -12,12 +12,12 @@ type contextMenuPropsType = {
    *  해당 아이템 하위의 MenuItem을 나타내는 contextMenuItemChildProps(contextMenuPropsType 배열로 표현)
    */
   contextMenuItemProps: Array<contextMenuItemPropsType>;
+  /** 우측의 여백이 없어 position을 right로 줘야하는지. 자동측정*/
+  isRight?: boolean;
   /** 생성될 contextMenu의 X위치. 자동측정*/
   pageX?: number;
   /** 생성될 contextMenu의 Y위치. 자동측정*/
   pageY?: number;
-  /** 우측의 여백이 없어 position을 right로 줘야하는지. 자동측정*/
-  isRight?: boolean;
 };
 /** MenuItem props */
 type contextMenuItemPropsType = {

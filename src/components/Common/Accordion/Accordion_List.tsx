@@ -43,6 +43,7 @@ const TitleArea = styled.div`
     css`
       color: ${({ theme }) => theme.color.gray._900};
       opacity: 0.4;
+      pointer-events: none;
       &,
       :hover,
       :active {
@@ -96,7 +97,7 @@ const Accordion_List = ({
 }: Accordion_ListPropsType) => {
   const [click, setClick] = useState(false);
   const onClick = () => {
-    !disabled && setClick(!click);
+    setClick(!click);
   };
   return (
     <Wrapper>

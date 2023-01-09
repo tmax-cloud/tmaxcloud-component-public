@@ -25,83 +25,94 @@ const Image = styled(dummy)`
 export const DefaultChipTemplate = Template.bind({});
 DefaultChipTemplate.args = {
   state: "Default",
-  text: "Default",
-  handleCloseButton: () => console.log("handleCloseButton"),
+  DefaultChipProps: {
+    text: "Default",
+  },
 };
 export const DefaultChipIconTemplate = Template.bind({});
 DefaultChipIconTemplate.args = {
   state: "Default",
-  text: "Default",
-  icon: <Icon />,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  DefaultChipProps: {
+    text: "Default",
+    icon: <Icon />,
+  },
 };
 export const DefaultChipImageTemplate = Template.bind({});
 DefaultChipImageTemplate.args = {
   state: "Default",
-  text: "Default",
-  image: <Image />,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  DefaultChipProps: { text: "Default", image: <Image /> },
 };
 
 export const InputChipTemplate = Template.bind({});
 
 InputChipTemplate.args = {
   state: "Input",
-  text: "Input",
-  isCloseAble: true,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  InputChipProps: {
+    text: "Input",
+    onClick: () => console.log("onClick"),
+  },
 };
 export const InputChipIconTemplate = Template.bind({});
 
 InputChipIconTemplate.args = {
   state: "Input",
-  text: "Input",
-  isCloseAble: true,
-  icon: <Icon />,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  InputChipProps: {
+    text: "Input",
+    icon: <Icon />,
+    onClick: () => console.log("onClick"),
+  },
 };
 
 export const InputChipImageTemplate = Template.bind({});
 
 InputChipImageTemplate.args = {
   state: "Input",
-  text: "Input",
-  image: <Image />,
-  isCloseAble: true,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  InputChipProps: {
+    text: "Input",
+    image: <Image />,
+    onClick: () => console.log("onClick"),
+  },
 };
 
 export const FilterChipTemplate = Template.bind({});
 
 FilterChipTemplate.args = {
   state: "Filter",
-  text: "Filter",
-  isCloseAble: false,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  FilterChipProps: {
+    text: "Filter",
+    isCloseAble: false,
+    onClick: () => console.log("onClick"),
+  },
 };
 export const FilterChipIconTemplate = Template.bind({});
 
 FilterChipIconTemplate.args = {
   state: "Filter",
-  text: "Filter",
-  icon: <Icon />,
-  isCloseAble: false,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  FilterChipProps: {
+    text: "Filter",
+    icon: <Icon />,
+    isCloseAble: false,
+    onClick: () => console.log("onClick"),
+  },
 };
 export const FilterChipImageTemplate = Template.bind({});
 
 FilterChipImageTemplate.args = {
   state: "Filter",
-  text: "Filter",
-  image: <Image />,
-  isCloseAble: false,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  FilterChipProps: {
+    text: "Filter",
+    image: <Image />,
+    isCloseAble: false,
+    onClick: () => console.log("onClick"),
+  },
 };
 export const FilterChipCloseButtonTemplate = Template.bind({});
 
 FilterChipCloseButtonTemplate.args = {
   state: "Filter",
-  text: "Filter",
-  isCloseAble: true,
-  handleCloseButton: () => console.log("handleCloseButton"),
+  FilterChipProps: {
+    text: "Filter",
+    isCloseAble: true,
+    onClick: () => console.log("onClick"),
+  },
 };

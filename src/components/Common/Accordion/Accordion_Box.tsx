@@ -44,6 +44,7 @@ const TitleArea = styled.div`
     css`
       color: ${({ theme }) => theme.color.gray._900};
       opacity: 0.4;
+      pointer-events: none;
       &,
       :hover,
       :active {
@@ -87,9 +88,7 @@ const Accordion_Box = ({
   const [click, setClick] = useState(false);
   /** 클릭이벤트 */
   const onClick = (): void => {
-    if (!disabled) {
-      setClick(!click);
-    }
+    setClick(!click);
   };
 
   return (

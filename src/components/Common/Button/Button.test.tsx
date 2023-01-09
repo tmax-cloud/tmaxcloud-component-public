@@ -111,7 +111,7 @@ describe("Button state 별 텍스트 노출 테스트", () => {
   });
 });
 describe("Button event 테스트", () => {
-  it("click event test", () => {
+  it("click event", () => {
     const onClick = jest.fn();
     const onKeyUp = jest.fn();
     const testState = "PrimaryA";
@@ -127,7 +127,7 @@ describe("Button event 테스트", () => {
     userEvent.click(screen.queryByText(testState + " test"));
     expect(onClick).toBeCalledTimes(1);
   });
-  it("keyUp event test", () => {
+  it("keyUp event", () => {
     const onClick = jest.fn();
     const onKeyUp = jest.fn();
     const testState = "PrimaryA";
@@ -142,5 +142,7 @@ describe("Button event 테스트", () => {
     );
     userEvent.type(screen.queryByText(testState + " test"), "{enter}");
     expect(onKeyUp).toBeCalledTimes(1);
+    userEvent.type(screen.queryByText(testState + " test"), "{space}");
+    expect(onKeyUp).toBeCalledTimes(2);
   });
 });
