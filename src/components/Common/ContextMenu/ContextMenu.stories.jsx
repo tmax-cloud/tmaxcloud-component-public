@@ -22,69 +22,73 @@ export const ContextMenuTemplate = Template.bind({});
 
 ContextMenuTemplate.args = {
   title: "기본 타이틀",
-  contextMenuItemProps: [
+  items: [
+    { separator: true },
     {
       prefixIcon: "Icon",
-      itemTitle: "아이콘1",
+      itemTitle: "아이콘",
     },
     {
       prefixIcon: "Checkbox",
-      itemTitle: "체크박스1",
+      itemTitle: "체크박스",
     },
+    { separator: true },
     {
       prefixIcon: "Label",
-      itemTitle: "라벨1",
-      contextMenuItemChildProps: [
+      itemTitle: "라벨",
+      items: [
         {
-          title: "타이틀3",
-          contextMenuItemProps: [
+          title: "Deps1",
+          items: [
+            { separator: true },
             {
               prefixIcon: "Icon",
-              itemTitle: "아이콘3",
+              itemTitle: "Deps1아이콘",
             },
             {
               prefixIcon: "Checkbox",
-              itemTitle: "체크박스3",
+              itemTitle: "Deps1체크박스",
             },
             {
               prefixIcon: "Label",
-              itemTitle: "라벨3",
+              itemTitle: "Deps1라벨",
             },
             {
-              itemTitle: "아무것도없는3",
+              itemTitle: "Deps1Prefix없음",
             },
           ],
         },
       ],
     },
     {
-      itemTitle: "아무것도없는1",
-
-      contextMenuItemChildProps: [
+      itemTitle: "Prefix없음",
+      items: [
         {
-          title: "타이틀1",
-          contextMenuItemProps: [
+          title: "Deps1",
+          items: [
+            { separator: true },
             {
               prefixIcon: "Icon",
-              itemTitle: "아이콘2",
-              contextMenuItemChildProps: [
+              itemTitle: "Deps1아이콘",
+              items: [
                 {
-                  title: "타이틀1",
-                  contextMenuItemProps: [
+                  title: "Deps2",
+                  items: [
                     {
                       prefixIcon: "Icon",
-                      itemTitle: "아이콘2",
+                      itemTitle: "Deps2아이콘",
                     },
+                    { separator: true },
                     {
                       prefixIcon: "Checkbox",
-                      itemTitle: "체크박스2",
+                      itemTitle: "Deps2체크박스",
                     },
                     {
                       prefixIcon: "Label",
-                      itemTitle: "라벨2",
+                      itemTitle: "Deps2라벨",
                     },
                     {
-                      itemTitle: "아무것도없는2",
+                      itemTitle: "Deps2Prefix없음",
                     },
                   ],
                 },
@@ -92,14 +96,15 @@ ContextMenuTemplate.args = {
             },
             {
               prefixIcon: "Checkbox",
-              itemTitle: "체크박스2",
+              itemTitle: "Deps1체크박스",
             },
             {
               prefixIcon: "Label",
-              itemTitle: "라벨2",
+              itemTitle: "Deps1라벨",
             },
+            { separator: true },
             {
-              itemTitle: "아무것도없는2",
+              itemTitle: "Deps1Prefix없음",
             },
           ],
         },

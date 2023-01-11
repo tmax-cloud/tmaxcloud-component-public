@@ -3,21 +3,24 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import { ReactComponent as rightIcon } from "Icon/arrow/arrow/right/Small.svg";
 /** 1Deps 타이틀 및 해당 타이틀에 속한 MenuItem*/
-type contextMenuPropsType = {
+export type contextMenuPropsType = {
   /** 타이틀 */
   title: string;
   /** 타이틀에 속한 MenuItem ,
    *  컨텍스트 내부 각 아이템의 앞자리를 선택할 수 있는 prefixIcon ,
    *  각 아이템의 텍스트 부분의 itemTitle ,
-   *  해당 아이템 하위의 MenuItem을 나타내는 contextMenuItemChildProps(contextMenuPropsType 배열로 표현)
+   *  해당 아이템 하위의 MenuItem을 나타내는 items(contextMenuPropsType 배열로 표현)
    */
-  contextMenuItemProps: Array<contextMenuItemPropsType>;
+  items: Array<separator | contextMenuItemPropsType>;
   /** 우측의 여백이 없어 position을 right로 줘야하는지. 자동측정*/
   isRight?: boolean;
   /** 생성될 contextMenu의 X위치. 자동측정*/
   pageX?: number;
   /** 생성될 contextMenu의 Y위치. 자동측정*/
   pageY?: number;
+};
+type separator = {
+  separator: boolean;
 };
 /** MenuItem props */
 type contextMenuItemPropsType = {
@@ -26,13 +29,13 @@ type contextMenuItemPropsType = {
   /** 해당 MenuItem의 텍스트 타이틀 */
   itemTitle: string;
   /** 해당 아이템 하위의 MenuItem*/
-  contextMenuItemChildProps?: Array<contextMenuPropsType>;
+  items?: Array<contextMenuPropsType>;
 };
-type contextMenuItemChildPropsType = {
+type itemsType = {
   /** 좌측에 렌더해야하는지 */
   isLeft: boolean;
   /** 하위 Deps MenuItem을 */
-  contextMenuItemChildProps: Array<contextMenuPropsType>;
+  items: Array<contextMenuPropsType>;
 };
 const SBContextMenuTriggerWrapper = styled.div`
   width: 10rem;
@@ -153,13 +156,13 @@ const Title = styled.div`
 const SBContextMenuTrigger = (args: contextMenuPropsType) => {
   const ref = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const ChangeMenuState = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const CloseMenu = (e) => {
-    if (isMenuOpen && !ref.current.contains(e.target)) setIsMenuOpen(false);
+    if ((isMenuOpen && !ref.current.contains(e.target)) || e.which === 3)
+      setIsMenuOpen(false);
   };
   const keydownEvent = (e) => {
     if (isMenuOpen && e.key === "Escape") {
@@ -191,7 +194,7 @@ const SBContextMenuTrigger = (args: contextMenuPropsType) => {
 /** ContextMenu의 시작을 맡는 틀 및 1뎁스 */
 const ContextMenu = ({
   title,
-  contextMenuItemProps,
+  items,
   pageX,
   pageY,
   isRight,
@@ -199,9 +202,13 @@ const ContextMenu = ({
   return (
     <ContextMenuWrapper pageX={pageX} pageY={pageY} isRight={isRight}>
       <Title>{title}</Title>
-      {contextMenuItemProps.map((data) => (
-        <ContextMenuItem {...data} key={data.itemTitle} />
-      ))}
+      {items.map((data) =>
+        "separator" in data ? (
+          <Divider />
+        ) : (
+          <ContextMenuItem {...data} key={data.itemTitle} />
+        ),
+      )}
     </ContextMenuWrapper>
   );
 };
@@ -217,7 +224,7 @@ const ContextMenuTriggerWithMouse = (args) => {
   };
   /** 마우스 우클릭 시 노출 함수 */
   const OpenMenuWithMouse = (e) => {
-    if (e.which == 3 || e.button == 2) {
+    if (e.type === "contextmenu") {
       setIsMenuOpen(true);
       handleXPosition(e.pageX);
       setPageY(e.pageY);
@@ -257,7 +264,7 @@ const ContextMenuTriggerWithMouse = (args) => {
 const ContextMenuItem = ({
   prefixIcon,
   itemTitle,
-  contextMenuItemChildProps,
+  items,
 }: contextMenuItemPropsType) => {
   const WrapperRef = useRef(null);
   const [view, setView] = useState(false);
@@ -307,22 +314,14 @@ const ContextMenuItem = ({
       <button>
         <ContextMenuItemTitle>{itemTitle}</ContextMenuItemTitle>
       </button>
-      {contextMenuItemChildProps && <RightIcon />}
-      {contextMenuItemChildProps && view && (
-        <ContextMenuItemChild
-          isLeft={isLeft}
-          contextMenuItemChildProps={contextMenuItemChildProps}
-        />
-      )}
+      {items && <RightIcon />}
+      {items && view && <ContextMenuItemChild isLeft={isLeft} items={items} />}
     </ContextMenuItemWrapper>
   );
 };
 
 /** 하위 Deps 메뉴 */
-const ContextMenuItemChild = ({
-  isLeft,
-  contextMenuItemChildProps,
-}: contextMenuItemChildPropsType) => {
+const ContextMenuItemChild = ({ isLeft, items }: itemsType) => {
   const ref = useRef(null);
   const [overHeight, setOverHeight] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -348,22 +347,18 @@ const ContextMenuItemChild = ({
           overHeight={overHeight}
           Loading={loading}
         >
-          {contextMenuItemChildProps.map(
-            (contextMenuProps: contextMenuPropsType) => (
-              <div key={contextMenuProps.title}>
-                <Title>{contextMenuProps.title}</Title>
-                <Divider />
-                {contextMenuProps.contextMenuItemProps.map(
-                  (contextMenuItemChildProps: contextMenuItemPropsType) => (
-                    <ContextMenuItem
-                      {...contextMenuItemChildProps}
-                      key={contextMenuItemChildProps.itemTitle}
-                    />
-                  ),
-                )}
-              </div>
-            ),
-          )}
+          {items.map((contextMenuProps: contextMenuPropsType) => (
+            <div key={contextMenuProps.title}>
+              <Title>{contextMenuProps.title}</Title>
+              {contextMenuProps.items.map((items) =>
+                "separator" in items ? (
+                  <Divider />
+                ) : (
+                  <ContextMenuItem {...items} key={items.itemTitle} />
+                ),
+              )}
+            </div>
+          ))}
         </ContextMenuChildWrapper_R>
       ) : (
         <ContextMenuChildWrapper
@@ -371,22 +366,18 @@ const ContextMenuItemChild = ({
           overHeight={overHeight}
           Loading={loading}
         >
-          {contextMenuItemChildProps.map(
-            (contextMenuProps: contextMenuPropsType) => (
-              <div key={contextMenuProps.title}>
-                <Title>{contextMenuProps.title}</Title>
-                <Divider />
-                {contextMenuProps.contextMenuItemProps.map(
-                  (contextMenuItemChildProps: contextMenuItemPropsType) => (
-                    <ContextMenuItem
-                      {...contextMenuItemChildProps}
-                      key={contextMenuItemChildProps.itemTitle}
-                    />
-                  ),
-                )}
-              </div>
-            ),
-          )}
+          {items.map((contextMenuProps: contextMenuPropsType) => (
+            <div key={contextMenuProps.title}>
+              <Title>{contextMenuProps.title}</Title>
+              {contextMenuProps.items.map((items: contextMenuItemPropsType) =>
+                "separator" in items ? (
+                  <Divider />
+                ) : (
+                  <ContextMenuItem {...items} key={items.itemTitle} />
+                ),
+              )}
+            </div>
+          ))}
         </ContextMenuChildWrapper>
       )}
     </div>
@@ -408,7 +399,7 @@ ContextMenu.defaultProps = {
     {
       prefixIcon: "Label",
       itemTitle: "라벨1",
-      contextMenuItemChildProps: [
+      items: [
         {
           title: "타이틀3",
           contextMenuItemProps: [
