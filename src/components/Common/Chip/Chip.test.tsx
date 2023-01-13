@@ -2,7 +2,7 @@ import Chip from "./Chip";
 import { StyledComponentRenderSetting } from "hook/test/hook";
 import { screen } from "@testing-library/react";
 
-describe("Chip state 별 props 노출 테스트", () => {
+describe("state 별 props 노출 테스트", () => {
   it("Default state text, icon 노출 확인", () => {
     StyledComponentRenderSetting(
       <Chip

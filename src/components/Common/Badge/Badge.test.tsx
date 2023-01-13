@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import Badge from "./Badge";
 import { StyledComponentRenderSetting } from "hook/test/hook";
 
-describe("Badge state 별 텍스트 노출 테스트", () => {
+describe("state 별 텍스트 노출 테스트", () => {
   it("Default state 텍스트 노출 확인", () => {
     StyledComponentRenderSetting(
       <Badge backgroundColor="#333333" state="Default" text="10" />,

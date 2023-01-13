@@ -202,9 +202,9 @@ const ContextMenu = ({
   return (
     <ContextMenuWrapper pageX={pageX} pageY={pageY} isRight={isRight}>
       <Title>{title}</Title>
-      {items.map((data) =>
+      {items.map((data, index) =>
         "separator" in data ? (
-          <Divider />
+          <Divider key={`${index}divider`} />
         ) : (
           <ContextMenuItem {...data} key={data.itemTitle} />
         ),
@@ -350,9 +350,9 @@ const ContextMenuItemChild = ({ isLeft, items }: itemsType) => {
           {items.map((contextMenuProps: contextMenuPropsType) => (
             <div key={contextMenuProps.title}>
               <Title>{contextMenuProps.title}</Title>
-              {contextMenuProps.items.map((items) =>
+              {contextMenuProps.items.map((items, index) =>
                 "separator" in items ? (
-                  <Divider />
+                  <Divider key={`${ref.current} ${index}divider`} />
                 ) : (
                   <ContextMenuItem {...items} key={items.itemTitle} />
                 ),
@@ -369,9 +369,9 @@ const ContextMenuItemChild = ({ isLeft, items }: itemsType) => {
           {items.map((contextMenuProps: contextMenuPropsType) => (
             <div key={contextMenuProps.title}>
               <Title>{contextMenuProps.title}</Title>
-              {contextMenuProps.items.map((items: contextMenuItemPropsType) =>
+              {contextMenuProps.items.map((items, index) =>
                 "separator" in items ? (
-                  <Divider />
+                  <Divider key={`${ref.current} ${index} child divider`} />
                 ) : (
                   <ContextMenuItem {...items} key={items.itemTitle} />
                 ),

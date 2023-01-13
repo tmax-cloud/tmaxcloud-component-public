@@ -2,7 +2,7 @@ import Accordion from "./Accordion";
 import userEvent from "@testing-library/user-event";
 import { StyledComponentRenderSetting } from "hook/test/hook";
 import { screen } from "@testing-library/react";
-describe("Accordion state 별 text,event 테스트 ", () => {
+describe("state 별 텍스트, event 테스트 ", () => {
   it("Box state click event", () => {
     StyledComponentRenderSetting(
       <Accordion

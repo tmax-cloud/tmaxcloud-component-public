@@ -6,7 +6,7 @@ import {
   SBContextMenuTrigger,
 } from "./ContextMenu_Custom";
 
-describe("ContextMenu 스토리북용 컴포넌트를 사용한 노출 테스트(트리거 버튼)", () => {
+describe("스토리북용 컴포넌트를 사용한 노출 테스트(트리거 버튼)", () => {
   const args: contextMenuPropsType = {
     title: "기본 타이틀",
     items: [

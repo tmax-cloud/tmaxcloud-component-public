@@ -608,8 +608,11 @@ const DropdownCheckbox1DepsChildren = ({
         <MenuBoxItemWrapper>
           <Controller
             state="Checkbox"
-            text={text}
-            onChange={onClickCheckboxDropdown}
+            props={{
+              text,
+              onChange: onClickCheckboxDropdown,
+              disabled: false,
+            }}
           />
         </MenuBoxItemWrapper>
       )}
@@ -650,8 +653,10 @@ const DropdownCheckbox2DepsChildren = ({
         <MenuBoxItemWrapper>
           <Controller
             state="Checkbox"
-            text={text}
-            onChange={onClickCheckboxDropdown}
+            props={{
+              text,
+              onChange: onClickCheckboxDropdown,
+            }}
           />
         </MenuBoxItemWrapper>
       )}

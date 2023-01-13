@@ -22,29 +22,29 @@ const Template = (args) => <Controller {...args} />;
 export const ControllerSwitchTemplate = Template.bind({});
 ControllerSwitchTemplate.args = {
   state: "Switch",
-  size: "default",
-  text: "test",
-  disabled: false,
-  onChange: (e) => console.log(e),
+  props: {
+    disabled: false,
+    text: "test",
+    size: "default",
+    onChange: (e) => console.log(e),
+  },
 };
 
 export const ControllerCheckboxTemplate = Template.bind({});
 ControllerCheckboxTemplate.args = {
   state: "Checkbox",
-  size: "default",
-  text: "test",
-  disabled: false,
-  onChange: (e) => console.log(e),
+  props: {
+    text: "test",
+    disabled: false,
+    onChange: (e) => console.log(e),
+  },
 };
 export const ControllerSpinnerTemplate = Template.bind({});
 ControllerSpinnerTemplate.args = {
   state: "Spinner",
-  size: "default",
-  text: "test",
-  disabled: false,
-  number: 0,
-  setNumber: (e) => {
-    console.log("setNumber");
+  props: {
+    disabled: false,
+    number: 0,
+    setNumber: (e) => console.log(e),
   },
-  onChange: (e) => console.log(e),
 };

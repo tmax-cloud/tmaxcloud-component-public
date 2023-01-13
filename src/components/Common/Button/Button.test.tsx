@@ -3,7 +3,7 @@ import Button from "./Button";
 import { StyledComponentRenderSetting } from "hook/test/hook";
 import userEvent from "@testing-library/user-event";
 
-describe("Button state 별 텍스트 노출 테스트", () => {
+describe("state 별 텍스트 노출 테스트", () => {
   it("PrimaryA state 텍스트 노출 확인", () => {
     const onClick = jest.fn();
     const onKeyUp = jest.fn();

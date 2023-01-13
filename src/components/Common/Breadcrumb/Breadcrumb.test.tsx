@@ -14,7 +14,7 @@ const FileIcon = styled(fileIcon)`
   height: 1.4rem;
 `;
 
-describe("Breadcrumb 텍스트 노출 테스트", () => {
+describe("텍스트 노출 테스트", () => {
   it("아이콘 없을 시", () => {
     const propList = [
       {
