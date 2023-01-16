@@ -15,4 +15,7 @@ const Template = (args) => <DatePicker_Custom {...args} />;
 
 export const DatePicker_CustomTemplate = Template.bind({});
 
-DatePicker_CustomTemplate.args = { state: "Default" };
+DatePicker_CustomTemplate.args = {
+  state: "Default",
+  onChange: (e) => console.log(e),
+};

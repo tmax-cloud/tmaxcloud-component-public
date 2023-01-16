@@ -1,4 +1,4 @@
-import { ConfigProvider, Space, DatePicker } from "antd";
+import { ConfigProvider, DatePicker } from "antd";
 import styled, { createGlobalStyle } from "styled-components";
 import "moment/locale/ko";
 import locale from "antd/lib/locale/ko_KR";
@@ -6,6 +6,7 @@ import locale from "antd/lib/locale/ko_KR";
 type DatePicker_CustomPropsType = {
   /** 타입 */
   state: "Default" | "Yearly" | "Monthly";
+  onChange: (e) => void;
 };
 
 const DatePicker_CustomWrapper = styled.div``;
@@ -39,7 +40,6 @@ const DatePicker_CustomStyle = styled(DatePicker)`
   }
 `;
 const CustomPickerGlobalStyle = createGlobalStyle`
- 
   .ant-picker-date-panel,.ant-picker-year-panel,.ant-picker-month-panel{
     height:29rem;
     overflow-y: scroll;
@@ -152,9 +152,9 @@ height:24.3rem;
   height:1.2rem;
 }
 `;
-const DatePicker_Custom = ({ state }: DatePicker_CustomPropsType) => {
-  const onChange = (date, dateString) => {
-    console.log(date, dateString);
+const DatePicker_Custom = ({ state, onChange }: DatePicker_CustomPropsType) => {
+  const onChangeFun = (date, dateString) => {
+    onChange(dateString);
   };
   const DefaultFormat = (value) => value.format("YYYY.MM.DD");
   const MonthFormat = (value) => value.format("YYYY.MM");
@@ -167,29 +167,32 @@ const DatePicker_Custom = ({ state }: DatePicker_CustomPropsType) => {
           {
             Yearly: (
               <DatePicker_CustomStyle
-                onChange={onChange}
+                onChange={onChangeFun}
                 allowClear={false}
                 showToday={false}
                 picker="year"
+                data-testid="datepicker"
               />
             ),
 
             Monthly: (
               <DatePicker_CustomStyle
-                onChange={onChange}
+                onChange={onChangeFun}
                 format={MonthFormat}
                 allowClear={false}
                 showToday={false}
                 picker="month"
+                data-testid="datepicker"
               />
             ),
 
             Default: (
               <DatePicker_CustomStyle
-                onChange={onChange}
+                onChange={onChangeFun}
                 format={DefaultFormat}
                 allowClear={false}
                 showToday={false}
+                data-testid="datepicker"
               />
             ),
           }[state]
