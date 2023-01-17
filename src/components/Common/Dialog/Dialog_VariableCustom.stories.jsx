@@ -1,10 +1,4 @@
-import { Radio, Space } from "antd";
-import Button from "../Button/Button";
-import Dialog_Variable, { SBDialog_Variable } from "./Dialog_Variable";
-import {
-  Dialog_VariableCustom,
-  SBDialog_Variable_Custom,
-} from "./Dialog_VariableCustom";
+import { SBDialog_Variable_Custom } from "./Dialog_VariableCustom";
 
 export default {
   title: "Common/Dialog_VariableCustom",

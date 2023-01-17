@@ -135,7 +135,7 @@ const RightIcon = styled(rightIcon)`
   height: 1.8rem;
   position: absolute;
   right: 0.8rem;
-  color: {({ theme })=>theme.color.gray._700};
+  color: ${({ theme }) => theme.color.gray._700};
 `;
 const Divider = styled.div`
   height: 1px;
