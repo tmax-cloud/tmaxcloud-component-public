@@ -19,5 +19,20 @@ export default {
 
 const Template = (args) => <SBDialog_Variable_Custom {...args} />;
 
-export const Dialog_VariableCustomTemplate = Template.bind({});
-Dialog_VariableCustomTemplate.args = { state: "Normal" };
+export const Dialog_VariableNormalCustomTemplate = Template.bind({});
+Dialog_VariableNormalCustomTemplate.args = { state: "Normal" };
+
+export const Dialog_VariableAlertCustomTemplate = Template.bind({});
+Dialog_VariableAlertCustomTemplate.args = { state: "Alert" };
+
+export const Dialog_VariableAlertIconCustomTemplate = Template.bind({});
+Dialog_VariableAlertIconCustomTemplate.args = { state: "AlertIcon" };
+
+export const Dialog_VariableErrorCustomTemplate = Template.bind({});
+Dialog_VariableErrorCustomTemplate.args = { state: "Error" };
+
+export const Dialog_VariableInputCustomTemplate = Template.bind({});
+Dialog_VariableInputCustomTemplate.args = { state: "Input" };
+
+export const Dialog_VariableRadioCustomTemplate = Template.bind({});
+Dialog_VariableRadioCustomTemplate.args = { state: "Radio" };

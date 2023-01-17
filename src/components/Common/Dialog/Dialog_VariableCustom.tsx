@@ -1,9 +1,9 @@
-import { Modal, Radio } from "antd";
+import { Radio } from "antd";
 import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "../Button/Button";
-import Controller from "../Controller/Controller";
 import { InputBox } from "../InputBox/InputBox";
+import { ReactComponent as Dummy } from "Icon/dummy_icon.svg";
+
 type SBDialogPropsType = {
   state: "Normal" | "Alert" | "AlertIcon" | "Error" | "InputBox" | "Radio";
 };
@@ -151,7 +151,7 @@ const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
         {state === "Normal" && (
           <>
             <Dialog_VariableCustom.TitleWithSubText>
-              hello 이것은 텍스트
+              hello 이것은 Normal 텍스트
             </Dialog_VariableCustom.TitleWithSubText>
             <Dialog_VariableCustom.SubtextWithError>
               <div>subtextsubtextsubtext subtextsubtextsubtextsubtext</div>
@@ -160,19 +160,19 @@ const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
         )}
         {state === "Alert" && (
           <Dialog_VariableCustom.TitleWithoutSubText>
-            hello 이것은 텍스트
+            hello 이것은 Alert 텍스트
           </Dialog_VariableCustom.TitleWithoutSubText>
         )}
         {state === "AlertIcon" && (
           <Dialog_VariableCustom.TitleWithoutSubTextWithIcon>
-            <img src="/asset/images/Icon/dummy_icon.svg" alt="더미" />
-            hello 이것은 텍스트
+            <Dummy />
+            hello 이것은 AlertIcon 텍스트
           </Dialog_VariableCustom.TitleWithoutSubTextWithIcon>
         )}
         {state === "Error" && (
           <>
             <Dialog_VariableCustom.TitleWithSubText>
-              hello 이것은 텍스트
+              hello 이것은 Error 텍스트
             </Dialog_VariableCustom.TitleWithSubText>
             <Dialog_VariableCustom.SubtextWithError>
               <div>안녕하세요</div>
@@ -183,7 +183,7 @@ const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
         {state === "InputBox" && (
           <>
             <Dialog_VariableCustom.TitleWithSubText>
-              hello 이것은 텍스트
+              hello 이것은 InputBox 텍스트
             </Dialog_VariableCustom.TitleWithSubText>
             <Dialog_VariableCustom.SubtextWithInputBox>
               <div>하이</div>
@@ -202,7 +202,7 @@ const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
         {state === "Radio" && (
           <>
             <Dialog_VariableCustom.TitleWithSubText>
-              hello 이것은 텍스트
+              hello 이것은 Radio 텍스트
             </Dialog_VariableCustom.TitleWithSubText>
             <Dialog_VariableCustom.SubtextWithRadioButton>
               <div>hello</div>
@@ -216,9 +216,9 @@ const SBDialog_Variable_Custom = ({ state }: SBDialogPropsType) => {
         )}
 
         <Dialog_VariableCustom.Button_Layout buttonCount={3}>
-          <button onClick={handleModalCancel}>버튼버튼버튼</button>
-          <button onClick={handleModalCancel}>버튼버튼버튼</button>
-          <button onClick={handleModalCancel}>버튼버튼버튼</button>
+          <button onClick={handleModalCancel}>버튼1</button>
+          <button onClick={handleModalCancel}>버튼2</button>
+          <button onClick={handleModalCancel}>버튼3</button>
         </Dialog_VariableCustom.Button_Layout>
       </Dialog_VariableCustom>
     </>
@@ -233,7 +233,10 @@ const Dialog_VariableCustomMain = ({
   return (
     isModalVisible && (
       <Dialog_VariableCustomWrapper>
-        <Dialog_VariableCustomMask onClick={handleCancel} />
+        <Dialog_VariableCustomMask
+          onClick={handleCancel}
+          data-testid="background"
+        />
         <Dialog_VariableCustomModalWrapper>
           {children}
         </Dialog_VariableCustomModalWrapper>

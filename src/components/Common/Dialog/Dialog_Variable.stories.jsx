@@ -132,7 +132,3 @@ RadioButtonTemplate.args = {
     </>
   ),
 };
-
-const NewTemplate = (args) => <SBDialog_Variable_Custom {...args} />;
-
-export const NewTestTemplate = NewTemplate.bind({});
