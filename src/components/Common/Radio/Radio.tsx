@@ -11,6 +11,8 @@ type RadioLabelPropsType = {
   name: string;
   /** disabled 여부 */
   isDisabled: boolean;
+  /** check 여부 */
+  isDefaultChecked?: boolean;
 };
 const Label = styled.label`
   height: 2rem;
@@ -84,11 +86,18 @@ const RadioLabel = ({
   value,
   name,
   isDisabled,
+  isDefaultChecked,
 }: RadioLabelPropsType) => {
   return (
     <Label>
       <Span>
-        <Input type="radio" value={value} name={name} disabled={isDisabled} />
+        <Input
+          type="radio"
+          value={value}
+          name={name}
+          disabled={isDisabled}
+          defaultChecked={isDefaultChecked || false}
+        />
         <span />
       </Span>
       {children}
@@ -130,19 +139,14 @@ export const SBRadio = () => {
         <Radio.RadioLabel value="2번" name="3번" isDisabled={false}>
           라디오 3번의 2번
         </Radio.RadioLabel>
-        <Label>
-          <Span>
-            <Input
-              type="radio"
-              value="3번"
-              name="3번"
-              disabled={true}
-              checked
-            />
-            <span />
-          </Span>
+        <Radio.RadioLabel
+          value="3번"
+          name="3번"
+          isDisabled={true}
+          isDefaultChecked={true}
+        >
           라디오 3번의 3번
-        </Label>
+        </Radio.RadioLabel>
       </Radio>
     </div>
   );
